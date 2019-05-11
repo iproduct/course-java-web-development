@@ -2,7 +2,7 @@
 
 ## Course Progeram
 
-1.	Java fundamentals – Stack and Heap – quick review Literals, assignments and variables Scope Garbage collection Handling exceptions Common exceptions and Errors – 4 h
+1.	Java fundamentals – Stack and Heap – quick review Literals, assignments and variables, Scope, Garbage collection, Handling exceptions, Common exceptions and Errors – 4 h
 
 2.	OOP principles – Encapsulation, Inheritance and Polymorphism, Overriding / Overloading – 4 h
 
