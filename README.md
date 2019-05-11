@@ -1,5 +1,7 @@
 # IPT Course Java Web Development
 
+## Course Progeram
+
 1.	Java fundamentals – Stack and Heap – quick review Literals, assignments and variables Scope Garbage collection Handling exceptions Common exceptions and Errors – 4 h
 
 2.	OOP principles – Encapsulation, Inheritance and Polymorphism, Overriding / Overloading – 4 h
@@ -34,4 +36,12 @@ Locale, Random, Optional, Observable, Observable interface, BigDecimal – 6 h
 16.	Relational databases – Fundamentals (ACID), relations, transactions, indexes, triggers, views, relational algebra and SQL queries – 8 h
 
 17.	Unit testing with JUnit. Object mocking. – 8 h
+
+## Open Source Learning Resources / Textbooks
+* **TIJ4**: Thinking in Java - 4th edition, Bruce Eckel - [https://archive.org/details/TIJ4CcR1]
+* **TIJ4**: Thinking in Java - 4th edition - Code Examples, Bruce Eckel - [https://github.com/BruceEckel/TIJ4-code]
+* **IPJ**: Въведение в програмирането с Java, С. Наков и колектив - [http://www.introprogramming.info/intro-java-book/]
+* **ODS**: Open Data Structures (in Java), Pat Morin - [http://opendatastructures.org/ods-java.pdf]
+* **JD**: Java Data, Particle - [http://www.theparticle.com/javadata2.html]
+* **OJT**: Oracle Java tutorials - [https://docs.oracle.com/javase/tutorial/index.html]
 
