@@ -29,8 +29,7 @@ Locale, Random, Optional, Observable, Observable interface, BigDecimal – 6 h
 
 14.	Introduction to Spring. DI, AOP and MVC – 14 h
 
-15.	Popular Patterns – Singleton, Adapter, Proxy, Builder, Factory, Command, Strategy, Observer, Decorator 
-SOLID principles: https://en.wikipedia.org/wiki/SOLID_(object-oriented_design) – 4 h
+15.	Popular Patterns – Singleton, Adapter, Proxy, Builder, Factory, Command, Strategy, Observer, Decorator, SOLID principles: https://en.wikipedia.org/wiki/SOLID_(object-oriented_design) – 4 h
 
 16.	Relational databases – Fundamentals (ACID), relations, transactions, indexes, triggers, views, relational algebra and SQL queries – 8 h
 
