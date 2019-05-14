@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+  version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence">
+    <persistence-unit name="StockPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>grouper.model.Customer</class>
+        <class>grouper.model.Driver</class>
+        <class>grouper.model.Order</class>
+        <class>grouper.model.Payment</class>
+        <class>grouper.model.Vehicle</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+      		<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      		<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/advanced_java"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+      		<property name="eclipselink.ddl-generation" value="create-tables"/>
+    </properties>
+  </persistence-unit>
+</persistence>
