@@ -95,8 +95,11 @@ public class Product {
 	public static void main(String[] args) {
 		Product p1 = new Product("BK0001", "Thinking in Java", 32.5, PCS);
 		p1.setId(1);
+		Product p2 = new Product("BK0002", "UML Distilled", 15.99, PCS);
+		p2.setId(2);
 		System.out.println(p1.getHeader());
 		System.out.println(p1);
+		System.out.println(p2);
 
 	}
 
