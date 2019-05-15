@@ -100,7 +100,7 @@ public class Contragent {
 
 	@Override
 	public String toString() {
-		return String.format("Contragent [idNumber=%s, name=%s, address=%s, kind=%s, phone=%s, vatRegisterd=%s]",
+		return String.format("| %s | %s | %s | %s | %s | %s |",
 				idNumber, name, address, kind, phone, vatRegisterd);
 	}
 	
