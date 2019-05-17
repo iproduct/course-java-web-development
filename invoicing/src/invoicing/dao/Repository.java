@@ -12,6 +12,4 @@ public interface Repository<K,V extends Identifiable<K>> {
 	V add(V entity) throws EntityExistsException ;
 	V update(V entity) throws EntityDoesNotExistException;
 	Optional<V> delete(K id);
-	default void setIdGenerator(IdAutoIncrementable<K> idGen) {}
-	default IdAutoIncrementable<K> getIdGenerator() { return null;}
 }

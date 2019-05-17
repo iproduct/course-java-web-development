@@ -11,6 +11,14 @@ import invoicing.exceptions.EntityExistsException;
 public class RepositoryImpl <K,V extends Identifiable<K>> implements Repository<K, V> {
 	
 	private Map<K,V> entries = new HashMap<>();
+	private IdGenerator<K> idGenerator;
+
+	public RepositoryImpl() {
+	}
+	
+	public RepositoryImpl(IdGenerator<K> idGenerator) {
+		this.idGenerator = idGenerator;
+	}
 	
 	@Override
 	public Optional<V> findById(K id) {
@@ -28,6 +36,11 @@ public class RepositoryImpl <K,V extends Identifiable<K>> implements Repository<
 			throw new EntityExistsException(String.format("Entity with ID=%s already exists.", 
 					entity.getId()));
 		}
+
+		if(idGenerator != null) {
+			entity.setId(idGenerator.getNextId());
+		}
+
 		entries.put(entity.getId(), entity);
 		return entity;
 	}

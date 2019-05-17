@@ -124,7 +124,7 @@ public class Invoice implements Identifiable<Long>{
 				id, date, supplier.toString(),	customer.toString(), 
 				lines.stream()
 					.map(line -> String.format("%s %7.2f |\n",	line.toString(), line.getLinePrice()) )
-					.map(line -> new Tuple(line, 1))
+					.map(line -> new Tuple<>(line, 1))
 					.reduce(new Tuple<String, Integer>("", 1), 
 						(accPos, linePos) -> { 
 							return new Tuple<>(
