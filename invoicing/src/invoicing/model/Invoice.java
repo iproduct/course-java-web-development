@@ -124,26 +124,26 @@ public class Invoice implements Identifiable<Long>{
 				id, date, supplier.toString(),	customer.toString(), 
 				lines.stream()
 					.map(line -> String.format("%s %7.2f |\n",	line.toString(), line.getLinePrice()) )
-//					.map(line -> new MyPosition(line, 1))
-//					.reduce(new MyPosition("", 0), 
-//						(accPos, linePos) -> { 
-//							return new MyPosition(
-//								accPos.getValue() + "| " + (accPos.getPosition() + 1) + " " + linePos.getValue(), 
-//								accPos.getPosition() + 1);
-//						}
-//					).getValue() 
-					.reduce(new Tuple<String, Integer>("", 0), 
-							(accPos, line) -> { 
-								return new Tuple<String, Integer>(
-									accPos.getProp1() + "| " + (accPos.getProp2() + 1) + " " + line, 
-									accPos.getProp2() + 1);
-							},
-							(accPos, pos) -> { 
-								return new Tuple<>(
-									accPos.getProp1() + pos.getProp1(), 
-									accPos.getProp2() + pos.getProp2());
-							}
-						).getProp1() 
+					.map(line -> new Tuple(line, 1))
+					.reduce(new Tuple<String, Integer>("", 1), 
+						(accPos, linePos) -> { 
+							return new Tuple<>(
+								accPos.getProp1() + "| " + accPos.getProp2() + " " + linePos.getProp1(), 
+								(int)accPos.getProp2() + 1);
+						}
+					).getProp1()
+//					.reduce(new Tuple<String, Integer>("", 1), 
+//							(accPos, line) -> { 
+//								return new Tuple<String, Integer>(
+//									accPos.getProp1() + "| " + accPos.getProp2() + " " + line, 
+//									accPos.getProp2() + 1);
+//							},
+//							(accPos, pos) -> { 
+//								return new Tuple<>(
+//									accPos.getProp1() + pos.getProp1(), 
+//									accPos.getProp2() + pos.getProp2());
+//							}
+//						).getProp1() 
 				);
 	}
 
