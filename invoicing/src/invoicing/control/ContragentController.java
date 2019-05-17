@@ -14,7 +14,7 @@ public class ContragentController {
 	public void addContragent(Contragent c) throws EntityExistsException {
 		if(contragents.contains(c)) {
 			throw new EntityExistsException(
-				String.format("Entity ID=%s already exists.", c.getIdNumber()));
+				String.format("Entity ID=%s already exists.", c.getId()));
 		}
 		contragents.add(c);
 	}
