@@ -9,10 +9,11 @@ import invoicing.model.Customer;
 import invoicing.model.Product;
 import invoicing.model.Supplier;
 
-public class ContragentRepositoryImpl extends RepositoryImpl<String, Contragent> {
+public class ContragentRepositoryImpl extends RepositoryImpl<String, Contragent> 
+	implements ContragentRepository{
 
 	public static void main(String[] args) throws EntityExistsException, EntityDoesNotExistException {
-		ContragentRepositoryImpl repo = new ContragentRepositoryImpl();
+		ContragentRepository repo = new ContragentRepositoryImpl();
 		repo.add(new Supplier("123456789", "ABC Ltd.", "Sofia 1000", "RBBABZ1234566778878", 
 				"RBBABZ123", "Ivan Petrov"));
 		repo.add(new Customer("82122423412", "Dimitar Jekov", "Plovdiv, Ciclama 15"));
