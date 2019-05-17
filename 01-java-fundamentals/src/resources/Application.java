@@ -20,7 +20,7 @@ public class Application {
 		
 		ResourceBundle bundle2 = ResourceBundle.getBundle("resources.MyLabels", new Locale("ms", "MY"));
 		printBundle(bundle2);
-		System.out.println("Say how are you in Malaysian Malaya language: " + bundle.getString("how_are_you"));
+		System.out.println("Say how are you in Malaysian Malaya language: " + bundle2.getString("how_are_you"));
 
 	}
 
