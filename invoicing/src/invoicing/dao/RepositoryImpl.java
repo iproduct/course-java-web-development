@@ -8,7 +8,7 @@ import java.util.Optional;
 import invoicing.exceptions.EntityDoesNotExistException;
 import invoicing.exceptions.EntityExistsException;
 
-public class RepositoryImpl <K,V extends Identifiable<K>> implements Repository<K, V>{
+public class RepositoryImpl <K,V extends Identifiable<K>> implements Repository<K, V> {
 	
 	private Map<K,V> entries = new HashMap<>();
 	
