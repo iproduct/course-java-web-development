@@ -50,7 +50,7 @@ public class Supplier extends Contragent {
 
 	@Override
 	public String toString() {
-		return String.format("| S %s | %s | %s | %s |", 
+		return String.format("| S %s %15.15s | %8.8s | %12.12s |", 
 				super.toString(), iban, bic, issuer);
 	}
 		

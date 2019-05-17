@@ -102,7 +102,7 @@ public class Contragent implements Identifiable<String>{
 
 	@Override
 	public String toString() {
-		return String.format("| %s | %s | %s | %s | %s | %s |",
+		return String.format("| %12.12s | %20.20s | %20.20s | %5.5s | %15.15s | %4.4s |",
 				id, name, address, kind, phone, vatRegisterd);
 	}
 	

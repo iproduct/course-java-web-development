@@ -27,7 +27,7 @@ public class Customer extends Contragent {
 	
 	@Override
 	public String toString() {
-		return String.format("| C %s | %s |", 
+		return String.format("| C %s %15.15s |", 
 				super.toString(), email);
 	}
 
