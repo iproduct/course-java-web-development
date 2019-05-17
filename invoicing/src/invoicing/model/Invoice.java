@@ -4,11 +4,11 @@ import static invoicing.model.Measure.M;
 import static invoicing.model.Measure.PCS;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import invoicing.dao.Identifiable;
+import invoicing.utils.Tuple;
 
 public class Invoice implements Identifiable<Long>{
 	private Long id;
@@ -123,8 +123,28 @@ public class Invoice implements Identifiable<Long>{
 				+ "\n\n%5$s",
 				id, date, supplier.toString(),	customer.toString(), 
 				lines.stream()
-					.map(line -> String.format("%s %7.2f |\n", line.toString(), line.getLinePrice()) )
-					.reduce("", (acc, line) -> acc + line));
+					.map(line -> String.format("%s %7.2f |\n",	line.toString(), line.getLinePrice()) )
+//					.map(line -> new MyPosition(line, 1))
+//					.reduce(new MyPosition("", 0), 
+//						(accPos, linePos) -> { 
+//							return new MyPosition(
+//								accPos.getValue() + "| " + (accPos.getPosition() + 1) + " " + linePos.getValue(), 
+//								accPos.getPosition() + 1);
+//						}
+//					).getValue() 
+					.reduce(new Tuple<String, Integer>("", 0), 
+							(accPos, line) -> { 
+								return new Tuple<String, Integer>(
+									accPos.getProp1() + "| " + (accPos.getProp2() + 1) + " " + line, 
+									accPos.getProp2() + 1);
+							},
+							(accPos, pos) -> { 
+								return new Tuple<>(
+									accPos.getProp1() + pos.getProp1(), 
+									accPos.getProp2() + pos.getProp2());
+							}
+						).getProp1() 
+				);
 	}
 
 	public static void main(String[] args) {
@@ -146,6 +166,8 @@ public class Invoice implements Identifiable<Long>{
 		System.out.println(inv1);
 
 	}
+
+	
 
 
 }

@@ -85,7 +85,8 @@ public class OrderLine {
 
 	@Override
 	public String toString() {
-		return String.format("| %15.15s | %7.2f | %7.2f |", product.getName(), quantity, price);
+		return String.format("| %20.20s | %7.2f | %7.2f |", product.getName(), quantity, 
+				price != null ? price : product.getPrice());
 	}
 	
 	
