@@ -4,6 +4,7 @@ import static invoicing.model.Measure.M;
 import static invoicing.model.Measure.PCS;
 
 import invoicing.control.ProductController;
+import invoicing.dao.infrastructure.RepositoryImpl;
 import invoicing.exceptions.EntityDoesNotExistException;
 import invoicing.exceptions.EntityExistsException;
 import invoicing.model.Product;

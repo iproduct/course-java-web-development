@@ -1,17 +1,19 @@
-package invoicing.dao;
+package invoicing.dao.infrastructure;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import invoicing.dao.IdGenerator;
+import invoicing.dao.Identifiable;
 import invoicing.exceptions.EntityDoesNotExistException;
 import invoicing.exceptions.EntityExistsException;
 
 public class RepositoryImpl <K,V extends Identifiable<K>> implements Repository<K, V> {
 	
-	private Map<K,V> entries = new HashMap<>();
-	private IdGenerator<K> idGenerator;
+	protected Map<K,V> entries = new HashMap<>();
+	protected IdGenerator<K> idGenerator;
 
 	public RepositoryImpl() {
 	}

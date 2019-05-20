@@ -3,6 +3,7 @@ package invoicing.dao;
 import static invoicing.model.Measure.M;
 import static invoicing.model.Measure.PCS;
 
+import invoicing.dao.infrastructure.RepositoryImpl;
 import invoicing.exceptions.EntityExistsException;
 import invoicing.model.Contragent;
 import invoicing.model.Customer;

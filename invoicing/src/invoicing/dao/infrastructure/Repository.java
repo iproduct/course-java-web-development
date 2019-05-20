@@ -1,8 +1,9 @@
-package invoicing.dao;
+package invoicing.dao.infrastructure;
 
 import java.util.Collection;
 import java.util.Optional;
 
+import invoicing.dao.Identifiable;
 import invoicing.exceptions.EntityDoesNotExistException;
 import invoicing.exceptions.EntityExistsException;
 

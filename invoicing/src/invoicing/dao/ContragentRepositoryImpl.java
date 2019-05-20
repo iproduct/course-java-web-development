@@ -1,6 +1,7 @@
 package invoicing.dao;
 
 import invoicing.control.ProductController;
+import invoicing.dao.infrastructure.RepositoryImpl;
 import invoicing.exceptions.EntityDoesNotExistException;
 import invoicing.exceptions.EntityExistsException;
 import invoicing.model.Contragent;
