@@ -1,0 +1,13 @@
+EXIT from this program = EXIT
+Load data from file = LOAD
+Save data to File = SAVE
+Add product = ADD_PRODUCT
+List all products = LIST_ALL_PRODUCTS
+Add new contragent = ADD_CONTRAGENT
+List all contragents = LIST_ALL_CONTRAGENTS
+Choose company issuing invoices = SET_ISSUER
+Issue new invoice = ADD_INVOICE
+Print last invoice = PRINT_LAST_INVOICE
+Print last invoice to file (invoices/invoice_XXXXXXXXXX.txt) = PRINT_LAST_INVOICE_TO_FILE
+List all invoices = LIST_ALL_INVOICES
+Generate invoicing report as CSV file = GENERATE_INVOICING_REPORT_AS_CSV_FILE

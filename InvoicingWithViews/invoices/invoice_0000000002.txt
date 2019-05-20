@@ -1,0 +1,32 @@
+
+INVOICE
+==========
+No. : 0000000002  
+Date: 28.01.2016
+
+ISSUER: 
+Identification Number: 1111111111
+Name: "Company++ AD"
+Address: Sofia 1000
+VAT Number: BG1111111111
+Accountable Person: Dimitar Petrov
+IBAN: RBBAZX1234567890
+BIC: RBBAZX
+
+RECEIVER: 
+Identification Number: 1234567895
+Name: ABC Ltd.
+Address: Sofia 1000
+VAT Number: BG1234567895
+Accountable Person: Ivan Petrov
+IBAN: ASADAE223234235556
+BIC: ASADAE
+
+| No. | Product                        |    Price | Quantity | Measure |      Total |
+|   1 | Photoshop CC                   |  2000.00 |    10.00 |     PCS |   20000.00 |
+
+                                                                  Total:   20000.00
+                                                                    VAT:    4000.00
+                                                                   -----------------
+
+                                                     Total VAT included:   24000.00

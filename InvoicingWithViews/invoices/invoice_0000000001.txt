@@ -1,0 +1,34 @@
+
+
+INVOICE
+==========
+No. : 0000000001  
+Date: 27.01.2016
+
+ISSUER: 
+Identification Number: 1234567895
+Name: ABC Ltd.
+Address: Sofia 1000
+VAT Number: BG1234567895
+Accountable Person: Ivan Petrov
+IBAN: ASADAE223234235556
+BIC: ASADAE
+
+RECEIVER: 
+Identification Number: 1234567892
+Name: Best Widgets Inc
+Address: Sofia 1240
+VAT Number: BG1234567892
+Accountable Person: Dimitar Mladenov
+IBAN: ERTDSF3452235556
+BIC: ERTDSF
+
+| No. | Product                        |    Price | Quantity | Measure |      Total |
+|   1 | Thinking in Java               |    15.70 |     2.00 |     PCS |      31.40 |
+|   2 | Raspberry Pi 2                 |    80.00 |     1.00 |     PCS |      80.00 |
+
+                                                                  Total:     111.40
+                                                                    VAT:      22.28
+                                                                   -----------------
+
+                                                     Total VAT included:     133.68
