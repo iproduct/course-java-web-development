@@ -1,8 +1,5 @@
 package invoicing.dao;
 
-import static invoicing.model.Measure.M;
-import static invoicing.model.Measure.PCS;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -13,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import invoicing.exceptions.EntityDoesNotExistException;
@@ -121,7 +119,7 @@ public class BinaryFileProductRepositoryImpl extends ProductRepositoryImpl imple
 					entries.put(p.getId(), p);
 				}
 			} catch (EOFException e){}
-			log.info("Products loaded from file " + repoFileName);
+			log.fine("Products loaded from file " + repoFileName);
 		}
 	}
 
@@ -136,7 +134,7 @@ public class BinaryFileProductRepositoryImpl extends ProductRepositoryImpl imple
 
 	public static void main(String[] args) throws EntityExistsException, EntityDoesNotExistException {
 			ProductRepository repo = new BinaryFileProductRepositoryImpl();
-//			repo.add(new Product("BK1125", "Thinking in Java", 25.70, PCS));
+//			repo.add(new Product("BK1126", "Thinking in Java", 25.70, PCS));
 //			repo.add(new Product("CA4218", "Computer Mouse", 12.99, PCS));
 //			repo.add(new Product("HA0019", "Network cable", 2.17, M));
 //			repo.add(new Product("AX9972", "Copier paper", 12.30, PCS));

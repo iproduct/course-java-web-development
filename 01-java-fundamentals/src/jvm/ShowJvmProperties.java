@@ -6,6 +6,7 @@ public class ShowJvmProperties {
 		System.out.println("JVM properties:\n========================");
 		System.getProperties().list(System.out);
 		System.out.println(System.getProperty("user.name"));
+		System.out.println(System.getProperty("java.class.path"));
 		System.out.println("\nSystem variables:\n========================");
 		System.getenv().forEach((k, v) -> {
 			System.out.println(k + " --> " + v);

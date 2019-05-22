@@ -93,22 +93,14 @@ public class MainMenu {
 		
 		
 		// Add commands to map.
-		commands.put(NONE, new Command() {
-			@Override
-			public boolean action() {
-				return true;
-			}
-		});
-		commands.put(EXIT, new Command() {
-			@Override
-			public boolean action() {
+		commands.put(NONE, () -> true);
+		commands.put(EXIT, () -> {
 				System.out.println("You are goiung to exit. All unsaved data will be lost. Are you sure? [y/n]:");
 				if(in.nextLine().toLowerCase().startsWith("y")){
 					System.out.println("Exiting from invoicing program ...");
 					System.exit(0);
 				}
 				return true;
-			}
 		});
 		commands.put(ADD_PRODUCT, new Command() {
 			@Override
@@ -272,19 +264,16 @@ public class MainMenu {
 				return false;
 			}
 		});
-		commands.put(LOAD, new Command() {
-			@Override
-			public boolean action() {
-				try (ObjectInputStream inSession = new ObjectInputStream(
-							new FileInputStream(SESSION_FILENAME))) {
-					register = (InvoiceRegister) inSession.readObject();
-					return true;
-				} catch (IOException | ClassNotFoundException e) {
-					System.err.println("Error loading data from file: " + SESSION_FILENAME);
-					e.printStackTrace();
-				}
-				return false;
+		commands.put(LOAD, () -> {
+			try (ObjectInputStream inSession = new ObjectInputStream(
+						new FileInputStream(SESSION_FILENAME))) {
+				register = (InvoiceRegister) inSession.readObject();
+				return true;
+			} catch (IOException | ClassNotFoundException e) {
+				System.err.println("Error loading data from file: " + SESSION_FILENAME);
+				e.printStackTrace();
 			}
+			return false;
 		});
 		commands.put(SAVE, new Command() {
 			@Override
