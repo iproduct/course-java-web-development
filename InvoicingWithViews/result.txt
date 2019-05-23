@@ -1,21 +1,10 @@
 Testsuite: invoicing.controller.InvoiceRegisterTest
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0,03 sec
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0,039 sec
 
-Testcase: testFindProductByProductCode took 0,004 sec
+Testcase: givenNonexistngProduct_whenAddProduct_thenProductAddedSuccessfully took 0,009 sec
+Testcase: givenExistngProduct_whenfindProductByName_thenProductFound took 0,003 sec
 	FAILED
 Not yet implemented
 junit.framework.AssertionFailedError: Not yet implemented
-	at invoicing.controller.InvoiceRegisterTest.testFindProductByProductCode(InvoiceRegisterTest.java:11)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
-
-Testcase: testAddProduct took 0,001 sec
-	FAILED
-Not yet implemented
-junit.framework.AssertionFailedError: Not yet implemented
-	at invoicing.controller.InvoiceRegisterTest.testAddProduct(InvoiceRegisterTest.java:16)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
+	at invoicing.controller.InvoiceRegisterTest.givenExistngProduct_whenfindProductByName_thenProductFound(InvoiceRegisterTest.java:28)
 
