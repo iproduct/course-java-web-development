@@ -7,6 +7,10 @@
 
 	<property name="src.dir" location="${basedir}/src" />
 	<property name="build.dir" location="${basedir}/bin" />
+	<property name="test.src.dir" location="${basedir}/test" />
+	<property name="test.build.dir" location="${basedir}/bin" />
+	<property name="test.reports.dir" location="${basedir}/reports" />
+	<property name="lib.dir" location="${basedir}/lib" />
 	
 	<target name="clean" description="remove intermediate files">
 		<delete dir="${build.dir}" />
@@ -33,6 +37,39 @@
 	
 	<target name="runJar" depends="jar" description="run the application from the compiled jar file">
         <java jar="invoicing.jar" dir="." failonerror="true" fork="true" />
+    </target>
+    
+    <target name="test-compile" depends="compile" description="compile the Java test code to class files">
+    	<mkdir dir="${test.build.dir}"/>
+		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}" />
+    </target>
+    
+    <target name="test" depends="test-compile" description="run jUnit tests for the app">
+    	<mkdir dir="${test.reports.dir}" />
+    	<junit printsummary="yes" haltonfailure="yes">
+		    <classpath>
+		        <pathelement path="${build.dir}"/>
+		        <pathelement path="${test.build.dir}"/>
+		        <pathelement location="${lib.dir}/junit.jar" />
+		        <fileset dir="${lib.dir}">
+		        	<include name="**/*.jar" />
+		        </fileset>
+		        <pathelement path="${java.class.path}"/>
+		    </classpath>
+		
+		    <formatter type="xml"/>
+		
+		    <test name="invoicing.controller.InvoiceRegisterTest" haltonfailure="no" outfile="result">
+		    	<formatter type="plain"/>
+		    </test>
+		
+		    <!-- <batchtest fork="yes" todir="${reports.tests}">
+		        <fileset dir="${src.tests}">
+		            <include name="**/*Test*.java"/>
+		            <exclude name="**/AllTests.java"/>
+		        </fileset>
+		    </batchtest> -->
+		</junit>
     </target>
 	
 </project>
