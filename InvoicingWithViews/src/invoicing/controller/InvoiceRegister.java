@@ -158,6 +158,10 @@ public class InvoiceRegister implements Serializable{
 		products.put(product.getCode(), product);
 	}
 	
+	public Collection<Product> getProducts() {
+		return products.values();
+	}
+	
 	public void printAllProductsSorted(Comparator<Product> pc){
 		List<Product> plist = new ArrayList<>(products.values());
 		Collections.sort(plist, pc);
