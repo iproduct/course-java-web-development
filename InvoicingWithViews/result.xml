@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="office27" name="invoicing.controller.InvoiceRegisterTest" skipped="0" tests="2" time="0.039" timestamp="2019-05-23T12:57:23">
+<testsuite errors="0" failures="0" hostname="office27" name="invoicing.controller.InvoiceRegisterTest" skipped="0" tests="2" time="0.031" timestamp="2019-05-23T13:20:18">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="lib.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\lib" />
@@ -79,12 +79,8 @@
     <property name="src.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\src" />
     <property name="ant.project.invoked-targets" value="test" />
   </properties>
-  <testcase classname="invoicing.controller.InvoiceRegisterTest" name="givenNonexistngProduct_whenAddProduct_thenProductAddedSuccessfully" time="0.008" />
-  <testcase classname="invoicing.controller.InvoiceRegisterTest" name="givenExistngProduct_whenfindProductByName_thenProductFound" time="0.003">
-    <failure message="Not yet implemented" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Not yet implemented
-	at invoicing.controller.InvoiceRegisterTest.givenExistngProduct_whenfindProductByName_thenProductFound(InvoiceRegisterTest.java:28)
-</failure>
-  </testcase>
+  <testcase classname="invoicing.controller.InvoiceRegisterTest" name="givenNonexistngProduct_whenAddProduct_thenProductAddedSuccessfully" time="0.007" />
+  <testcase classname="invoicing.controller.InvoiceRegisterTest" name="givenExistngProduct_whenfindProductByProductCode_thenProductFound" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

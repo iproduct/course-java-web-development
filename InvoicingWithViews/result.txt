@@ -1,10 +1,5 @@
 Testsuite: invoicing.controller.InvoiceRegisterTest
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0,039 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,031 sec
 
-Testcase: givenNonexistngProduct_whenAddProduct_thenProductAddedSuccessfully took 0,009 sec
-Testcase: givenExistngProduct_whenfindProductByName_thenProductFound took 0,003 sec
-	FAILED
-Not yet implemented
-junit.framework.AssertionFailedError: Not yet implemented
-	at invoicing.controller.InvoiceRegisterTest.givenExistngProduct_whenfindProductByName_thenProductFound(InvoiceRegisterTest.java:28)
-
+Testcase: givenNonexistngProduct_whenAddProduct_thenProductAddedSuccessfully took 0,008 sec
+Testcase: givenExistngProduct_whenfindProductByProductCode_thenProductFound took 0 sec

@@ -1,13 +1,13 @@
 package invoicing.controller;
 
-import static org.hamcrest.junit.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.hamcrest.junit.MatcherAssert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import invoicing.exception.EntityAlreadyExistsException;
 import invoicing.model.Product;
-import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 public class InvoiceRegisterTest {
 
@@ -24,8 +24,16 @@ public class InvoiceRegisterTest {
 	}
 
 	@Test
-	public void givenExistngProduct_whenfindProductByName_thenProductFound() {
-		fail("Not yet implemented");
+	public void givenExistngProduct_whenfindProductByProductCode_thenProductFound() throws EntityAlreadyExistsException {
+		// Setup
+		InvoiceRegister register = new InvoiceRegister();
+		register.addProduct(SAMPLE_PRODUCTS[0]);
+		
+		// Action
+		Product actual = register.findProductByProductCode(SAMPLE_PRODUCTS[0].getCode());
+		
+		// Check
+		assertEquals(SAMPLE_PRODUCTS[0], actual);
 	}
 	
 	public static final Product[] SAMPLE_PRODUCTS = {

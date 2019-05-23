@@ -59,16 +59,16 @@
 		
 		    <formatter type="xml"/>
 		
-		    <test name="invoicing.controller.InvoiceRegisterTest" haltonfailure="no" outfile="result">
+		    <!-- <test name="invoicing.controller.InvoiceRegisterTest" haltonfailure="no" outfile="result">
 		    	<formatter type="plain"/>
-		    </test>
+		    </test> -->
 		
-		    <!-- <batchtest fork="yes" todir="${reports.tests}">
-		        <fileset dir="${src.tests}">
-		            <include name="**/*Test*.java"/>
+		    <batchtest fork="yes" todir="${test.reports.dir}">
+		        <fileset dir="${test.src.dir}">
+		            <include name="**/*Test.java"/>
 		            <exclude name="**/AllTests.java"/>
 		        </fileset>
-		    </batchtest> -->
+		    </batchtest>
 		</junit>
     </target>
 	

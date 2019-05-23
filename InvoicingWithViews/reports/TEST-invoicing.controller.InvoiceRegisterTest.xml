@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="office27" name="invoicing.controller.InvoiceRegisterTest" skipped="0" tests="2" time="0.041" timestamp="2019-05-23T13:22:15">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="lib.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\lib" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="ant.file.Invoicing with Views" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\build.xml" />
+    <property name="os.name" value="Windows 10" />
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_181\jre\classes" />
+    <property name="test.reports.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\reports" />
+    <property name="user.country.format" value="BG" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="D:\Programs\apache-ant-1.9.14\bin\.." />
+    <property name="java.runtime.version" value="1.8.0_181-b13" />
+    <property name="test.build.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\bin" />
+    <property name="user.name" value="office27" />
+    <property name="user.language.format" value="bg" />
+    <property name="ant.file.type.Invoicing with Views" value="file" />
+    <property name="build.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\bin" />
+    <property name="user.language" value="en" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin" />
+    <property name="ant.project.default-target" value="compile" />
+    <property name="ant.project.name" value="Invoicing with Views" />
+    <property name="java.version" value="1.8.0_181" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="test.src.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\test" />
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="52.0" />
+    <property name="user.country" value="US" />
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_181\jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\build.xml" />
+    <property name="os.version" value="10.0" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="25.181-b13" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="D:\Programs\apache-ant-1.9.14\lib" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="sun.stdout.encoding" value="cp437" />
+    <property name="user.script" value="" />
+    <property name="user.home" value="C:\Users\office27" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Microsoft MPI\Bin\;C:\ProgramData\Miniconda3;C:\ProgramData\Miniconda3\Library\mingw-w64\bin;C:\ProgramData\Miniconda3\Library\usr\bin;C:\ProgramData\Miniconda3\Library\bin;C:\ProgramData\Miniconda3\Scripts;D:\Programs\Python37\Scripts\;D:\Programs\Python37\;C:\Program Files (x86)\Python37-32\Scripts\;C:\Program Files (x86)\Python37-32\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.6\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\Programs\rabbitmq_server-3.7.7\sbin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;D:\Unicorder\Challenges\Mission to Mars\leJOS EV3\bin;C:\Program Files\nodejs\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\IncrediBuild;C:\Program Files (x86)\Yarn\bin\;C:\Users\office27\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\office27\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;D:\Programs\gettext0.19.8.1-iconv1.15-static-64\bin;C:\Program Files\JetBrains\PyCharm 2018.3.5\bin;;C:\Users\office27\AppData\Roaming\npm;D:\Programs\wget-1.19.1-win64;D:\Programs\zookeeper-3.4.14\bin;C:\Users\office27\AppData\Local\Yarn\bin;D:\Programs\apache-ant-1.9.14\bin;D:\Programs\apache-maven-3.6.1\bin;;." />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner invoicing.controller.InvoiceRegisterTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\reports\TEST-invoicing.controller.InvoiceRegisterTest.xml crashfile=D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\junitvmwatcher8199634763933791262.properties propsfile=D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\junit7968044620045154570.properties" />
+    <property name="java.class.path" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\bin;D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\lib\junit.jar;D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\lib\hamcrest-all-1.3.jar;D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\lib\hamcrest-junit-2.0.0.0.jar;D:\Programs\apache-ant-1.9.14\lib\ant-launcher.jar;D:\Programs\apache-ant-1.9.14\lib\ant-antlr.jar;D:\Programs\apache-ant-1.9.14\lib\ant-apache-bcel.jar;D:\Programs\apache-ant-1.9.14\lib\ant-apache-bsf.jar;D:\Programs\apache-ant-1.9.14\lib\ant-apache-log4j.jar;D:\Programs\apache-ant-1.9.14\lib\ant-apache-oro.jar;D:\Programs\apache-ant-1.9.14\lib\ant-apache-regexp.jar;D:\Programs\apache-ant-1.9.14\lib\ant-apache-resolver.jar;D:\Programs\apache-ant-1.9.14\lib\ant-apache-xalan2.jar;D:\Programs\apache-ant-1.9.14\lib\ant-commons-logging.jar;D:\Programs\apache-ant-1.9.14\lib\ant-commons-net.jar;D:\Programs\apache-ant-1.9.14\lib\ant-jai.jar;D:\Programs\apache-ant-1.9.14\lib\ant-javamail.jar;D:\Programs\apache-ant-1.9.14\lib\ant-jdepend.jar;D:\Programs\apache-ant-1.9.14\lib\ant-jmf.jar;D:\Programs\apache-ant-1.9.14\lib\ant-jsch.jar;D:\Programs\apache-ant-1.9.14\lib\ant-junit.jar;D:\Programs\apache-ant-1.9.14\lib\ant-junit4.jar;D:\Programs\apache-ant-1.9.14\lib\ant-netrexx.jar;D:\Programs\apache-ant-1.9.14\lib\ant-swing.jar;D:\Programs\apache-ant-1.9.14\lib\ant-testutil.jar;D:\Programs\apache-ant-1.9.14\lib\ant.jar;C:\Program Files\Java\jdk1.8.0_181\lib\tools.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.14 compiled on March 12 2019" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="java.io.tmpdir" value="C:\Users\office27\AppData\Local\Temp\" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext" />
+    <property name="user.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="basedir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="D:\Programs\apache-ant-1.9.14\lib\ant.jar" />
+    <property name="sun.stderr.encoding" value="cp437" />
+    <property name="file.encoding" value="Cp1252" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="src.dir" value="D:\Course_Java_Web_Development\git\course-java-web-development\InvoicingWithViews\src" />
+    <property name="ant.project.invoked-targets" value="test" />
+  </properties>
+  <testcase classname="invoicing.controller.InvoiceRegisterTest" name="givenNonexistngProduct_whenAddProduct_thenProductAddedSuccessfully" time="0.005" />
+  <testcase classname="invoicing.controller.InvoiceRegisterTest" name="givenExistngProduct_whenfindProductByProductCode_thenProductFound" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
