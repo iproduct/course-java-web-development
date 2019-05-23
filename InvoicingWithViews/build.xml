@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Invoicing with Views" default="compile">
+
+	<presetdef name="javac">
+	  	<javac includeantruntime="false" />
+	</presetdef>
+
+	<property name="src.dir" location="${basedir}/src" />
+	<property name="build.dir" location="${basedir}/bin" />
+	
+	<target name="clean" description="remove intermediate files">
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<target name="jar" depends="compile" description="create Jar file for the app">
+		<jar destfile="invoicing.jar">
+			<fileset dir="${build.dir}" includes="**/*.class" />
+			<manifest>
+				<attribute name="Main-Class" value="invoicing.view.MainMenu" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="compile" description="compile the Java source code to class files">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" />
+	</target>
+	
+	<target name="run" depends="compile" description="run compiled Java application">
+	    <java classname="invoicing.view.MainMenu" classpath="${java.class.path};${build.dir}"
+	    	dir="${basedir}" failonerror="true" fork="true" />
+	</target>
+	
+	<target name="runJar" depends="jar" description="run the application from the compiled jar file">
+        <java jar="invoicing.jar" dir="." failonerror="true" fork="true" />
+    </target>
+	
+</project>
