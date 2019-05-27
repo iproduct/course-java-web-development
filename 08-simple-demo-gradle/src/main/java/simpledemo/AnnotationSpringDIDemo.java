@@ -13,8 +13,9 @@ public class AnnotationSpringDIDemo {
 		ArticlePresenter presenter = ctx.getBean(ArticlePresenter.class);
 		System.out.println("Anntoations Di Demo");
 		presenter.present();
-		presenter.addArticle(Article.builder().title("New Article").content("New content ...").build());
+		
 		System.out.println("\nAfter:");
+		presenter.addArticle(Article.builder().title("New Article").content("New content ...").build());
 		presenter.present();
 
 	}
