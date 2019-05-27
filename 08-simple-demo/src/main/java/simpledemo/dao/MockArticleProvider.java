@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import simpledemo.model.Article;
 
-@Repository
+@Repository("provider")
 public class MockArticleProvider implements ArticleProvider {
 
 	@Override

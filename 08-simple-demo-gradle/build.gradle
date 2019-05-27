@@ -1,0 +1,38 @@
+group 'org.iproduct.spring'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'simpledemo.AnnotationSpringDIDemo'
+
+apply plugin: 'eclipse'
+eclipse {
+	classpath {
+		downloadJavadoc = true
+		downloadSources = true
+	}
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+    jcenter()
+}
+
+dependencies {
+	implementation ('org.springframework:spring-context:5.1.7.RELEASE')
+	implementation 'javax.inject:javax.inject:1@jar'
+	implementation 'org.projectlombok:lombok:1.18.8'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+
+jar {
+	manifest {
+	attributes 'Main-Class': 'simpledemo.AnnotationSpringDIDemo'
+	attributes 'Class-Path': configurations.compileClasspath.collect { it.getName() }.join(' ')
+	}
+}
