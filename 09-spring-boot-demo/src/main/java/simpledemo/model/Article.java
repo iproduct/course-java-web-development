@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Article {
+	private long id;
 	@NonNull
 	private String title;
 	@NonNull
