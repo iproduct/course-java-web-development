@@ -1,8 +1,10 @@
 package simpledemo.dao;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Repository;
@@ -12,7 +14,7 @@ import simpledemo.model.Article;
 @Repository("provider")
 public class MockArticleProvider implements ArticleProvider {
 	private AtomicLong sequence = new AtomicLong(0);
-	private List<Article> articles = new CopyOnWriteArrayList<>();
+	private Map<Long, Article> articles = new ConcurrentHashMap<>();
 	
 	public MockArticleProvider() {
 		Arrays.asList(
@@ -24,14 +26,19 @@ public class MockArticleProvider implements ArticleProvider {
 	}
 	
 	@Override
-	public List<Article> getArticles() {
-		return articles;
+	public Collection<Article> getArticles() {
+		return articles.values();
 	}
 
 	@Override
 	public Article addArticle(Article article) {
 		article.setId(sequence.incrementAndGet());
-		articles.add(article);
+		articles.put(article.getId(), article);
 		return article;
+	}
+
+	@Override
+	public Optional<Article> getArticleById(long id) {
+		return Optional.ofNullable(articles.get(id));
 	}
 }

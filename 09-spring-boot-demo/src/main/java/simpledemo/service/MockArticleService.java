@@ -1,6 +1,7 @@
 package simpledemo.service;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,13 @@ public class MockArticleService implements ArticleService {
 	}
 
 	@Override
-	public List<Article> getArticles() {
+	public Collection<Article> getArticles() {
 		return provider.getArticles();
+	}
+
+	@Override
+	public Optional<Article> getArticleById(long id) {
+		return provider.getArticleById(id);
 	}
 
 }

@@ -5,6 +5,13 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'eclipse'
+eclipse {
+	classpath {
+		downloadJavadoc = true
+		downloadSources = true
+	}
+}
 
 group = 'spring.demos'
 version = '0.0.1-SNAPSHOT'
