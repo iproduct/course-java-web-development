@@ -14,13 +14,13 @@ import simpledemo.model.Article;
 @Repository("provider")
 public class MockArticleProvider implements ArticleProvider {
 	private AtomicLong sequence = new AtomicLong(0);
-	private Map<Long, Article> articles = new ConcurrentHashMap<>();
+	private Map<String, Article> articles = new ConcurrentHashMap<>();
 	
 	public MockArticleProvider() {
 		Arrays.asList(
-				new Article("Welcome to Spring 5", "Spring 5 is great because ..."),
-				new Article("Dependency Injection", "Should I use DI or lookup ..."),
-				new Article("Spring Beans and Wireing", "There are several way to wire Spring beans ...")
+				new Article("Welcome to Spring 5", "Spring 5 is great because ...", "0000000000001"),
+				new Article("Dependency Injection", "Should I use DI or lookup ...", "0000000000001"),
+				new Article("Spring Beans and Wireing", "There are several way to wire Spring beans ...", "0000000000001")
 			).stream().forEach(this::addArticle);
 		
 	}
@@ -32,7 +32,7 @@ public class MockArticleProvider implements ArticleProvider {
 
 	@Override
 	public Article addArticle(Article article) {
-		article.setId(sequence.incrementAndGet());
+		article.setId("" + sequence.incrementAndGet());
 		articles.put(article.getId(), article);
 		return article;
 	}

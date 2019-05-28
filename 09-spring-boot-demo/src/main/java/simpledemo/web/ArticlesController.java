@@ -29,7 +29,7 @@ public class ArticlesController {
 	}
 	
 	@GetMapping("{id}")
-	ResponseEntity<Article> getArticle(@PathVariable long id) {
+	ResponseEntity<Article> getArticle(@PathVariable String id) {
 		return service.getArticleById(id)
 				.map(a -> ResponseEntity.ok(a))
 				.orElse(ResponseEntity.notFound().build());
@@ -48,7 +48,7 @@ public class ArticlesController {
 	}
 
 	@DeleteMapping("{id}")
-	ResponseEntity<Article> deleteArticle(@PathVariable long id) {
+	ResponseEntity<Article> deleteArticle(@PathVariable String id) {
 		return service.deleteArticleById(id)
 				.map(a -> ResponseEntity.ok(a))
 				.orElse(ResponseEntity.notFound().build());

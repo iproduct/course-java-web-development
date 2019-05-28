@@ -7,7 +7,8 @@ import simpledemo.model.Article;
 
 public interface ArticleService {
 	Collection<Article> getArticles();
-	Optional<Article> getArticleById(long id);
-	Optional<Article> deleteArticleById(long id);
+	Optional<Article> getArticleById(String id);
+	Optional<Article> deleteArticleById(String id);
 	Article addArticle(Article article);
+	Article updateArticle(Article article);
 }
