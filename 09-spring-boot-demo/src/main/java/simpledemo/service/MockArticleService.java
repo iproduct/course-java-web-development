@@ -36,7 +36,9 @@ public class MockArticleService implements ArticleService {
 
 	@Override
 	public Optional<Article> deleteArticleById(String id) {
-		return repo.removeById(id);
+		Optional<Article> old = repo.findById(id);
+		old.ifPresent(article -> repo.deleteById(article.getId()));
+		return old;
 	}
 
 	@Override
