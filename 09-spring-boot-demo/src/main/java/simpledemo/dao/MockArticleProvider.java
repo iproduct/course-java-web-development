@@ -41,4 +41,9 @@ public class MockArticleProvider implements ArticleProvider {
 	public Optional<Article> getArticleById(long id) {
 		return Optional.ofNullable(articles.get(id));
 	}
+
+	@Override
+	public Optional<Article> deleteArticleById(long id) {
+		return Optional.ofNullable(articles.remove(id));
+	}
 }

@@ -33,4 +33,9 @@ public class MockArticleService implements ArticleService {
 		return provider.getArticleById(id);
 	}
 
+	@Override
+	public Optional<Article> deleteArticleById(long id) {
+		return provider.deleteArticleById(id);
+	}
+
 }

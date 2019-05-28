@@ -3,10 +3,10 @@ package simpledemo.web;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +29,7 @@ public class ArticlesController {
 	}
 	
 	@GetMapping("{id}")
-	ResponseEntity<Article> getArticles(@PathVariable long id) {
+	ResponseEntity<Article> getArticle(@PathVariable long id) {
 		return service.getArticleById(id)
 				.map(a -> ResponseEntity.ok(a))
 				.orElse(ResponseEntity.notFound().build());
@@ -46,5 +46,13 @@ public class ArticlesController {
 		}
 		return ResponseEntity.created(location).body(createdArticle);
 	}
+
+	@DeleteMapping("{id}")
+	ResponseEntity<Article> deleteArticle(@PathVariable long id) {
+		return service.deleteArticleById(id)
+				.map(a -> ResponseEntity.ok(a))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
 
 }

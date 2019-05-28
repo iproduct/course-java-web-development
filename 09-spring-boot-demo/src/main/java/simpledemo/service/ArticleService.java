@@ -8,5 +8,6 @@ import simpledemo.model.Article;
 public interface ArticleService {
 	Collection<Article> getArticles();
 	Optional<Article> getArticleById(long id);
+	Optional<Article> deleteArticleById(long id);
 	Article addArticle(Article article);
 }
