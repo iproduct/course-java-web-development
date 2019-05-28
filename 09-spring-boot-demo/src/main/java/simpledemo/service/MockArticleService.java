@@ -25,7 +25,7 @@ public class MockArticleService implements ArticleService {
 
 	@Override
 	public Article addArticle(Article article) {
-		return repo.insert(article);
+		return repo.save(article);
 	}
 
 	@Override
