@@ -18,15 +18,9 @@ class App extends React.Component {
   }
 
   render(props) {
-    let result = [];
-    console.log(this.state);
-    for(let i = 0; i < this.state.articles.length; i ++) {
-      result.push( (<li>{this.state.articles[i].title}</li>) );
-    }
-    console.log(result);
     return (
       <ul>
-          {result}
+          {this.state.articles.map(a => (<li>{a.title}</li>))}
       </ul>
     );
   }
