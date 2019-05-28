@@ -28,4 +28,5 @@ public class Article {
 	@NonNull
 	private String authorId;
 	private LocalDateTime created = LocalDateTime.now();
+	private LocalDateTime modified = LocalDateTime.now();
 }
