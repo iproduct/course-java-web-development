@@ -13,6 +13,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global.React = factory());
+//	return factory();
 }(this, (function () { 'use strict';
 
 // TODO: this is special because it gets imported during build.
