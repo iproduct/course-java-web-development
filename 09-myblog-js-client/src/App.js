@@ -1,5 +1,5 @@
 import React from 'react';
-import Article from './Article';
+import ArticlesList from './articles/ArticlesList';
 import './App.css';
 
 class App extends React.Component {
@@ -14,13 +14,18 @@ class App extends React.Component {
     	.then(articles => {
     		console.log(articles);
 			this.setState({articles});
-    	});
+    	}).catch(err => {
+			console.log(`Error: ${err}`);
+		});
 	}
 	
 	render() {
-	    return this.state.articles.map(
-		  article => (<Article key={article.id} value={article} />)
-	    );
+		return (
+			<ArticlesList articles={this.state.articles} />
+		);
+	    // return this.state.articles.map(
+		//   article => (<Article key={article.id} value={article} />)
+	    // );
 	}
 
 }

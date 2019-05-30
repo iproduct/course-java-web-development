@@ -8,14 +8,14 @@ function ArticlesList({articles}) {
 
   return (
     <Row className="articles-main">
-        <Col s={8} m={4}>
+        <Col s={12} m={4}>
         {
             articles.map(article => (
                 <Article key={article.id} article={article} />
             ))
         }
         </Col>
-        <Col s={12} m={4}>
+        <Col s={12} m={8}>
         <div>
             <Button waves="light" onClick={ () => {} }>
                 Add Article

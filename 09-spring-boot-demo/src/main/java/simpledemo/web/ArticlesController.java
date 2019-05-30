@@ -30,7 +30,7 @@ import simpledemo.service.ArticleService;
 @RestController
 @RequestMapping("/api/articles")
 @Slf4j
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class ArticlesController {
 	@Autowired
 	private ArticleService service;

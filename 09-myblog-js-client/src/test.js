@@ -2,7 +2,7 @@ const a = [1,2,3,4,5,6,7,8];
 
 let [a1, a2, ...rest] = a;
 
-// console.log(`${a1}| ${a2}| ${rest}`);
+// console.log(`${a1}| ${a2}| ${rest}`);npm sy
 
 let persons = [
     { name: 'Michael Harrison',
