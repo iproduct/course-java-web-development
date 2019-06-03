@@ -1,5 +1,7 @@
 package bookstore.model;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,15 +17,15 @@ import lombok.RequiredArgsConstructor;
 public class Book {
 	private long id;
 	@NonNull
-	private String name;
+	private String title;
 	@NonNull
 	private String authors;
 	@NonNull
-	private String description;
+	private String format;
+	@NonNull
+	private String isbn;
 	@NonNull
 	private String publisher;
-	private int year;
+	private Date publishedDate = new Date();
 	private double price;
-	private int qunatity;
-	private boolean onSale;
 }
