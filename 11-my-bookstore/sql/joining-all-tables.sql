@@ -1,9 +1,9 @@
 use javaweb;
-select book.title, 
-	CONCAT_WS(' ', author.first_name, author.last_name) as author_name,
-    publisher.`name` as publisher,
+CREATE VIEW books AS
+select book.id as id, book.title as title, 
+	CONCAT_WS(' ', author.first_name, author.last_name) as authors,
     `format`.`name` as `format`,
-    price, isbn
+    isbn, publisher.`name` as publisher, published_date, price
 from book 
 	JOIN book_author on  book.id = book_author.book_id 
     JOIN author on book_author.author_id  = author.id
