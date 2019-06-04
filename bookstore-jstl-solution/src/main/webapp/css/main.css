@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.checkout{
+	width: 100%;
+	border-collapse: collapse;
+}
+.checkout td{
+	background-color: white;
+	border: 1px solid #c0c0c0;
+}
+
+.center {
+	margin: 10px auto 10px auto;
+}
+
+.action-form {
+	width: 100%;
+}

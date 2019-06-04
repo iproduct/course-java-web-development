@@ -30,8 +30,7 @@ if (cart != null && (cart.size() >0)) {
               method="POST">
           <input type="submit" value="Delete">
           <input type="hidden" name= "bookId" value='<%= b.getId() %>'>
-          <input type="hidden" name="action"
-           value="DELETE">
+          <input type="hidden" name="action" value="DELETE">
          </form> 
       </td>
     </tr> 

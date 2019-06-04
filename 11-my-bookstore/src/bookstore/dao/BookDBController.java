@@ -24,8 +24,8 @@ public class BookDBController {
 	}
 
 	public void reload() {
-		try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-			Statement statement = connection.createStatement();
+		try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				Statement statement = connection.createStatement()) {
 			ResultSet rs = statement.executeQuery("SELECT * FROM books ORDER BY title");
 			while (rs.next()) {
 				availableBooks.add(new Book(rs.getLong(1), rs.getString(2), rs.getString(3), 
@@ -44,8 +44,8 @@ public class BookDBController {
 	}
 
 	public Book getBookById(long id) throws NonexistingEntityException {
-		try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-			Statement statement = connection.createStatement();
+		try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				Statement statement = connection.createStatement()) {
 			ResultSet rs = statement.executeQuery("SELECT * FROM books WHERE id=" + id);
 			if (rs.next()) {
 				return new Book(rs.getLong(1), rs.getString(2), rs.getString(3), 

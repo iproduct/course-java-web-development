@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>java-web-demos</groupId>
+	<artifactId>bookstore-jstl-solution</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Bookstore JSTL Solution</name>
+	<url>iproduct.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>bookstore-jstl</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<configuration>
+						<compilerVersion>1.8</compilerVersion>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<version>1.7.4</version>
+					<configuration>
+						<container>
+							<containerId>tomcat8x</containerId>
+							<home>${env.CATALINA_HOME}</home>
+						</container>
+						<configuration>
+							<type>existing</type>
+							<home>${env.CATALINA_HOME}</home>
+						</configuration>
+						<deployables>
+							<deployable>
+								<groupId>${project.groupId}</groupId>
+								<artifactId>${project.artifactId}</artifactId>
+								<type>war</type>
+								<properties>
+									<context>${project.build.finalName}</context>
+								</properties>
+							</deployable>
+						</deployables>
+						<deployer>
+							<type>installed</type>
+						</deployer>
+					</configuration>
+				</plugin>
+			</plugins>
+			<!-- For Maven Tomcat Plugin -->
+
+		</pluginManagement>
+	</build>
+</project>
