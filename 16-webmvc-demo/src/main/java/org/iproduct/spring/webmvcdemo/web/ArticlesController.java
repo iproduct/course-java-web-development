@@ -15,12 +15,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.FileSystemException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,9 +49,10 @@ public class ArticlesController {
     }
 
     @PostMapping(params = "edit")
-    public String editArticle(@RequestParam("edit") String editId, Model model){
+    public String editArticle(@RequestParam("edit") String editId, Model model, UriComponentsBuilder uriBuilder){
         log.info("Editing article: " + editId);
-        return "redirect:/articles/article-form?mode=edit&articleId=" + editId;
+        URI uri = uriBuilder.path("/articles/article-form?mode=edit&articleId={id}").buildAndExpand(editId).toUri();
+        return "redirect:" + uri.toString();
     }
 
     @PostMapping(params = "delete")

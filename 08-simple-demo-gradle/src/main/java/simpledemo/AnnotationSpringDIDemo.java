@@ -9,8 +9,8 @@ import simpledemo.service.ArticlePresenter;
 public class AnnotationSpringDIDemo {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext("simpledemo");
-		ArticlePresenter presenter = ctx.getBean(ArticlePresenter.class);
+		ApplicationContext ctx. = new AnnotationConfigApplicationContext(simpledemo.AnnotationSpringDIDemo.class);
+		ArticlePresenter presenter = ctx.getBean("presenter", ArticlePresenter.class);
 		System.out.println("Anntoations Di Demo");
 		presenter.present();
 		
