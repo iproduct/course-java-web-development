@@ -8,7 +8,6 @@
     Best Books Forever
   </font>
   <hr><p>
-  <center>
   <form name="shoppingForm" 
     action="ShoppingServlet" 
     method="POST">
@@ -29,7 +28,6 @@
   <input type="hidden" name="action" value="ADD">
   <input type="submit" name="Submit" value="Add to Cart">
   </form>
-  </center>
   <p>
   <jsp:include page="Cart.jsp" flush="true" />
 </body>

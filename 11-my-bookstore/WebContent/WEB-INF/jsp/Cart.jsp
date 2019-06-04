@@ -1,6 +1,6 @@
-<%@page session="true" import="java.util.*, bookstore.model.Book" %>
+<%@page session="true" import="java.util.*, bookstore.model.*" %>
 <%
-List<Book> cart = (List<Book>)session.getAttribute("shopping.shoppingcart");
+List<CartBean> cart = (List<CartBean>)session.getAttribute("shopping.shoppingcart");
 if (cart != null && (cart.size() >0)) {
 %>
   <center>
@@ -15,14 +15,15 @@ if (cart != null && (cart.size() >0)) {
     </tr>
     <%
     	for (int index=0; index< cart.size();index++) {
-            Book b = (Book) cart.get(index);
+    		CartBean cb = cart.get(index);
+            Book b = cb.getBook();
     %>
     <tr>
       <td><b><%= b.getTitle() %></b></td>
       <td><b><%= b.getAuthors() %></b></td>
-      <td><b><%= b.getPublishedDate() %></b></td>
+      <td><b><%= b.getPublishedDate().toString() %></b></td>
       <td><b><%= b.getPrice() %></b></td>
-      <td><b><%= b.getQuantity() %></b></td>
+      <td><b><%= cb.getQuantity() %></b></td>
       <td>
         <form name="deleteForm"
               action="ShoppingServlet"

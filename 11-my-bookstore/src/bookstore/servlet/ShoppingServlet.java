@@ -14,9 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bookstore.dao.BookDBController;
+import bookstore.exception.NonexistingEntityException;
 import bookstore.model.Book;
+import bookstore.model.CartBean;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
-@WebServlet(name="ShoppingServlet",urlPatterns={"/ShoppingServlet"})
+@WebServlet(name="ShoppingServlet",urlPatterns={"/"})
+@Log
 public class ShoppingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String SHOPPING_VIEW = "/WEB-INF/jsp/EShop.jsp";
@@ -35,9 +41,9 @@ public class ShoppingServlet extends HttpServlet {
 			return;
 		}
 		@SuppressWarnings("unchecked")
-		List<Book> cart = (List<Book>) session.getAttribute("shopping.shoppingcart");
+		List<CartBean> cart = (List<CartBean>) session.getAttribute("shopping.shoppingcart");
 		if(cart == null) {
-			cart = new ArrayList<Book>(); // first order
+			cart = new ArrayList<CartBean>(); // first order
 			session.setAttribute("shopping.shoppingcart", cart);
 		}
 		BookDBController bookController = 
@@ -54,8 +60,8 @@ public class ShoppingServlet extends HttpServlet {
 					} catch (NumberFormatException e) {};
 					if (bookId > 0) {
 						if (action.equals("DELETE")) {
-							for(Book b : cart)
-								if(b.getId() == bookId){
+							for(CartBean b : cart)
+								if(b.getBook().getId() == bookId){
 									cart.remove(b);
 									break;
 								}
@@ -66,26 +72,30 @@ public class ShoppingServlet extends HttpServlet {
 								quantity = Integer.parseInt(quantityStr);
 							} catch (NumberFormatException e) {};
 							boolean bookInCart = false;
-							for (Book b : cart) {
-								if(b.getId() == bookId){
-									b.setQuantity(b.getQuantity() + quantity);
+							for (CartBean cb : cart) {
+								if(cb.getBook().getId() == bookId){
+									cb.setQuantity(cb.getQuantity() + quantity);
 									bookInCart = true;
 									break;
 								}	
 							}
 							if(!bookInCart){
-								Book b = bookController.getBookById(bookId);
-								b.setQuantity(quantity);
-								cart.add(b);
+								try {
+									Book book = bookController.getBookById(bookId);
+									cart.add(new CartBean(book, quantity));
+								} catch(NonexistingEntityException ex) {
+									log.warning(ex.toString());
+									req.setAttribute("error", ex.getMessage());
+								}
 							}
 						}
 					}
 				}
 			} else if (action.equals("CHECKOUT")) {
 				float total = 0;
-				for (Book b : cart) {
-					double price = b.getPrice();
-					int qty = b.getQuantity();
+				for (CartBean cb : cart) {
+					double price = cb.getBook().getPrice();
+					int qty = cb.getQuantity();
 					total += (price * qty);
 				}
 				total += 0.005;
