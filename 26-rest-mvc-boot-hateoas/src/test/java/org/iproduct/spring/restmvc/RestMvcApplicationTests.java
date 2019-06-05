@@ -74,11 +74,11 @@ public class RestMvcApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"))
 				.andDo(result -> log.info(result.getResponse().getContentAsString()))
-				.andExpect(jsonPath("$.length()").value(3))
+				.andExpect(jsonPath("$._embedded.articles.length()").value(3))
 //                .andExpect(jsonPath("$.length()").value(greaterThan(2)))
-				.andExpect(jsonPath("$[0].title").value("Welcome to Spring 5"))
-				.andExpect(jsonPath("$[1].title").value("Dependency Injection"))
-				.andExpect(jsonPath("$[2].title").value("Spring Beans and Wireing"));
+				.andExpect(jsonPath("$._embedded.articles[0].title").value("Welcome to Spring 5"))
+				.andExpect(jsonPath("$._embedded.articles[1].title").value("Dependency Injection"))
+				.andExpect(jsonPath("$._embedded.articles[2].title").value("Spring Beans and Wireing"));
 //				.andExpect(jsonPath("$._embedded.articleList.length()").value(3))
 ////                .andExpect(jsonPath("$.length()").value(greaterThan(2)))
 //				.andExpect(jsonPath("$._embedded.articleList[0].title").value("Welcome to Spring 5"))

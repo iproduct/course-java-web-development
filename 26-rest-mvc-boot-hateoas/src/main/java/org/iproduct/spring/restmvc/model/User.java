@@ -1,6 +1,8 @@
 package org.iproduct.spring.restmvc.model;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -94,12 +96,11 @@ public class User implements UserDetails, Identifiable<String> {
 //            return "{noop}"+ password;
 //    }
 
-    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
-    @JsonProperty
+    @JsonProperty(access=Access.WRITE_ONLY)
     public void setPassword(String password) {
         this.password = password;
     }

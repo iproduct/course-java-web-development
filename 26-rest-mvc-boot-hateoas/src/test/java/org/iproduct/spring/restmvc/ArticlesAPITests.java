@@ -113,11 +113,11 @@ public class ArticlesAPITests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andDo(result -> log.info(result.getResponse().getContentAsString()))
-                .andExpect(jsonPath("$.length()").value(3))
+                .andExpect(jsonPath("$.content.length()").value(3))
 //                .andExpect(jsonPath("$.length()").value(greaterThan(2)))
-                .andExpect(jsonPath("$[0].title").value("Welcome to Spring 5"))
-                .andExpect(jsonPath("$[1].title").value("Dependency Injection"))
-                .andExpect(jsonPath("$[2].title").value("Spring Beans and Wireing"));
+                .andExpect(jsonPath("$.content[0].title").value("Welcome to Spring 5"))
+                .andExpect(jsonPath("$.content[1].title").value("Dependency Injection"))
+                .andExpect(jsonPath("$.content[2].title").value("Spring Beans and Wireing"));
 
         then(articleRepository).should(times(1)).findAll();
     }
