@@ -1,6 +1,6 @@
 <%@ attribute name="title" required="true" rtexprvalue="true"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>${title}</title>
     <meta charset="UTF-8" />
@@ -12,6 +12,5 @@
 <jsp:doBody />
     </div>
 <jsp:include page="/WEB-INF/views/footer.jspf"/>
-    </div>
 </body>
 </html>

@@ -26,16 +26,16 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class SpringRootConfig {
 
-    @Value("${jdbc.driverClassName:org.postgresql.Driver}")
+    @Value("${spring.datasource.driver-class-name:org.postgresql.Driver}")
     private String driverClassname;
 
-    @Value("${jdbc.url:jdbc:postgresql://localhost/articles}")
+    @Value("${spring.datasource.url:jdbc:postgresql://localhost/articles}")
     private String url;
 
-    @Value("${jdbc.username:postgres}")
+    @Value("${spring.datasource.username:postgres}")
     private String username;
 
-    @Value("${jdbc.password:postgres}")
+    @Value("${spring.datasource.password:postgres}")
     private String password;
 
     @Bean

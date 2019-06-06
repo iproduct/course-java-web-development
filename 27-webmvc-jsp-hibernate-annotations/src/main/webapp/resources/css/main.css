@@ -1,6 +1,6 @@
 body, input[text], button {
   color: #888;
-  font-family: Cambria, Georgia;
+  font-family: "varela round", sans-serif;;
 }
 
 h3 {
@@ -16,4 +16,8 @@ h3 {
 
 .btn {
     margin-top: 10px;
+}
+
+.img-thumbnail {
+	max-width: 100px;
 }

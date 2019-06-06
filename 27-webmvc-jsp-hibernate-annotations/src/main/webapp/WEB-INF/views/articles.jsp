@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -40,7 +41,7 @@
     </table>
     <form:errors path="*" class="errors well bg-danger col-sm-12"/>
 
-    <div class="col-sm-offset-1 col-sm-11">
+    <div class="col-sm-12">
         <button type="submit" class="btn btn-default"><spring:message code="lbl.select" /></button>
         <button type="submit" name="clear" class="btn"><spring:message code="lbl.clear" /></button>
         <button type="submit" name="delete" class="btn btn-danger"><spring:message code="lbl.delete" /></button>

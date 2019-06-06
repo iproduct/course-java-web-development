@@ -1,15 +1,18 @@
 package org.iproduct.spring.webmvc.model;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.annotation.Generated;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "ARTICLES")
@@ -28,9 +31,8 @@ public class Article {
     private String content;
 
     @NotNull
-    @PastOrPresent
     @Column(name = "created_date")
-    private Date createdDate;
+    private Date createdDate = new Date();
 
     @Column(name = "picture_url")
     private String pictureUrl;
@@ -60,7 +62,7 @@ public class Article {
     public Article(@NotNull long id,
                    @NotNull @Length(min = 2, max = 40) String title,
                    @NotNull @Length(min = 2, max = 1000) String content,
-                   @NotNull @PastOrPresent Date createdDate,
+                   @NotNull Date createdDate,
                    String pictureUrl) {
         this.id = id;
         this.title = title;
