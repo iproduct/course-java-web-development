@@ -170,7 +170,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                     rs.getLong("author_id"),
                     rs.getString("picture_url"),
                     rs.getTimestamp("created").toLocalDateTime(),
-                    rs.getTimestamp("updated").toLocalDateTime());
+                    rs.getTimestamp("updated").toLocalDateTime()
+                );
         }
     }
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -97,13 +99,12 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    @JsonIgnore
     @Override
     public String getPassword() {
         return password;
     }
 
-    @JsonProperty
+    @JsonProperty(access = Access.WRITE_ONLY)
     public void setPassword(String password) {
         this.password = password;
     }

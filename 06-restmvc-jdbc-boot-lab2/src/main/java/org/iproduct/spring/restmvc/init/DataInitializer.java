@@ -27,7 +27,7 @@ import java.util.List;
 public class DataInitializer implements CommandLineRunner {
     private static final List<Article> mockArticles = Arrays.asList(
             new Article("Welcome to Spring 5", "Spring 5 is great beacuse ..."),
-            new Article("Dependency Injection", "Should I use DI or lookup ..."),
+            new Article("D", "Should I use DI or lookup ..."),
             new Article("Spring", "There are several ways to configure Spring beans.")
     );
 
@@ -77,7 +77,7 @@ public class DataInitializer implements CommandLineRunner {
                 new User("ivan", "ivan", "Ivan", "Petrov", "ROLE_USER")
             });
 
-            users.stream().forEach(user -> userService.createUser(user));
+            userService.createUsersBatch(users);
 
 //            SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(users);
 //            jdbcTemplate.batchUpdate(UserRepositoryImpl.INSERT_SQL, batch);

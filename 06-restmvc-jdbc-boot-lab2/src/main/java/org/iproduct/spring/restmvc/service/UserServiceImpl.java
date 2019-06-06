@@ -1,6 +1,12 @@
 package org.iproduct.spring.restmvc.service;
 
-import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.ConstraintViolationException;
+
 import org.iproduct.spring.restmvc.dao.UserRepository;
 import org.iproduct.spring.restmvc.events.UserCreationEvent;
 import org.iproduct.spring.restmvc.exception.EntityNotFoundException;
@@ -15,18 +21,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Primary
@@ -57,6 +60,7 @@ public class UserServiceImpl implements UserService {
         return repo.findAll();
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public User createUser(User user) {
         repo.findByUsername(user.getUsername()).ifPresent(u -> {
@@ -104,11 +108,14 @@ public class UserServiceImpl implements UserService {
     }
 
     // Declarative transaction
-//    @Transactional
+//    @Transactional(propagation = Propagation.REQUIRED)
 //    public List<User> createUsersBatch(List<User> users) {
 //        List<User> created = users.stream()
 //                .map(user -> createUser(user))
-//                .collect(Collectors.toList());
+//                .map(result -> {
+//                	 applicationEventPublisher.publishEvent(new UserCreationEvent(result));
+//                	 return result;
+//                }).collect(Collectors.toList());
 //        return created;
 //    }
 
