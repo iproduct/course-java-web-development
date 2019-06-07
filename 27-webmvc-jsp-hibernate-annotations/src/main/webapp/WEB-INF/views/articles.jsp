@@ -46,7 +46,7 @@
         <button type="submit" class="btn btn-default"><spring:message code="lbl.select" /></button>
         <button type="submit" name="clear" class="btn"><spring:message code="lbl.clear" /></button>
         <button type="submit" name="delete" class="btn btn-danger"><spring:message code="lbl.delete" /></button>
-        <a class="btn btn-primary" href="new-article"><spring:message code="lbl.add" /></a>
+        <a class="btn btn-primary" href="article-form"><spring:message code="lbl.add" /></a>
     </div>
     </form:form>
 
