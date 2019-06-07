@@ -37,7 +37,7 @@ public class ArticleConroller {
     private static final String UPLOADS_DIR = "tmp";
 
     @Autowired
-    @Qualifier("articleDaoHibernateEM")
+    @Qualifier("jpaRepo")
     private ArticleDao repository;
 
     private static final Logger LOG = LoggerFactory.getLogger(ArticleConroller.class.getName());

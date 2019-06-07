@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
-@Repository
+@Repository("jpaRepo")
 //@Transactional
 public class ArticleDaoHibernateEM implements ArticleDao {
 	@PersistenceContext

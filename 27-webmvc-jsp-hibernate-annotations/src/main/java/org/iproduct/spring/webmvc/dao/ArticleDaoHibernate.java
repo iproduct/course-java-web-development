@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-@Repository
+@Repository("hibernateRepo")
 //@Transactional
 public class ArticleDaoHibernate implements ArticleDao {
 
