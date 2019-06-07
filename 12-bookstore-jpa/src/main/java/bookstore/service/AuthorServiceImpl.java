@@ -1,44 +1,51 @@
 package bookstore.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bookstore.dao.AuthorRepository;
 import bookstore.exception.EntityExistsException;
 import bookstore.exception.EntityNotFoundException;
 import bookstore.model.Author;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
+	
+	@Autowired
+	private AuthorRepository authorRepository;
 
 	@Override
 	public List<Author> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return authorRepository.findAll();
 	}
 
 	@Override
 	public Author getById(int id) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return authorRepository.findById(id).orElseThrow(() -> 
+		new EntityNotFoundException("Author with ID=" + id + " not found."));
 	}
 
 	@Override
 	public Author create(Author author) throws EntityExistsException {
-		// TODO Auto-generated method stub
-		return null;
+		if (author.getId() > 0 && getById(author.getId()) != null)
+			throw new EntityExistsException("Entity with ID=" + author.getId() + " already exists.");
+		return authorRepository.save(author);
 	}
 
 	@Override
 	public Author update(Author author) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		getById(author.getId());
+		return authorRepository.save(author);
 	}
 
 	@Override
 	public Author delete(int authorId) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Author author = getById(authorId);
+		authorRepository.deleteById(authorId);
+		return author;
 	}
 
 }
