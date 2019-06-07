@@ -1,5 +1,7 @@
 package org.iproduct.spring.webmvc.dao;
 
+import java.util.Collection;
+
 import org.hibernate.SessionFactory;
 import org.iproduct.spring.webmvc.exceptions.EntityDoesNotExistException;
 import org.iproduct.spring.webmvc.model.Article;
@@ -9,11 +11,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.jta.JtaTransactionManager;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
-
-import java.util.Collection;
 
 @Repository
 //@Transactional

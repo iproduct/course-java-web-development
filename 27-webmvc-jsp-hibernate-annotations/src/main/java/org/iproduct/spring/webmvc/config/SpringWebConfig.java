@@ -48,7 +48,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/new-article").setViewName("articleForm");
+        registry.addViewController("/article-form").setViewName("articleForm");
         registry.addViewController("/home").setViewName("home");
     }
 

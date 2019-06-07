@@ -37,7 +37,7 @@ public class ArticleConroller {
     private static final String UPLOADS_DIR = "tmp";
 
     @Autowired
-    @Qualifier("articleDaoHibernate")
+    @Qualifier("articleDaoHibernateEM")
     private ArticleDao repository;
 
     private static final Logger LOG = LoggerFactory.getLogger(ArticleConroller.class.getName());
@@ -68,7 +68,7 @@ public class ArticleConroller {
         return "articles";
     }
 
-    @GetMapping("/new-article")
+    @GetMapping("/article-form")
     public String showArticleForm() {
 //        return new ModelAndView("articleForm", "article", new Article());
         return "articleForm";
@@ -91,7 +91,8 @@ public class ArticleConroller {
             handleMultipartFile(file);
             article.setPictureUrl(file.getOriginalFilename());
         }
-        repository.create(article);
+        Article created = repository.create(article);
+        LOG.info("Entity created {}", created);
         return "redirect:articles";
     }
 

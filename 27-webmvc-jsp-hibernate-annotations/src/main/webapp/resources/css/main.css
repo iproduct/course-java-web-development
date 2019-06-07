@@ -14,8 +14,8 @@ h3 {
     color: red;
 }
 
-.btn {
-    margin-top: 10px;
+nav.navbar {
+    border-radius: 0px;
 }
 
 .img-thumbnail {
