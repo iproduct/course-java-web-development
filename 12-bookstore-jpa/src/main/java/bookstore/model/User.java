@@ -1,7 +1,20 @@
 package bookstore.model;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -9,25 +22,13 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
-
+@Entity
 @JsonIgnoreProperties({"authorities", "accountNonExpired", "accountNonLocked", "credentialsNonExpired", "enabled"})
 @Data
 @Builder
 public class User implements UserDetails {
-//    @Id
+    @Id
     private long id;
 
     @NotNull
