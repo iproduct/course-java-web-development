@@ -6,8 +6,8 @@
     <div class="container">
         <h3 th:text="${title}">Add New Author</h3>
         <form th:object="${author}" method="post"
-              class="form-horizontal col-md-9 col-lg-6" enctype="multipart/form-data">
-            <div th:if="${author.id} != null" class="form-group row">
+              class="form-horizontal col-md-10 col-lg-8" enctype="multipart/form-data">
+            <div th:if="${author.id} != 0" class="form-group row">
                 <label path="id" class="col-sm-2 col-form-label">ID</label>
                 <div class="col-sm-10">
                     <input type="text" th:value="*{id}" id="id" name="id"
@@ -17,7 +17,7 @@
 
             <div class="form-group row">
                 <label path="title" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.name}">First Name</th>
+					<th th:text="#{lbl.firstName}">First Name</th>
 				</label>
                 <div class="col-sm-10">
                     <input type="text" th:value="*{firstName}" id="firstName" name="firstName"
@@ -31,7 +31,7 @@
 
             <div class="form-group row">
                 <label path="title" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.name}">Last Name</th>
+					<th th:text="#{lbl.lastName}">Last Name</th>
 				</label>
                 <div class="col-sm-10">
                     <input type="text" th:value="*{lastName}" id="lastName" name="lastName"
@@ -40,18 +40,8 @@
             </div>
             <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
                class="errors alert alert-danger offset-sm-2 col-sm-10">
-                Incorrect name
+                Incorrect last name
             </p>
-
-            <div class="form-group row">
-                <label path="content" class="col-sm-2 col-form-label">
-                	<th th:text="#{lbl.notes}">Notes</th>
-                </label>
-                <div class="col-sm-10">
-                    <input type="text" th:value="*{notes}" id="notes" name="notes"
-                           class="form-control" title="Author notes" th:errorclass="field-error">
-                </div>
-            </div>
             
             <div class="col-xs-12 alert alert-danger" th:if="${myErrors != null}">
                 <p>Errors: </p>

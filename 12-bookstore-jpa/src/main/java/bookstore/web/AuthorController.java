@@ -41,7 +41,7 @@ public class AuthorController {
     @PostMapping(params = "edit")
     public String editAuthor(@RequestParam("edit") int editId, Model model, UriComponentsBuilder uriBuilder){
         log.info("Editing author: " + editId);
-        URI uri = uriBuilder.path("/authors/author-form?mode=edit&authorId={id}").buildAndExpand(editId).toUri();
+        URI uri = uriBuilder.path("/authors/author-form").query("mode=edit&authorId={id}").buildAndExpand(editId).toUri();
         return "redirect:" + uri.toString();
     }
 
@@ -55,7 +55,7 @@ public class AuthorController {
     @GetMapping("/author-form")
     public String getAuthorForm(@ModelAttribute ("author") Author author, ModelMap model,
                                 @RequestParam(value="mode", required=false) String mode,
-                                @RequestParam(value="authorId", required=false) int authorId){
+                                @RequestParam(value="authorId", required=false) Integer authorId){
         String title = "Add New Author";
         final String viewName = "author-form";
         if("edit".equals(mode)) {
@@ -63,7 +63,7 @@ public class AuthorController {
              model.addAttribute("author", found);
              title = "Edit Author";
         }
-
+        
         model.addAttribute("path", viewName);
         model.addAttribute("title", title);
         return  viewName;
@@ -73,12 +73,12 @@ public class AuthorController {
     public String addAuthor(@Valid @ModelAttribute ("author") Author author,
                              BindingResult errors,
 //                             @RequestParam(name = "cancel", required = false) String cancelBtn,
-                             @RequestParam("file") MultipartFile file,
+//                             @RequestParam("file") MultipartFile file,
                              Model model) throws EntityExistsException {
 //        if(cancelBtn != null) return "redirect:/authors";
         if(errors.hasErrors()) {
             List<String> errorMessages = errors.getAllErrors().stream().map(err -> {
-                ConstraintViolation cv = err.unwrap(ConstraintViolation.class);
+                ConstraintViolation<Author> cv = err.unwrap(ConstraintViolation.class);
                 return String.format("Error in '%s' - invalid value: '%s'", cv.getPropertyPath(), cv.getInvalidValue());
             }).collect(Collectors.toList());
             model.addAttribute("myErrors", errorMessages);
