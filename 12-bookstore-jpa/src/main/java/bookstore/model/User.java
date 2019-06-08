@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
@@ -29,6 +30,7 @@ import lombok.NonNull;
 @Builder
 public class User implements UserDetails {
     @Id
+    @GeneratedValue
     private long id;
 
     @NotNull

@@ -17,14 +17,28 @@
 
             <div class="form-group row">
                 <label path="title" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.name}">Name</th>
+					<th th:text="#{lbl.name}">First Name</th>
 				</label>
                 <div class="col-sm-10">
-                    <input type="text" th:value="*{name}" id="name" name="name"
-                           class="form-control" title="Author name" th:errorclass="field-error">
+                    <input type="text" th:value="*{firstName}" id="firstName" name="firstName"
+                           class="form-control" title="Author first name" th:errorclass="field-error">
                 </div>
             </div>
-            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+               class="errors alert alert-danger offset-sm-2 col-sm-10">
+                Incorrect first name
+            </p>
+
+            <div class="form-group row">
+                <label path="title" class="col-sm-2 col-form-label">
+					<th th:text="#{lbl.name}">Last Name</th>
+				</label>
+                <div class="col-sm-10">
+                    <input type="text" th:value="*{lastName}" id="lastName" name="lastName"
+                           class="form-control" title="Author last name" th:errorclass="field-error">
+                </div>
+            </div>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
                class="errors alert alert-danger offset-sm-2 col-sm-10">
                 Incorrect name
             </p>

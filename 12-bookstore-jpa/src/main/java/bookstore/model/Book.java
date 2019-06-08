@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
@@ -65,6 +66,12 @@ public class Book {
 	
 	
 	@ManyToMany
+	@JoinTable(name="BOOK_AUTHOR",
+	    joinColumns=
+	        @JoinColumn(name="BOOK_ID", referencedColumnName="ID"),
+	    inverseJoinColumns=
+	        @JoinColumn(name="AUTHOR_ID", referencedColumnName="ID")
+	)
 	private List<Author> authors;
 	
 }

@@ -8,15 +8,17 @@
         <table class="article-table table table-striped">
             <thead>
             <th th:text="#{lbl.number}">Number</th>
-            <th th:text="#{lbl.name}">Name</th>
-            <th th:text="#{lbl.notes}">Notes</th>
+            <th th:text="#{lbl.firstName}">Name</th>
+            <th th:text="#{lbl.lastName}">Name</th>
+            <th th:text="#{lbl.books}">Books</th>
             </thead>
             <tbody>
             <form method="post">
             <tr th:each="row, rowStat : ${authors}">
                 <td th:text="${rowStat.index + 1}"></td>
-                <td th:text="${row.name}"></td>
-                <td th:text="${row.notes}"></td>
+                <td th:text="${row.firstName}"></td>
+                <td th:text="${row.lastName}"></td>
+                <td th:text="${row.booksAsString}"></td>
                 <td>
                     <button type="submit" class="btn btn-primary" name="edit" th:value="${row.id}"><i class="fas fa-edit"></i></button>
                     <button type="submit" class="btn btn-danger" name="delete" th:value="${row.id}"><i class="fas fa-trash-alt"></i></button>
