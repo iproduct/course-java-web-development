@@ -18,32 +18,33 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.findAll();
 	}
 
 	@Override
 	public Book getById(int id) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.findById(id).orElseThrow(() -> 
+		new EntityNotFoundException("Book with ID=" + id + " not found."));
 	}
 
 	@Override
 	public Book create(Book book) throws EntityExistsException {
-		// TODO Auto-generated method stub
-		return null;
+		if (book.getId() > 0 && getById(book.getId()) != null)
+			throw new EntityExistsException("Entity with ID=" + book.getId() + " already exists.");
+		return bookRepository.save(book);
 	}
 
 	@Override
 	public Book update(Book book) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		getById(book.getId());
+		return bookRepository.save(book);
 	}
 
 	@Override
 	public Book delete(int bookId) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Book book = getById(bookId);
+		bookRepository.deleteById(bookId);
+		return book;
 	}
 
 }
