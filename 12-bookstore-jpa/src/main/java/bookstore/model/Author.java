@@ -48,6 +48,11 @@ public class Author {
 	List<Book> books;
 	
 	@JsonIgnore
+	public String getName() {
+		return firstName + " " + lastName;
+	}
+	
+	@JsonIgnore
 	public String getBooksAsString() {
 		return books.stream()
 			.map(book -> book.getTitle())

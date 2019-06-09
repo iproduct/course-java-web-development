@@ -1,6 +1,7 @@
 package bookstore.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,13 +43,13 @@ public class Book {
 	@NotNull
 	private String title;
 	
-	@NonNull
+//	@NonNull
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "publisher", referencedColumnName = "id")
 	private Publisher publisher;
 	
-	@NonNull
+//	@NonNull
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "format", referencedColumnName = "id")
@@ -74,12 +75,12 @@ public class Book {
 	    inverseJoinColumns=
 	        @JoinColumn(name="AUTHOR_ID", referencedColumnName="ID")
 	)
-	private List<Author> authors;
+	private List<Author> authors = new ArrayList<>();
 	
 	@JsonIgnore
 	public String getAuthorsAsString() {
 		return authors.stream()
-			.map(book -> book.getFirstName() + " " + book.getLastName())
+			.map(a -> a.getFirstName() + " " + a.getLastName())
 			.collect(Collectors.joining(", "));
 	}
 	
