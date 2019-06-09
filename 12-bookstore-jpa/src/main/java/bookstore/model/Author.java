@@ -1,16 +1,14 @@
 package bookstore.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
@@ -49,7 +47,7 @@ public class Author {
 	private String lastName;
 	
 	@ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
-	List<Book> books;
+	List<Book> books = new ArrayList<>();
 	
 	@JsonIgnore
 	public String getName() {

@@ -43,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("books")
-@SessionAttributes("book")
+@SessionAttributes({"book", "bookAuthors"})
 @Slf4j
 public class BookController {
 	@Autowired
@@ -63,8 +63,13 @@ public class BookController {
         return new Book();
     }
 
+    @ModelAttribute("bookAuthors")
+    List<Author> getBookAuthorsModelAttribute() {
+        return new ArrayList<Author>();
+    }
+    
     @ModelAttribute("authors")
-    List<Author> getAuthorssModelAttribute() {
+    List<Author> getAuthorsModelAttribute() {
         return authorService.getAll();
     }
     
@@ -108,6 +113,7 @@ public class BookController {
 	@GetMapping("/book-form")
 	public String getBookForm(@ModelAttribute("book") Book book, 
 			@ModelAttribute("newAuthor") Author newAuthor,
+			@ModelAttribute("bookAuthors") List<Author> bookAuthors,
 			HttpSession session, SessionStatus status, ModelMap model, 
 			@RequestParam(value = "mode", required = false) String mode,
 			@RequestParam(value = "bookId", required = false) Integer bookId) {
@@ -115,7 +121,7 @@ public class BookController {
 		boolean isNewBook = true;
 		final String viewName = "book-form";
 		
-		status.setComplete(); //remove previous book data from session
+//		status.setComplete(); //remove previous book data from session
 		
 		if(book.getPublisherId() == null && book.getPublisher() != null) {
 			book.setPublisherId(book.getPublisher().getId());
@@ -128,6 +134,8 @@ public class BookController {
 		if ("edit".equals(mode)) {
 			Book found = bookService.getById(bookId);
 			model.addAttribute("book", found);
+			bookAuthors.clear();
+			bookAuthors.addAll(found.getAuthors());
 			title = "Edit Book";
 			isNewBook = false;
 		}
@@ -141,10 +149,12 @@ public class BookController {
 		return viewName;
 	}
 
-	@PostMapping(path = "/book-form", params = "addAuthor")
+	@PostMapping(path = "/book-form", params = "startAddAuthor")
 	public String startAddingAuthor(@ModelAttribute("book") Book book,
+			@ModelAttribute("bookAuthors") List<Author> bookAuthors,
 			@ModelAttribute("selectedAuthor") AuthorSelection selectedAuthor,
-			@ModelAttribute("newAuthor") Author newAuthor, HttpSession session, Model model) {
+			@ModelAttribute("newAuthor") Author newAuthor, 
+			HttpSession session, Model model) {
 		log.info("Start adding author.");
 		session.setAttribute("isAddingAuthor", true);
 		return "book-form";
@@ -153,7 +163,9 @@ public class BookController {
 	@PostMapping(path = "/book-form", params = "cancelAuthor")
 	public String cancelAddingAuthor(@ModelAttribute("book") Book book,
 			@ModelAttribute("selectedAuthor") AuthorSelection selectedAuthor,
-			@ModelAttribute("newAuthor") Author newAuthor, HttpSession session, Model model) {
+			@ModelAttribute("newAuthor") Author newAuthor, 
+			@ModelAttribute("bookAuthors") List<Author> bookAuthors,
+			HttpSession session, Model model) {
 		log.info("Cancel adding author.");
 		session.setAttribute("isAddingAuthor", false);
 		return "book-form";
@@ -162,11 +174,27 @@ public class BookController {
 	@PostMapping(path = "/book-form", params = "chooseAuthor")
 	public String chooseAuthor(@ModelAttribute("book") Book book,
 			@ModelAttribute("selectedAuthor") AuthorSelection selectedAuthor,
-			@ModelAttribute("newAuthor") Author newAuthor, HttpSession session, Model model) {
+			@ModelAttribute("newAuthor") Author newAuthor, 
+			@ModelAttribute("bookAuthors") List<Author> bookAuthors,
+			HttpSession session, Model model) {
 		Author author = authorService.getById(selectedAuthor.getAuthorId());
 		log.info("Author choosen: " + selectedAuthor);
 		book.getAuthors().add(author);
-//		author.getBooks().add(book);
+		bookAuthors.add(author);
+		session.setAttribute("isAddingAuthor", false);
+		return "book-form";
+	}
+	
+	@PostMapping(path = "/book-form", params = "addAuthor")
+	public String addAuthor(@ModelAttribute("book") Book book,
+			@ModelAttribute("selectedAuthor") AuthorSelection selectedAuthor,
+			@Valid @ModelAttribute("newAuthor") Author newAuthor, 
+			@ModelAttribute("bookAuthors") List<Author> bookAuthors,
+			HttpSession session, Model model) throws EntityExistsException {
+		log.info("Adding new author: " + newAuthor);
+		authorService.create(newAuthor);
+		book.getAuthors().add(newAuthor);
+		bookAuthors.add(newAuthor);
 		session.setAttribute("isAddingAuthor", false);
 		return "book-form";
 	}
@@ -175,7 +203,9 @@ public class BookController {
 	@PostMapping("/book-form")
 	public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bookErrors,
 			@Valid @ModelAttribute("selectedAuthor") AuthorSelection selectedAuthor,
-			@Valid @ModelAttribute("newAuthor") Author newAuthor, BindingResult authorErrors, SessionStatus status,
+			@Valid @ModelAttribute("newAuthor") Author newAuthor, BindingResult authorErrors, 
+			@ModelAttribute("bookAuthors") List<Author> bookAuthors,
+			SessionStatus status,
 //                             @RequestParam(name = "cancel", required = false) String cancelBtn,
 //                             @RequestParam("file") MultipartFile file,
 			Model model) throws EntityExistsException {
@@ -195,18 +225,25 @@ public class BookController {
 		} else {
 			log.info("POST Book: " + book);
 			if(book.getPublisherId() == null) {
-				List<String> errorMessages = new ArrayList();
+				List<String> errorMessages = new ArrayList<>();
 				errorMessages.add("Publisher should be chosen.");
 				model.addAttribute("myErrors", errorMessages);
 			}
 			book.setPublisher(publisherService.getById(book.getPublisherId()));
 
 			if(book.getFormatId() == null) {
-				List<String> errorMessages = new ArrayList();
+				List<String> errorMessages = new ArrayList<>();
 				errorMessages.add("Fromat should be chosen.");
 				model.addAttribute("myErrors", errorMessages);
 			}
 			book.setFormat(formatService.getById(book.getFormatId()));
+			
+			if(bookAuthors == null) {
+				List<String> errorMessages = new ArrayList<>();
+				errorMessages.add("Authors are required.");
+				model.addAttribute("myErrors", errorMessages);
+			}
+			book.setAuthors(bookAuthors);
 
 			if (book.getId() == 0) {
 				log.info("ADD New Book: " + book);

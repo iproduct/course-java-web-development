@@ -15,8 +15,8 @@
 						class="form-control" title="Book Id" readonly>
 				</div>
 			</div>
-
-			<div class="form-group row">
+ 
+ 			<div class="form-group row">
 				<label path="title" class="col-sm-2 col-form-label">
 					<th th:text="#{lbl.title}">Title</th>
 				</label>
@@ -39,7 +39,7 @@
 						class="form-control" title="Book authors"></div>
 				</div>
 				<button type="submit" class="btn btn-primary col-sm-2"
-					id="addAuthor" name="addAuthor" value="addAuthor">Add
+					id="startAddAuthor" name="startAddAuthor" value="startAddAuthor">Add
 					Author</button>
 			</div>
 
@@ -181,8 +181,8 @@
 					Incorrect last name</p>
 				<div class="form-group row">
 					<div class="offset-sm-2 col-sm-10">
-						<button type="submit" class="btn btn-primary" id="submit"
-							name="submit" value="submit">Submit</button>
+						<button type="submit" class="btn btn-primary" id="addAuthor"
+							name="addAuthor" value="addAuthor">Add New Author</button>
 						<button type="reset" class="btn btn-danger">Reset</button>
 						<button type="submit" class="btn btn-secondary" id="cancelAuthor"
 							name="cancelAuthor" value="cancelAuthor">Cancel</button>

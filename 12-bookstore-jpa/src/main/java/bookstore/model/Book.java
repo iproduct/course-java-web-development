@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -89,6 +90,12 @@ public class Book {
 	@Transient
 	private Integer formatId;
 	
+	@JsonIgnore
+	private List<Integer> getAthorIds() {
+		return authors.stream()
+				.map(a -> a.getId())
+				.collect(Collectors.toList());
+	}
 	
 	@JsonIgnore
 	public String getAuthorsAsString() {

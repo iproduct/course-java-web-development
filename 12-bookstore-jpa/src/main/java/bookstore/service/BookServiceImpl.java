@@ -42,7 +42,7 @@ public class BookServiceImpl implements BookService {
 			throw new EntityExistsException("Entity with ID=" + book.getId() + " already exists.");
 		book.getAuthors().forEach(a -> {
 			List<Book> authorBooks = a.getBooks();
-			if(!authorBooks.contains(book)) {
+			if(authorBooks != null && !authorBooks.contains(book)) {
 				authorBooks.add(book);
 			};
 			authorRepository.save(a);
