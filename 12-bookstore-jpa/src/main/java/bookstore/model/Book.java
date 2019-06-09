@@ -2,6 +2,7 @@ package bookstore.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.AllArgsConstructor;
@@ -73,5 +75,12 @@ public class Book {
 	        @JoinColumn(name="AUTHOR_ID", referencedColumnName="ID")
 	)
 	private List<Author> authors;
+	
+	@JsonIgnore
+	public String getAuthorsAsString() {
+		return authors.stream()
+			.map(book -> book.getFirstName() + " " + book.getLastName())
+			.collect(Collectors.joining(", "));
+	}
 	
 }

@@ -9,6 +9,7 @@
             <thead>
             <th th:text="#{lbl.number}">Number</th>
             <th th:text="#{lbl.title}">Title</th>
+           	<th th:text="#{lbl.authors}">Authors</th>
             <th th:text="#{lbl.lastName}">Publisher</th>
             <th th:text="#{lbl.format}">Format</th>
             <th th:text="#{lbl.publishedDate}">Publishing Date</th>
@@ -20,6 +21,7 @@
             <tr th:each="row, rowStat : ${books}">
                 <td th:text="${rowStat.index + 1}"></td>
                 <td th:text="${row.title}"></td>
+                <td th:text="${row.authorsAsString}"></td>
                 <td th:text="${row.publisher.name}"></td>
                 <td th:text="${row.format.name}"></td>
                 <td th:text="${row.publishedDate}"></td>
