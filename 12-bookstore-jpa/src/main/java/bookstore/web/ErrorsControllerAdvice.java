@@ -13,7 +13,7 @@ import java.nio.file.FileSystemException;
 
 @ControllerAdvice
 @Slf4j
-public class ArticleControllerAdvice {
+public class ErrorsControllerAdvice {
     @ExceptionHandler({ MaxUploadSizeExceededException.class, FileSystemException.class })
     @Order(1)
     public ModelAndView handle(Exception ex) {

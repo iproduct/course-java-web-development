@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Add/Edit Book')" />
+<body>
+    <div th:replace="fragments/menu :: menu(${path})" />
+    <div class="container">
+        <h3 th:text="${title}">Add New Book</h3>
+        <form th:object="${book}" method="post"
+              class="form-horizontal col-md-10 col-lg-8" enctype="multipart/form-data">
+            <div th:if="${book.id} != 0" class="form-group row">
+                <label path="id" class="col-sm-2 col-form-label">ID</label>
+                <div class="col-sm-10">
+                    <input type="text" th:value="*{id}" id="id" name="id"
+                           class="form-control" title="Book Id" readonly>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label path="title" class="col-sm-2 col-form-label">
+					<th th:text="#{lbl.title}">Title</th>
+				</label>
+                <div class="col-sm-10">
+                    <input type="text" th:value="*{title}" id="title" name="title"
+                           class="form-control" title="Book title" th:errorclass="field-error">
+                </div>
+            </div>
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+               class="errors alert alert-danger offset-sm-2 col-sm-10">
+                Incorrect title
+            </p>
+
+            <div class="form-group row">
+                <label path="title" class="col-sm-2 col-form-label">
+					<th th:text="#{lbl.lastName}">Last Name</th>
+				</label>
+                <div class="col-sm-10">
+                    <input type="text" th:value="*{lastName}" id="lastName" name="lastName"
+                           class="form-control" title="Book last name" th:errorclass="field-error">
+                </div>
+            </div>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+               class="errors alert alert-danger offset-sm-2 col-sm-10">
+                Incorrect last name
+            </p>
+            
+            <div class="col-xs-12 alert alert-danger" th:if="${myErrors != null}">
+                <p>Errors: </p>
+                <ul th:each="error: ${myErrors}">
+                    <li th:text="${error}"></li>
+                </ul>
+            </div>
+      
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" id="submit" name="submit" value="submit">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                    <a th:href="${'/books'}" class="btn btn-secondary" id="cancel">Cancel</a>
+                </div>
+            </div>
+
+        </form>
+        <div  th:replace="fragments/foot :: foot" />
+    </div>
+
+</body>
+</html>
