@@ -1,6 +1,7 @@
 package bookstore.web;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,6 +56,11 @@ public class BookController {
         return new Book();
     }
 
+    @ModelAttribute("authors")
+    List<Author> getAuthorssModelAttribute() {
+        return authorService.getAll();
+    }
+    
     @ModelAttribute("publishers")
     List<Publisher> getPublishersModelAttribute() {
         return publisherService.getAll();
@@ -86,6 +92,14 @@ public class BookController {
 		String title = "Add New Book";
 		boolean isNewBook = true;
 		final String viewName = "book-form";
+		
+		if(book.getPublisherId() == null && book.getPublisher() != null) {
+			book.setPublisherId(book.getPublisher().getId());
+		}
+
+		if(book.getFormatId() == null && book.getFormat() != null) {
+			book.setFormatId(book.getFormat().getId());
+		}
 
 		if ("edit".equals(mode)) {
 			Book found = bookService.getById(bookId);
@@ -109,7 +123,6 @@ public class BookController {
 			@ModelAttribute("newAuthor") Author newAuthor, HttpSession session, Model model) {
 		log.info("Start adding author.");
 		session.setAttribute("isAddingAuthor", true);
-		model.addAttribute("authors", authorService.getAll());
 		return "book-form";
 	}
 
@@ -142,6 +155,7 @@ public class BookController {
 //                             @RequestParam("file") MultipartFile file,
 			Model model) throws EntityExistsException {
 //        if(cancelBtn != null) return "redirect:/books";
+		
 		if (bookErrors.hasErrors()) {
 			List<String> errorMessages = bookErrors.getAllErrors().stream().map(err -> {
 				ConstraintViolation<Book> cv = err.unwrap(ConstraintViolation.class);
@@ -151,6 +165,20 @@ public class BookController {
 			return "book-form";
 		} else {
 			log.info("POST Book: " + book);
+			if(book.getPublisherId() == null) {
+				List<String> errorMessages = new ArrayList();
+				errorMessages.add("Publisher should be chosen.");
+				model.addAttribute("myErrors", errorMessages);
+			}
+			book.setPublisher(publisherService.getById(book.getPublisherId()));
+
+			if(book.getFormatId() == null) {
+				List<String> errorMessages = new ArrayList();
+				errorMessages.add("Fromat should be chosen.");
+				model.addAttribute("myErrors", errorMessages);
+			}
+			book.setFormat(formatService.getById(book.getFormatId()));
+
 			if (book.getId() == 0) {
 				log.info("ADD New Book: " + book);
 				bookService.create(book);
