@@ -25,8 +25,12 @@ import bookstore.dto.AuthorSelection;
 import bookstore.exception.EntityExistsException;
 import bookstore.model.Author;
 import bookstore.model.Book;
+import bookstore.model.Format;
+import bookstore.model.Publisher;
 import bookstore.service.AuthorService;
 import bookstore.service.BookService;
+import bookstore.service.FormatService;
+import bookstore.service.PublisherService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -40,11 +44,28 @@ public class BookController {
 	@Autowired
 	private AuthorService authorService;
 	
+	@Autowired
+	private PublisherService publisherService;
+	
+	@Autowired
+	private FormatService formatService;
+	
     @ModelAttribute("book")
     Book getBookModelAttribute() {
         return new Book();
     }
 
+    @ModelAttribute("publishers")
+    List<Publisher> getPublishersModelAttribute() {
+        return publisherService.getAll();
+    }
+
+    @ModelAttribute("formats")
+    List<Format> getFormatsModelAttribute() {
+        return formatService.getAll();
+    }
+
+    
 	@GetMapping
 	private String getBooksList(Model model) {
 		model.addAttribute("books", bookService.getAll());

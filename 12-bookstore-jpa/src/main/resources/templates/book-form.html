@@ -45,13 +45,14 @@
 
 
 			<div class="form-group row">
-				<label path="title" class="col-sm-2 col-form-label">
+				<label path="publisher" class="col-sm-2 col-form-label">
 					<th th:text="#{lbl.publisher}">Publisher</th>
 				</label>
 				<div class="col-sm-10">
-					<input type="text" th:value="*{publisher}" id="authors"
-						name="publisher" class="form-control" title="Book authors"
-						th:errorclass="field-error">
+					<select th:field="*{publisherId}" class="form-control">
+						<option th:each="publisher, rowStat : ${publishers}"
+							th:value="${publisher.id}" th:text="${publisher.name}"></option>
+					</select>
 				</div>
 			</div>
 			<p th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}"
@@ -59,13 +60,14 @@
 				Incorrect publisher</p>
 
 			<div class="form-group row">
-				<label path="title" class="col-sm-2 col-form-label">
+				<label path="format" class="col-sm-2 col-form-label">
 					<th th:text="#{lbl.format}">Format</th>
 				</label>
 				<div class="col-sm-10">
-					<input type="text" th:value="*{format}" id="format" name="format"
-						class="form-control" title="Book format"
-						th:errorclass="field-error">
+					<select th:field="*{formatId}" class="form-control">
+						<option th:each="format, rowStat : ${formats}"
+							th:value="${format.id}" th:text="${format.name}"></option>
+					</select>
 				</div>
 			</div>
 			<p th:if="${#fields.hasErrors('format')}" th:errors="*{format}"
@@ -73,7 +75,7 @@
 				Incorrect format</p>
 
 			<div class="form-group row">
-				<label path="title" class="col-sm-2 col-form-label">
+				<label path="publishedDate" class="col-sm-2 col-form-label">
 					<th th:text="#{lbl.publishedDate}">Published Date</th>
 				</label>
 				<div class="col-sm-10">

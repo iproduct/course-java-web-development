@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -67,7 +68,6 @@ public class Book {
 	@Min(0)
 	private double price;
 	
-	
 	@ManyToMany
 	@JoinTable(name="BOOK_AUTHOR",
 	    joinColumns=
@@ -76,6 +76,15 @@ public class Book {
 	        @JoinColumn(name="AUTHOR_ID", referencedColumnName="ID")
 	)
 	private List<Author> authors = new ArrayList<>();
+	
+	@JsonIgnore
+	@Transient
+	private Integer publisherId;
+	
+	@JsonIgnore
+	@Transient
+	private Integer formatId;
+	
 	
 	@JsonIgnore
 	public String getAuthorsAsString() {
