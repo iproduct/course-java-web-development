@@ -1,7 +1,8 @@
 package bookstore.service;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
+	@Transactional
 	public Author create(Author author) throws EntityExistsException {
 		if (author.getId() > 0 && getById(author.getId()) != null)
 			throw new EntityExistsException("Entity with ID=" + author.getId() + " already exists.");
@@ -36,12 +38,14 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
+	@Transactional
 	public Author update(Author author) throws EntityNotFoundException {
 		getById(author.getId());
 		return authorRepository.save(author);
 	}
 
 	@Override
+	@Transactional
 	public Author delete(int authorId) throws EntityNotFoundException {
 		Author author = getById(authorId);
 		authorRepository.deleteById(authorId);

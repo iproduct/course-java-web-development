@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,6 +19,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,13 +48,13 @@ public class Book {
 	private String title;
 	
 //	@NonNull
-	@NotNull
+//	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "publisher", referencedColumnName = "id")
 	private Publisher publisher;
 	
 //	@NonNull
-	@NotNull
+//	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "format", referencedColumnName = "id")
 	private Format format; 
@@ -59,6 +62,7 @@ public class Book {
 	@Column(name = "published_date")
 	@JsonFormat(pattern = "dd.MM.uuuu")
 	@PastOrPresent
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate publishedDate;
 	
 	@Pattern(regexp = "\\d{10}|\\d{13}")
@@ -68,7 +72,7 @@ public class Book {
 	@Min(0)
 	private double price;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="BOOK_AUTHOR",
 	    joinColumns=
 	        @JoinColumn(name="BOOK_ID", referencedColumnName="ID"),

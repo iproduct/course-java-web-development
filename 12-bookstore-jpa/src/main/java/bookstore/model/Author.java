@@ -3,8 +3,10 @@ package bookstore.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -21,9 +23,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(exclude = {"books"})
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
@@ -44,7 +48,7 @@ public class Author {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@ManyToMany(mappedBy = "authors")
+	@ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
 	List<Book> books;
 	
 	@JsonIgnore

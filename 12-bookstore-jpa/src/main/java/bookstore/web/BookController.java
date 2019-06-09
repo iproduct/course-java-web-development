@@ -1,7 +1,10 @@
 package bookstore.web;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,16 +13,20 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import bookstore.dto.AuthorSelection;
@@ -70,7 +77,13 @@ public class BookController {
     List<Format> getFormatsModelAttribute() {
         return formatService.getAll();
     }
-
+    
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        dateFormat.setLenient(true);
+//        binder.registerCustomEditor(LocalDate.class, new CustomDateEditor(dateFormat, true));
+//    }
     
 	@GetMapping
 	private String getBooksList(Model model) {
@@ -85,13 +98,24 @@ public class BookController {
 		return "redirect:" + uri.toString();
 	}
 
+    @PostMapping(params = "delete")
+    public String deleteAuthor(@RequestParam("delete") int deleteId, Model model){
+        log.info("Deleting book: " + deleteId);
+        bookService.delete(deleteId);
+        return "redirect:/books";
+    }
+
 	@GetMapping("/book-form")
-	public String getBookForm(@ModelAttribute("book") Book book, @ModelAttribute("newAuthor") Author newAuthor,
-			HttpSession session, ModelMap model, @RequestParam(value = "mode", required = false) String mode,
+	public String getBookForm(@ModelAttribute("book") Book book, 
+			@ModelAttribute("newAuthor") Author newAuthor,
+			HttpSession session, SessionStatus status, ModelMap model, 
+			@RequestParam(value = "mode", required = false) String mode,
 			@RequestParam(value = "bookId", required = false) Integer bookId) {
 		String title = "Add New Book";
 		boolean isNewBook = true;
 		final String viewName = "book-form";
+		
+		status.setComplete(); //remove previous book data from session
 		
 		if(book.getPublisherId() == null && book.getPublisher() != null) {
 			book.setPublisherId(book.getPublisher().getId());
@@ -142,6 +166,7 @@ public class BookController {
 		Author author = authorService.getById(selectedAuthor.getAuthorId());
 		log.info("Author choosen: " + selectedAuthor);
 		book.getAuthors().add(author);
+//		author.getBooks().add(book);
 		session.setAttribute("isAddingAuthor", false);
 		return "book-form";
 	}
@@ -150,7 +175,7 @@ public class BookController {
 	@PostMapping("/book-form")
 	public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bookErrors,
 			@Valid @ModelAttribute("selectedAuthor") AuthorSelection selectedAuthor,
-			@Valid @ModelAttribute("newAuthor") Author newAuthor, BindingResult authorErrors, HttpSession session,
+			@Valid @ModelAttribute("newAuthor") Author newAuthor, BindingResult authorErrors, SessionStatus status,
 //                             @RequestParam(name = "cancel", required = false) String cancelBtn,
 //                             @RequestParam("file") MultipartFile file,
 			Model model) throws EntityExistsException {
@@ -158,8 +183,12 @@ public class BookController {
 		
 		if (bookErrors.hasErrors()) {
 			List<String> errorMessages = bookErrors.getAllErrors().stream().map(err -> {
-				ConstraintViolation<Book> cv = err.unwrap(ConstraintViolation.class);
-				return String.format("Error in '%s' - invalid value: '%s'", cv.getPropertyPath(), cv.getInvalidValue());
+				try {
+					ConstraintViolation cv = err.unwrap(ConstraintViolation.class);
+					return String.format("Error in '%s' - invalid value: '%s'", cv.getPropertyPath(), cv.getInvalidValue());
+				} catch (Exception ex) {
+					return String.format("Error: %s", err.toString());
+				}
 			}).collect(Collectors.toList());
 			model.addAttribute("myErrors", errorMessages);
 			return "book-form";
@@ -186,6 +215,7 @@ public class BookController {
 				log.info("UPDATE Book: " + book);
 				bookService.update(book);
 			}
+			status.setComplete();
 			return "redirect:/books";
 		}
 	}
