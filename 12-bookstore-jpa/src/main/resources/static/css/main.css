@@ -29,3 +29,12 @@ h3 {
 .menu-label {
     padding-right: 0.8rem;
 }
+
+.author-badge {
+	margin-left: 3px;
+	margin-rigth: 3px;
+}
+
+.btn-remove-author {
+	padding: 0 3px;
+}

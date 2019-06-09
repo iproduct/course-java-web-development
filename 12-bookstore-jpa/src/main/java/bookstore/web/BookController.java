@@ -104,7 +104,7 @@ public class BookController {
 	}
 
     @PostMapping(params = "delete")
-    public String deleteAuthor(@RequestParam("delete") int deleteId, Model model){
+    public String deleteBook(@RequestParam("delete") int deleteId, Model model){
         log.info("Deleting book: " + deleteId);
         bookService.delete(deleteId);
         return "redirect:/books";
@@ -148,6 +148,25 @@ public class BookController {
 
 		return viewName;
 	}
+	
+    @PostMapping(path = "/book-form", params = "removeAuthor")
+    public String removeAuthor(@RequestParam("removeAuthor") int removeId, 
+			@ModelAttribute("bookAuthors") List<Author> bookAuthors){
+    	int index = -1;
+    	for(int i = 0;  i < bookAuthors.size(); i++) {
+    		if(bookAuthors.get(i).getId() == removeId) {
+    			index = i;
+    			break;
+    		}	
+    	}
+    	
+    	if(index >= 0)	{
+    		log.info("Removing  author: " + bookAuthors.get(index));
+    		bookAuthors.remove(index);
+    	}
+    	return "book-form";
+    }
+
 
 	@PostMapping(path = "/book-form", params = "startAddAuthor")
 	public String startAddingAuthor(@ModelAttribute("book") Book book,

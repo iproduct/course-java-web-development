@@ -9,7 +9,7 @@
 			class="form-horizontal col-md-10 col-lg-8"
 			enctype="multipart/form-data">
 			<div th:if="${book.id} != 0" class="form-group row">
-				<label path="id" class="col-sm-2 col-form-label">ID</label>
+				<label class="col-sm-2 col-form-label">ID</label>
 				<div class="col-sm-10">
 					<input type="text" th:value="*{id}" id="id" name="id"
 						class="form-control" title="Book Id" readonly>
@@ -17,8 +17,8 @@
 			</div>
  
  			<div class="form-group row">
-				<label path="title" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.title}">Title</th>
+				<label class="col-sm-2 col-form-label">
+					<span th:text="#{lbl.title}">Title</span>
 				</label>
 				<div class="col-sm-10">
 					<input type="text" th:value="*{title}" id="title" name="title"
@@ -31,12 +31,17 @@
 				Incorrect title</p>
 
 			<div class="form-group row">
-				<label path="title" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.authors}">Authors</th>
+				<label class="col-sm-2 col-form-label">
+					<span th:text="#{lbl.authors}">Authors</span>
 				</label>
 				<div class="col-sm-8">
-					<div type="text" th:text="${book.authorsAsString}" id="authors"
-						class="form-control" title="Book authors"></div>
+					<div id="authors" class="form-control" title="Book authors">
+						<span class="author-badge badge badge-primary" th:each="author, rowStat : ${bookAuthors}">
+							<span th:text="${author.name}"></span>
+							<button type="submit" class="badge badge-pill badge-danger" id="removeAuthor"
+							name="removeAuthor" th:value="${author.id}">x</button>
+						</span>
+					</div>
 				</div>
 				<button type="submit" class="btn btn-primary col-sm-2"
 					id="startAddAuthor" name="startAddAuthor" value="startAddAuthor">Add
@@ -45,8 +50,8 @@
 
 
 			<div class="form-group row">
-				<label path="publisher" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.publisher}">Publisher</th>
+				<label class="col-sm-2 col-form-label">
+					<span th:text="#{lbl.publisher}">Publisher</span>
 				</label>
 				<div class="col-sm-10">
 					<select th:field="*{publisherId}" class="form-control">
@@ -60,8 +65,8 @@
 				Incorrect publisher</p>
 
 			<div class="form-group row">
-				<label path="format" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.format}">Format</th>
+				<label class="col-sm-2 col-form-label">
+					<span th:text="#{lbl.format}">Format</span>
 				</label>
 				<div class="col-sm-10">
 					<select th:field="*{formatId}" class="form-control">
@@ -75,8 +80,8 @@
 				Incorrect format</p>
 
 			<div class="form-group row">
-				<label path="publishedDate" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.publishedDate}">Published Date</th>
+				<label class="col-sm-2 col-form-label">
+					<span th:text="#{lbl.publishedDate}">Published Date</span>
 				</label>
 				<div class="col-sm-10">
 					<input type="date" th:value="*{publishedDate}" id="publishedDate"
@@ -90,8 +95,8 @@
 				Incorrect publishing date</p>
 
 			<div class="form-group row">
-				<label path="title" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.isbn}">ISBN</th>
+				<label class="col-sm-2 col-form-label">
+					<span th:text="#{lbl.isbn}">ISBN</span>
 				</label>
 				<div class="col-sm-10">
 					<input type="text" th:value="*{isbn}" id="isbn" name="isbn"
@@ -103,8 +108,8 @@
 				Incorrect ISBN</p>
 
 			<div class="form-group row">
-				<label path="title" class="col-sm-2 col-form-label">
-					<th th:text="#{lbl.price}">Price</th>
+				<label class="col-sm-2 col-form-label">
+					<span th:text="#{lbl.price}">Price</span>
 				</label>
 				<div class="col-sm-10">
 					<input type="text" th:value="*{price}" id="price" name="price"
