@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service" xmlns:intf="http://service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="addNumbers">
+    <complexType>
+     <sequence>
+      <element name="number1" type="xsd:int"/>
+      <element name="number2" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addNumbersResponse">
+    <complexType>
+     <sequence>
+      <element name="addNumbersReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="AddNumbersException">
+    <sequence>
+     <element name="detail" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="fault" type="impl:AddNumbersException"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addNumbersResponse">
+
+      <wsdl:part element="impl:addNumbersResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addNumbersRequest">
+
+      <wsdl:part element="impl:addNumbers" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="AddNumbersException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AddNumbersImpl">
+
+      <wsdl:operation name="addNumbers">
+
+         <wsdl:input message="impl:addNumbersRequest" name="addNumbersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addNumbersResponse" name="addNumbersResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:AddNumbersException" name="AddNumbersException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AddNumbersImplSoapBinding" type="impl:AddNumbersImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addNumbers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addNumbersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addNumbersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AddNumbersException">
+
+            <wsdlsoap:fault name="AddNumbersException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AddNumbersImplService">
+
+      <wsdl:port binding="impl:AddNumbersImplSoapBinding" name="AddNumbersImpl">
+
+         <wsdlsoap:address location="http://localhost:6080/axis2-demo02/services/AddNumbersImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

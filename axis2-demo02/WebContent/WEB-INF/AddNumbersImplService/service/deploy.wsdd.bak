@@ -1,0 +1,39 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AddNumbersImplService WSDL service -->
+
+  <service name="AddNumbersImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service"/>
+      <parameter name="wsdlServiceElement" value="AddNumbersImplService"/>
+      <parameter name="schemaQualified" value="http://service"/>
+      <parameter name="wsdlServicePort" value="AddNumbersImpl"/>
+      <parameter name="className" value="service.AddNumbersImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="AddNumbersImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addNumbers" qname="operNS:addNumbers" xmlns:operNS="http://service" returnQName="retNS:addNumbersReturn" xmlns:retNS="http://service" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:number1" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:number2" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="AddNumbersException" qname="fns:fault" xmlns:fns="http://service" class="service.AddNumbersException" type="tns:AddNumbersException" xmlns:tns="http://service"/>
+      </operation>
+      <parameter name="allowedMethods" value="addNumbers"/>
+
+      <typeMapping
+        xmlns:ns="http://service"
+        qname="ns:AddNumbersException"
+        type="java:service.AddNumbersException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
