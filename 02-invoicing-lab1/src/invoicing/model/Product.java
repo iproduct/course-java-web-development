@@ -1,8 +1,8 @@
 package invoicing.model;
 
 public class Product {
-	private static long nextId = 0;
-	private long id = ++nextId;
+
+	private long id;
 	private String code;
 	private String name;
 	private double price;
