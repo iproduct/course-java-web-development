@@ -153,6 +153,8 @@ public class Invoice {
 		// format positions
 		builder.append("\n").append(
 			formatTableRow(new int[] {2, 30, 8, 5, 8, 10}, new char[]{'c', 'c', 'c', 'c', 'c', 'c'}, COLUMNS));
+		double sum = 0;
+		
 		for(int i = 0; i < positions.size(); i++) {
 			Position p = positions.get(i);
 			builder.append(
@@ -160,7 +162,12 @@ public class Invoice {
 					i + "", p.getProductId() + "", p.getQuantity() + "", Unit.PCS + "", p.getPrice() + "", 
 					1.2 * p.getPrice() + ""
 				}));
+			sum += p.getPrice() * p.getQuantity(); 
 		}
+		
+		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[5] + sum)).append("\n");
+		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[6] + 0.2 * sum)).append("\n");
+		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[7] + 1.2 * sum)).append("\n");
 		return builder.toString();
 	}
 	
