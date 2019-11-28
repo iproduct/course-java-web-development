@@ -1,6 +1,7 @@
 package invoicing.controller;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,29 +27,39 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	private List<Contragent> customers;
 	private List<Invoice> invoices;
 	
+	public InvoiceRegisterImpl() {
+		initialize();
+	}
+	
 	@Override
 	public void initialize() {
-		products = Arrays.asList(
+		products = new ArrayList<Product>();
+		Product[] sampleProducts = {
 			new Product("BK001", "Thinking in Java 4th ed.", 25.99),
 			new Product("BK002", "UML Distilled", 25.99),
 			new Product("BK003", "Увод в програмирането с Java", 25.99)
-		);
-		issuers = Arrays.asList(
+		};
+		for(Product p : sampleProducts) {
+			addProduct(p);
+		}
+		
+		issuers = new ArrayList<Contragent>(Arrays.asList(
 			new Contragent(1234567890, "Ivan Petrov EOOD", "Sofia 1000"),
 			new Contragent(1234567890, "Dimitar Dimitrov EOOD", "Sofia 1000"),
-			new Contragent(131234567, "ABC Ltd.", "Sofia 1000"));
-		customers = Arrays.asList(
+			new Contragent(131234567, "ABC Ltd.", "Sofia 1000")));
+		
+		customers = new ArrayList<Contragent>(Arrays.asList(
 			new Contragent(1234567890, "Ivan Petrov", "Sofia 1000", false),
 			new Contragent(1234567890, "Dimitar Dimitrov", "Sofia 1000", false),
-			new Contragent(131234567, "ABC Ltd.", "Sofia 1000"));
-		invoices = Arrays.asList(
+			new Contragent(131234567, "ABC Ltd.", "Sofia 1000")));
+		
+		invoices = new ArrayList<Invoice>(Arrays.asList(
 			new Invoice(1, issuers.get(0), customers.get(2), 
 				Arrays.asList(
 					new Position(products.get(0), 5),
 					new Position(products.get(2), 1)
 				)
-		));
-		
+		)));
 		
 	}
 
