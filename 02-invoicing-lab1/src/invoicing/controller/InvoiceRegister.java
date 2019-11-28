@@ -1,5 +1,7 @@
 package invoicing.controller;
 
+import java.util.List;
+
 import invoicing.model.Contragent;
 import invoicing.model.Invoice;
 import invoicing.model.Product;
@@ -10,6 +12,9 @@ public interface InvoiceRegister {
 	Product addProduct(Product product);	
 	Contragent addIssuers(Contragent issuer);
 	Contragent addCustomer(Contragent custer);
-	String formatInvoice(Invoice invoice);
-	
+	List<Product> findAllProducts();
+	List<Invoice> findAllInvoices();
+	List<Contragent> findAllIssuers();
+	List<Contragent> findAllCustomers();
+	String formatInvoice(Invoice invoice);	
 }	

@@ -159,7 +159,8 @@ public class Invoice {
 			Position p = positions.get(i);
 			builder.append(
 				formatTableRow(new int[] {2, 30, 8, 5, 8, 10}, new char[]{'r', 'l', 'r', 'c', 'r', 'r'}, new String[] {
-					i + "", p.getProductId() + "", p.getQuantity() + "", Unit.PCS + "", p.getPrice() + "", 
+					i + "", p.getProduct().getName() + "", p.getQuantity() + "", 
+					p.getProduct().getUnit() + "", p.getPrice() + "", 
 					1.2 * p.getPrice() + ""
 				}));
 			sum += p.getPrice() * p.getQuantity(); 
@@ -207,8 +208,8 @@ public class Invoice {
 		Contragent c3 = new Contragent(131234567, "ABC Ltd.", "Sofia 1000");
 		Product p1 = new Product("BK001", "Thinking in Java 4th ed.", 25.99);
 		Product p2 = new Product("BK002", "UML Distilled", 25.99);
-		Position pos1 = new Position(p1.getId(), 5, 23.2);
-		Position pos2 = new Position(p2.getId(), 1);
+		Position pos1 = new Position(p1, 5, 23.2);
+		Position pos2 = new Position(p2, 1);
 		List<Position> invPositions = new ArrayList<>();
 		invPositions.add(pos1);
 		invPositions.add(pos2);

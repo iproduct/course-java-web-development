@@ -1,30 +1,30 @@
 package invoicing.model;
 
 public class Position {
-	private long productId;
+	private Product product;
 	private double quantity;
 	private double price = -1;
 
 	public Position() {
 	}
 
-	public Position(long productId, double quantity) {
-		this.productId = productId;
+	public Position(Product product, double quantity) {
+		this.product = product;
 		this.quantity = quantity;
 	}
 
-	public Position(long productId, double quantity, double price) {
-		this.productId = productId;
+	public Position(Product product, double quantity, double price) {
+		this.product = product;
 		this.quantity = quantity;
 		this.price = price;
 	}
 
-	public long getProductId() {
-		return productId;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductId(long productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public double getQuantity() {
@@ -42,7 +42,7 @@ public class Position {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -50,7 +50,7 @@ public class Position {
 		long temp;
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + (int) (productId ^ (productId >>> 32));
+		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		temp = Double.doubleToLongBits(quantity);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
@@ -67,7 +67,10 @@ public class Position {
 		Position other = (Position) obj;
 		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
-		if (productId != other.productId)
+		if (product == null) {
+			if (other.product != null)
+				return false;
+		} else if (!product.equals(other.product))
 			return false;
 		if (Double.doubleToLongBits(quantity) != Double.doubleToLongBits(other.quantity))
 			return false;
@@ -76,8 +79,8 @@ public class Position {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder("Position [productId=");
-		builder.append(productId).append(", quantity=")
+		StringBuilder builder = new StringBuilder("Position [product=");
+		builder.append(product).append(", quantity=")
 			.append(quantity).append(", price=").append(price).append("]");
 		return builder.toString();
 	}
@@ -85,8 +88,8 @@ public class Position {
 	public static void main(String[] args) {
 		Product p1 = new Product("BK001", "Thinking in Java 4th ed.", 25.99);
 		Product p2 = new Product("BK002", "UML Distilled", 25.99);
-		Position pos1 = new Position(p1.getId(), 5, 23.2);
-		Position pos2 = new Position(p2.getId(), 1);
+		Position pos1 = new Position(p1, 5, 23.2);
+		Position pos2 = new Position(p2, 1);
 		System.out.println(pos1);
 		System.out.println(pos2);
 		
