@@ -8,6 +8,7 @@ import invoicing.model.Contragent;
 import invoicing.model.Invoice;
 import invoicing.model.Position;
 import invoicing.model.Product;
+import invoicing.model.Unit;
 
 public class InvoiceRegisterImpl implements InvoiceRegister {
 	public static final double VAT_RATE = 0.2;
@@ -16,7 +17,7 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		"I N V O I C E", "Number: ", "Date: ", "Issuer: ", "Customer: ", "Price: ", "VAT: ", "Total: ",
 	};
 	public static final String[] COLUMNS = {
-		"№", "Name", "Quantity", "Unit", "Price", "VAT Price"
+		"№", "Name", "Quantity", "Unit", "Price", "VAT Price", "Total"
 	};
 	
 	private static long nextId = 0;
@@ -64,30 +65,38 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		
 		// format positions
 		builder.append("\n").append(
-			formatTableRow(new int[] {2, 30, 8, 5, 8, 10}, new char[]{'c', 'c', 'c', 'c', 'c', 'c'}, COLUMNS));
+			formatTableRow(new int[] {2, 33, 8, 5, 8, 9, 8}, new char[]{'c', 'c', 'c', 'c', 'c', 'c', 'c'}, COLUMNS));
 		double sum = 0;
 		
 		List<Position> positions = invoice.getPositions();
 		for(int i = 0; i < positions.size(); i++) {
-			Position p = positions.get(i);
-			double price = getPositionPrice(p);
-			double vat = invoice.isVatInvoice() ? calculateVat(price, p.getProduct()): 0;
+			Position pos = positions.get(i);
+			double price = getPositionPrice(pos);
+			double vat = invoice.isVatInvoice() ? calculateVat(price, pos.getProduct()): 0;
 			double vatPrice = price + vat;
+			double total = price * pos.getQuantity();
 			builder.append(
 				formatTableRow(
-					new int[] {2, 30, 8, 5, 8, 10}, 
-					new char[]{'r', 'l', 'r', 'c', 'r', 'r'}, 
+					new int[] {2, 33, 8, 5, 8, 9, 8}, 
+					new char[]{'r', 'l', 'r', 'c', 'r', 'r', 'r'}, 
 					new String[] {
-					i + "", p.getProduct().getName() + "", p.getQuantity() + "", 
-					p.getProduct().getUnit() + "", price + "", 
-					vatPrice + ""
+					i + "", pos.getProduct().getName() + "", 
+					pos.getProduct().getUnit().equals(Unit.PCS) ? String.format("%8.0f", pos.getQuantity()) 
+							: String.format("%8.2f", pos.getQuantity()),
+					pos.getProduct().getUnit() + "", String.format("%8.2f", price), 
+					String.format("%8.2f", vatPrice), String.format("%8.2f", total)
 				}));
-			sum += p.getPrice() * p.getQuantity(); 
+			sum += total; 
 		}
 		
-		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[5] + sum)).append("\n");
-		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[6] + 0.2 * sum)).append("\n");
-		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[7] + 1.2 * sum)).append("\n");
+		double totalVat = calculateVat(sum, null);
+		
+		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[5] 
+				+ String.format("%8.2f", sum))).append("\n");
+		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[6] 
+				+ String.format("%8.2f", totalVat))).append("\n");
+		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[7] 
+				+ String.format("%8.2f", sum + totalVat))).append("\n");
 		return builder.toString();
 	}
 	
@@ -161,7 +170,7 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	}
 	
 	protected String formatTableRow(int[] cellWidths, char[] cellAlignment, String[] values) {
-		StringBuilder sb = new StringBuilder("| ");
+		StringBuilder sb = new StringBuilder("|");
 		for(int i = 0; i < cellWidths.length; i++) {
 			String data = "";
 			switch(cellAlignment[i]) {
@@ -171,7 +180,7 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 				case 'R' : data = String.format("%" + cellWidths[i] + "." + cellWidths[i] + "s", values[i].trim()); break;
 				default: data = String.format("%-" + cellWidths[i] + "." + cellWidths[i] + "s", values[i].trim());
 			}
-			sb.append(data).append(" |");
+			sb.append(data).append("|");
 		}
 		return sb.append("\n").toString();
 	}
