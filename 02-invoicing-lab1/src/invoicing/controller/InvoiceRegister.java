@@ -16,5 +16,6 @@ public interface InvoiceRegister {
 	List<Invoice> findAllInvoices();
 	List<Contragent> findAllIssuers();
 	List<Contragent> findAllCustomers();
-	String formatInvoice(Invoice invoice);	
+	String formatInvoice(Invoice invoice);
+	double calculateVat(double price, Product product);
 }	

@@ -10,6 +10,7 @@ import invoicing.model.Position;
 import invoicing.model.Product;
 
 public class InvoiceRegisterImpl implements InvoiceRegister {
+	public static final double VAT_RATE = 0.2;
 	public static final int WIDTH = 80;
 	public static final String[] LABELS = {
 		"I N V O I C E", "Number: ", "Date: ", "Issuer: ", "Customer: ", "Price: ", "VAT: ", "Total: ",
@@ -69,14 +70,17 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		List<Position> positions = invoice.getPositions();
 		for(int i = 0; i < positions.size(); i++) {
 			Position p = positions.get(i);
+			double price = getPositionPrice(p);
+			double vat = invoice.isVatInvoice() ? calculateVat(price, p.getProduct()): 0;
+			double vatPrice = price + vat;
 			builder.append(
 				formatTableRow(
 					new int[] {2, 30, 8, 5, 8, 10}, 
 					new char[]{'r', 'l', 'r', 'c', 'r', 'r'}, 
 					new String[] {
 					i + "", p.getProduct().getName() + "", p.getQuantity() + "", 
-					p.getProduct().getUnit() + "", p.getPrice() + "", 
-					1.2 * p.getPrice() + ""
+					p.getProduct().getUnit() + "", price + "", 
+					vatPrice + ""
 				}));
 			sum += p.getPrice() * p.getQuantity(); 
 		}
@@ -135,6 +139,12 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		return customers;
 	}
 	
+	@Override
+	public double calculateVat(double price, Product product) {
+		return VAT_RATE * price;
+	}
+
+	
 	// protected methods
 	protected String formatCentered(String label, String value, int fieldLength) {
 		int txtLenght = (label.length() + value.length());
@@ -165,6 +175,14 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		}
 		return sb.append("\n").toString();
 	}
+	
+	protected double getPositionPrice(Position pos) {
+		if(pos.getPrice() >= 0) {
+			return pos.getPrice();
+		} else {
+			return pos.getProduct().getPrice();
+		}
+	}
 
 	
 	public static void main(String[] args) {
@@ -175,6 +193,7 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		System.out.println(reg.formatInvoice(inv1));
 
 	}
+
 
 
 }
