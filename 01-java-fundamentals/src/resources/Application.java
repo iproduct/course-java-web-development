@@ -6,6 +6,18 @@ import java.util.ResourceBundle;
 
 public class Application {
 
+	public static void printBundle(ResourceBundle bundle) {
+		System.out.printf("\nResource bundle: %s, language: %s", 
+				bundle.getBaseBundleName(), bundle.getLocale());
+		Enumeration <String> keys = bundle.getKeys();
+		while (keys.hasMoreElements()) {
+			String key = keys.nextElement();
+			String value = bundle.getString(key);
+			System.out.println(key + ": " + value);
+		}
+		System.out.println();
+	}
+	
 	public static void main(String[] args) {
 
 		System.out.println("Current Locale: " + Locale.getDefault());
@@ -24,16 +36,5 @@ public class Application {
 
 	}
 
-	public static void printBundle(ResourceBundle bundle) {
-		System.out.printf("\nResource bundle: %s, language: %s", 
-				bundle.getBaseBundleName(), bundle.getLocale());
-		Enumeration <String> keys = bundle.getKeys();
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
-			String value = bundle.getString(key);
-			System.out.println(key + ": " + value);
-		}
-		System.out.println();
-	}
 
 }
