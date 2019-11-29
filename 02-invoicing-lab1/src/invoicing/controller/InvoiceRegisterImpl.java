@@ -1,9 +1,22 @@
 package invoicing.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
+import static java.util.logging.Level.*;
+import java.util.logging.Logger;
 
 import invoicing.model.Contragent;
 import invoicing.model.Invoice;
@@ -13,9 +26,8 @@ import invoicing.model.Unit;
 
 public class InvoiceRegisterImpl implements InvoiceRegister {
 	public static final double VAT_RATE = 0.2;
-	public static final int WIDTH = 80;
 	public static final String[] LABELS = {
-		"I N V O I C E", "Number: ", "Date: ", "Issuer: ", "Customer: ", "Price: ", "VAT: ", "Total: ",
+		"I N V O I C E", "Number: ", "Date: ", "Issuer: ", "Customer: ", "Price: ", "VAT: ", "Total: ", "Event Date:",
 	};
 	public static final String[] COLUMNS = {
 		"№", "Name", "Quantity", "Unit", "Price", "VAT Price", "Total"
@@ -26,6 +38,8 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	private List<Contragent> issuers;
 	private List<Contragent> customers;
 	private List<Invoice> invoices;
+	private int invoiceWidth = 40;
+	private Logger logger = Logger.getLogger(InvoiceRegisterImpl.class.getSimpleName());
 	
 	public InvoiceRegisterImpl() {
 		initialize();
@@ -61,18 +75,44 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 				)
 		)));
 		
+		InputStream propsInputStream = 
+				Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties");
+		Properties defaultProps = new Properties();
+		defaultProps.setProperty("invoice.print.width", "60");
+		Properties appProps = new Properties(defaultProps);
+		try {
+			appProps.load(propsInputStream);
+		} catch (NullPointerException | IOException e) {
+			e.printStackTrace();
+			logger.log(SEVERE, "Error loading application.properties file.", e);
+		}
+		try {
+			invoiceWidth = Integer.parseInt(appProps.getProperty("invoice.print.width", "40"));
+		} catch (NumberFormatException ex) {
+			logger.log(SEVERE, "Error parsing invoice.print.width property.", ex);
+		}
 	}
 
 	@Override
 	public String formatInvoice(Invoice invoice) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		StringBuilder builder = new StringBuilder();
-		builder.append(formatCentered(LABELS[0], "", WIDTH)).append("\n")
-		.append(formatCentered(LABELS[1], String.format("%010d", invoice.getNumber()), WIDTH)).append("\n")
+		builder.append(formatCentered(LABELS[0], "", invoiceWidth)).append("\n")
+		.append(formatCentered(LABELS[1], String.format("%010d", invoice.getNumber()), invoiceWidth)).append("\n")
 //		.append(formatCentered(LABELS[2], String.format("%1$te.%1$tm.%1$tY", date), NUM_COLUMNS)).append("\n");
-		.append(formatCentered(LABELS[2], formatter.format(invoice.getDate()), WIDTH)).append("\n")
-		.append("\n").append(LABELS[3]).append("\n").append(invoice.getIssuer()).append("\n")
+		.append(formatCentered(LABELS[2], formatter.format(invoice.getDate()), invoiceWidth)).append("\n");
+		// Event date
+//		SimpleTimeZone eet = new SimpleTimeZone(2 * 60 * 60 * 1000, "Europe/Sofia");
+//		eet.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
+//		ZonedDateTime zdt = ZonedDateTime.of(invoice.getEventDate().atTime(LocalTime.of(0, 0)), eet.toZoneId());
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+		String formattedDateTime = invoice.getEventDate().format(formatter2); // "1986-04-08 12:30"
+		builder.append(formatCentered(LABELS[8], formattedDateTime, invoiceWidth)).append("\n");
+		
+		builder.append("\n").append(LABELS[3]).append("\n").append(invoice.getIssuer()).append("\n")
 		.append("\n").append(LABELS[4]).append("\n").append(invoice.getCustomer()).append("\n");
+		
+		
 		
 		// format positions
 		builder.append("\n").append(
@@ -102,11 +142,11 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		
 		double totalVat = calculateVat(sum, null);
 		
-		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[5] 
+		builder.append(String.format("%" + invoiceWidth + "." + invoiceWidth + "s", LABELS[5] 
 				+ String.format("%8.2f", sum))).append("\n");
-		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[6] 
+		builder.append(String.format("%" + invoiceWidth + "." + invoiceWidth + "s", LABELS[6] 
 				+ String.format("%8.2f", totalVat))).append("\n");
-		builder.append(String.format("%" + WIDTH + "." + WIDTH + "s", LABELS[7] 
+		builder.append(String.format("%" + invoiceWidth + "." + invoiceWidth + "s", LABELS[7] 
 				+ String.format("%8.2f", sum + totalVat))).append("\n");
 		return builder.toString();
 	}
@@ -207,7 +247,6 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	
 	public static void main(String[] args) {
 		InvoiceRegister reg = new InvoiceRegisterImpl();
-		reg.initialize();
 		System.out.println(reg.findAllProducts());
 		Invoice inv1 = reg.findAllInvoices().get(0);
 		System.out.println(reg.formatInvoice(inv1));

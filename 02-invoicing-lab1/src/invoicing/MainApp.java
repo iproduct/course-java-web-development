@@ -25,7 +25,7 @@ public class MainApp {
 				System.out.printf("Invalid choice - should be between %d and %d.\n", 1, 2);
 			} else {
 				switch (choice) {
-				case 1: 
+				case 1: // input product
 					Product product = InputUtilities.inputProduct(sc);
 					if(product != null) {
 						Product created = invoiceRegister.addProduct(product);

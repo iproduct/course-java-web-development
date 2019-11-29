@@ -3,6 +3,7 @@ package calenders;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -15,12 +16,13 @@ public class GregorianCalenderDemo {
 	public static void main(String[] args) {
 		// get the supported ids for GMT+02:00 (East European Time)
 		 String[] ids = TimeZone.getAvailableIDs(2 * 60 * 60 * 1000);
+		 System.out.println(Arrays.toString(ids));
 		 // if no ids were returned, something is wrong. get out.
 		 if (ids.length == 0)
 		     System.exit(0);
 
 		  // begin output
-		 System.out.println("Current Time");
+		 System.out.println("Current Time:");
 
 		 // create a Pacific Standard Time time zone
 		 SimpleTimeZone eet = new SimpleTimeZone(2 * 60 * 60 * 1000, ids[0]);
@@ -60,7 +62,7 @@ public class GregorianCalenderDemo {
 		                    + (calendar.get(Calendar.DST_OFFSET)/(60*60*1000)));
 		 
 //		 String[] newMonths = {
-//				  "яннуари", "февруари", "март", "април", "май", "юни", 
+//				  "януари", "февруари", "март", "април", "май", "юни", 
 //				  "юли", "август", "септемви", "октомври", "ноември", "декемви"};
 //		 DateFormatSymbols dfs = DateFormatSymbols.getInstance(bgLocale);
 //		 dfs.setMonths(newMonths);

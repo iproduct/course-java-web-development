@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 public class Application {
 
 	public static void printBundle(ResourceBundle bundle) {
-		System.out.printf("\nResource bundle: %s, language: %s", 
+		System.out.printf("\nResource bundle: %s, language: %s\n\n", 
 				bundle.getBaseBundleName(), bundle.getLocale());
 		Enumeration <String> keys = bundle.getKeys();
 		while (keys.hasMoreElements()) {
@@ -33,6 +33,11 @@ public class Application {
 		ResourceBundle bundle2 = ResourceBundle.getBundle("resources.MyLabels", new Locale("ms", "MY"));
 		printBundle(bundle2);
 		System.out.println("Say how are you in Malaysian Malaya language: " + bundle2.getString("how_are_you"));
+		
+		Locale.setDefault(new Locale("bg", "BG"));
+		ResourceBundle bundle3 = ResourceBundle.getBundle("resources.MyLabels");
+		printBundle(bundle3);
+		System.out.println("Say how are you in Bulgarian language: " + bundle3.getString("how_are_you"));
 
 	}
 
