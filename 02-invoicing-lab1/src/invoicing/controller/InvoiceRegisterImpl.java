@@ -48,14 +48,6 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	@Override
 	public void initialize() {
 		products = new ArrayList<Product>();
-		Product[] sampleProducts = {
-			new Product("BK001", "Thinking in Java 4th ed.", 25.99),
-			new Product("BK002", "UML Distilled", 25.99),
-			new Product("BK003", "Увод в програмирането с Java", 25.99)
-		};
-		for(Product p : sampleProducts) {
-			addProduct(p);
-		}
 		
 		issuers = new ArrayList<Contragent>(Arrays.asList(
 			new Contragent(1234567890, "Ivan Petrov EOOD", "Sofia 1000"),
