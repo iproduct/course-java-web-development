@@ -1,0 +1,26 @@
+  1: package iodemos;
+  2: 
+  3: import java.io.BufferedReader;
+  4: import java.io.BufferedWriter;
+  5: import java.io.FileReader;
+  6: import java.io.FileWriter;
+  7: import java.io.IOException;
+  8: import java.io.PrintWriter;
+  9: 
+ 10: public class TryWithResourcesDemo {
+ 11: 
+ 12: 	public static void main(String[] args) throws IOException {
+ 13: 		try(BufferedReader in = new BufferedReader(
+ 14: 				new FileReader("./src/iodemos/TryWithResourcesDemo.java"));
+ 15: 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("out-temp.txt")))
+ 16: 		){
+ 17: 			String line;
+ 18: 			int number = 0;
+ 19: 			while(( line = in.readLine()) != null) {
+ 20: 				System.out.println(line);
+ 21: 				out.printf("%3d: %s\n", ++number, line);
+ 22: 			}
+ 23: 		}
+ 24: 	}
+ 25: 
+ 26: }

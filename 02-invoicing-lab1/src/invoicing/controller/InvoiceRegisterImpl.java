@@ -83,7 +83,7 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		try {
 			appProps.load(propsInputStream);
 		} catch (NullPointerException | IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			logger.log(SEVERE, "Error loading application.properties file.", e);
 		}
 		try {
