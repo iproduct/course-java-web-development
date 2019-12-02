@@ -18,16 +18,6 @@ public class ProductControllerImpl implements ProductController{
 
 	public ProductControllerImpl(Repository<Product, Long> repo) {
 		this.repo = repo;
-		Product[] sampleProducts = { new Product("BK001", "Thinking in Java 4th ed.", 25.99),
-				new Product("BK002", "UML Distilled", 25.99),
-				new Product("BK003", "Увод в програмирането с Java", 25.99) };
-		for (Product p : sampleProducts) {
-			try {
-				create(p);
-			} catch (InvalidEntityException e) {
-				logger.log(SEVERE, "Error creating product: " + p, e);
-			}
-		}
 	}
 
 	@Override
@@ -64,6 +54,14 @@ public class ProductControllerImpl implements ProductController{
 		IdGenerator<Long> longGen = new LongIdGenerator();
 		Repository<Product, Long> productRepo = new MockRepository<>(longGen);
 		ProductController pc = new ProductControllerImpl(productRepo);
+		// fill with sample products
+		Product[] sampleProducts = { new Product("BK001", "Thinking in Java 4th ed.", 25.99),
+				new Product("BK002", "UML Distilled", 25.99),
+				new Product("BK003", "Увод в програмирането с Java", 25.99) };
+		for (Product p : sampleProducts) {
+			pc.create(p);
+		}
+		// test CRUD operations
 		Product newProd = pc.create(new Product("BK07", "The Unified Process", 27.9));
 		newProd.setPrice(22.4);
 		newProd.setCode("BK005");
