@@ -1,6 +1,8 @@
 package invoicing.model;
 
-public class Product {
+import invoicing.dao.Identifiable;
+
+public class Product implements Identifiable<Long>{
 
 	private long id;
 	private String code;
@@ -32,11 +34,11 @@ public class Product {
 	}
 
 	// 2. getters and setter
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
