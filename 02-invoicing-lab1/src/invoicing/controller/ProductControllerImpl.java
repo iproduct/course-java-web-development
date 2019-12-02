@@ -52,7 +52,7 @@ public class ProductControllerImpl implements ProductController{
 	
 	public static void main(String[] args) throws InvalidEntityException, NonexistingEntityException {
 		IdGenerator<Long> longGen = new LongIdGenerator();
-		Repository<Product, Long> productRepo = new MockRepository<>(longGen);
+		Repository<Product, Long> productRepo = new MockRepository<Product, Long>(longGen);
 		ProductController pc = new ProductControllerImpl(productRepo);
 		// fill with sample products
 		Product[] sampleProducts = { new Product("BK001", "Thinking in Java 4th ed.", 25.99),
