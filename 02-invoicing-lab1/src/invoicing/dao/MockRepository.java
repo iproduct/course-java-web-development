@@ -2,6 +2,7 @@ package invoicing.dao;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import invoicing.exceptions.InvalidEntityException;
@@ -49,19 +50,26 @@ public class MockRepository<T extends Identifiable<K>, K> implements Repository<
 
 	@Override
 	public T update(T entity) throws NonexistingEntityException {
-		// TODO Auto-generated method stub
-		return null;
+		K id = entity.getId();
+		T exisitng = entitiesMap.get(id);
+		if(exisitng == null) {
+			throw new NonexistingEntityException("Entity with ID='" + id + " does not exists!");
+		}
+		entitiesMap.put(id, entity);
+		return entity;
 	}
 
 	@Override
 	public T delete(K id) throws NonexistingEntityException {
-		// TODO Auto-generated method stub
-		return null;
+		T existing = entitiesMap.remove(id);
+		if(existing == null) {
+			throw new NonexistingEntityException("Entity with ID='" + id + " does not exists!");
+		}
+		return existing;
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		List<?>[] lsa = new List<?>[10];
 	}
 
 
