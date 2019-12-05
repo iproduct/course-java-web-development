@@ -1,6 +1,8 @@
 package invoicing.view;
 
+import invoicing.exceptions.ActionUnsuccessfulException;
+
 @FunctionalInterface
 public interface Command {
-	boolean action();
+	void action() throws ActionUnsuccessfulException;
 }
