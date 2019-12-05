@@ -1,6 +1,8 @@
 package invoicing;
 import static java.util.logging.Level.SEVERE;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -12,16 +14,22 @@ import invoicing.dao.IdGenerator;
 import invoicing.dao.LongIdGenerator;
 import invoicing.dao.MockRepository;
 import invoicing.dao.Repository;
+import invoicing.exceptions.ActionUnsuccessfulException;
 import invoicing.exceptions.InvalidEntityException;
 import invoicing.model.Product;
 import invoicing.model.Unit;
+import invoicing.view.AddProductCommand;
+import invoicing.view.Command;
 import invoicing.view.InputUtilities;
+import invoicing.view.MenuItem;
+import static invoicing.view.MenuItem.*;
 
 public class MainApp {
 	private static Scanner sc = new Scanner(System.in);
 	private Logger logger = Logger.getLogger(MainApp.class.getSimpleName());
 	
 	private InvoiceRegister invoiceRegister;
+	private Map<MenuItem, Command> commands = new HashMap<>();
 	
 	public MainApp() {
 		IdGenerator<Long> longGen = new LongIdGenerator();
@@ -40,6 +48,18 @@ public class MainApp {
 		}
 		invoiceRegister = new InvoiceRegisterImpl(pController);
 		invoiceRegister.initialize();
+		
+		//Map menu items to commands
+		commands.put(ADD_PRODUCT, new AddProductCommand(invoiceRegister, sc));
+		commands.put(PRINT_PRUCTS, new AddProductCommand(invoiceRegister, sc));
+		commands.put(EXIT, MainApp.this::finish);
+//		commands.put(EXIT, () -> { finish(); });
+//		commands.put(EXIT, new Command() {
+//			@Override
+//			public void action() throws ActionUnsuccessfulException {
+//				finish();
+//			}
+//		});
 	}
 	
 	public void showMainMenu() {
@@ -47,34 +67,32 @@ public class MainApp {
 		int choice;
 		do {
 			System.out.println();
-			System.out.println("[1]. Input Product");
-			System.out.println("[2]. Exit");
+			printMainMenu();
 			input = sc.nextLine();
-			choice = InputUtilities.paseInt(input, 1, 2);
+			choice = InputUtilities.paseInt(input, 1, MenuItem.values().length);
 			if(choice < 0) {
-				System.out.printf("Invalid choice - should be between %d and %d.\n", 1, 2);
+				System.out.printf("Invalid choice - should be between %d and %d.\n", 1, MenuItem.values().length);
 			} else {
-				switch (choice) {
-				case 1: // input product
-					Product product = InputUtilities.inputProduct(sc);
-					if(product != null) {
-						Product created;
-						try {
-							created = invoiceRegister.addProduct(product);
-							System.out.printf("Successfully added product: %d:%s-%8.2f\n", 
-									created.getId(), created.getName(), created.getPrice());
-						} catch (InvalidEntityException e) {
-							logger.log(SEVERE, "Error creating product: " + product, e);
-							System.err.println("Error creating product: " + product);
-						}
-						
-					}
-					break;
+				MenuItem selectedItem = MenuItem.values()[choice - 1];
+				Command command = commands.get(selectedItem);
+				try {
+					command.action();
+				} catch (ActionUnsuccessfulException e) {
+					System.err.println(e.getMessage());
 				}
-				
 			}
-		} while (choice < 2);
+		} while (true);
+	}
+
+	private void printMainMenu() {
+		for(MenuItem it: MenuItem.values()) {
+			System.out.println(String.format("[%d] %s", it.ordinal() + 1, it.getText()));
+		}
+	}
+	
+	private void finish() {
 		System.out.println("Goodbye from Invoicing app!");
+		System.exit(0);
 	}
 
 	public static void main(String[] args) {
