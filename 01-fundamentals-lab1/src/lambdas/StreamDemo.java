@@ -1,6 +1,7 @@
 package lambdas;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -36,7 +37,20 @@ public class StreamDemo {
 		);
 		List<Tuple2<Long, String>> titles = booksStream
 			.filter(prod -> prod.getName().contains("Java"))
-			.sorted()
+			.sorted(Comparator.comparing(Product::getName))
+					//comparators by name
+//					(p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()))
+			
+			//comaprators by id
+//					Comparator.reverseOrder())
+//					(p1, p2) -> -p1.compareTo(p2))
+					
+//				new Comparator<Product>() {
+//					@Override
+//					public int compare(Product p1, Product p2) {
+//						return -p1.compareTo(p2);
+//					}
+//				})
 			.map(p -> new Tuple2<>(p.getId(), p.getName()))
 			.collect(Collectors.toList());
 		
