@@ -35,9 +35,10 @@ public class StreamDemo {
 				new Product(5, "BK003", "Functional Programming in Java", 25.2),
 				new Product(6, "BK003", "Functional Programming for Java Developers", 22.99)
 		);
-		List<Tuple2<Long, String>> titles = booksStream
+		
+		List<Product> titles = booksStream
 			.filter(prod -> prod.getName().contains("Java"))
-			.sorted(Comparator.comparing(Product::getName))
+			.sorted(Comparator.comparing(Product::getPrice).reversed())
 					//comparators by name
 //					(p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()))
 			
@@ -51,10 +52,24 @@ public class StreamDemo {
 //						return -p1.compareTo(p2);
 //					}
 //				})
-			.map(p -> new Tuple2<>(p.getId(), p.getName()))
+//			.map(p -> new Tuple2<>(p.getId(), p.getName()))
 			.collect(Collectors.toList());
 		
 		titles.stream().forEach(System.out::println);
+		
+		Double javaPrice = productStream
+				.filter(prod -> prod.getName().contains("Java"))
+				.mapToDouble(Product::getPrice)
+				.sum();
+		System.out.println("All products price = " + javaPrice);
+		
+		//flatMap
+		List<String> titleWords = Arrays.stream(sampleProducts)
+			.map(Product::getName)
+			.flatMap(title -> Arrays.stream(title.split("\\s+")))
+			.distinct()
+			.collect(Collectors.toList());
+		System.out.println(titleWords);
 	}
 
 }
