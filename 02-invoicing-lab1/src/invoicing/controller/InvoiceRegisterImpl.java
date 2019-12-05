@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -18,6 +19,12 @@ import java.util.TimeZone;
 import static java.util.logging.Level.*;
 import java.util.logging.Logger;
 
+import invoicing.dao.IdGenerator;
+import invoicing.dao.LongIdGenerator;
+import invoicing.dao.MockRepository;
+import invoicing.dao.Repository;
+import invoicing.exceptions.InvalidEntityException;
+import invoicing.exceptions.NonexistingEntityException;
 import invoicing.model.Contragent;
 import invoicing.model.Invoice;
 import invoicing.model.Position;
@@ -33,22 +40,22 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		"№", "Name", "Quantity", "Unit", "Price", "VAT Price", "Total"
 	};
 	
-	private static long nextId = 0;
-	private List<Product> products;
+	private static Logger logger = Logger.getLogger(InvoiceRegisterImpl.class.getSimpleName());
+	
 	private List<Contragent> issuers;
 	private List<Contragent> customers;
 	private List<Invoice> invoices;
 	private int invoiceWidth = 40;
-	private Logger logger = Logger.getLogger(InvoiceRegisterImpl.class.getSimpleName());
+
 	
-	public InvoiceRegisterImpl() {
-		initialize();
+	private ProductController productController;
+	
+	public InvoiceRegisterImpl(ProductController pController) {
+		this.productController = pController;
 	}
 	
 	@Override
 	public void initialize() {
-		products = new ArrayList<Product>();
-		
 		issuers = new ArrayList<Contragent>(Arrays.asList(
 			new Contragent(1234567890, "Ivan Petrov EOOD", "Sofia 1000"),
 			new Contragent(1234567890, "Dimitar Dimitrov EOOD", "Sofia 1000"),
@@ -59,13 +66,17 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 			new Contragent(1234567890, "Dimitar Dimitrov", "Sofia 1000", false),
 			new Contragent(131234567, "ABC Ltd.", "Sofia 1000")));
 		
-		invoices = new ArrayList<Invoice>(Arrays.asList(
-			new Invoice(1, issuers.get(0), customers.get(2), 
-				Arrays.asList(
-					new Position(products.get(0), 5),
-					new Position(products.get(2), 1)
-				)
-		)));
+		try {
+			invoices = new ArrayList<Invoice>(Arrays.asList(
+				new Invoice(1, issuers.get(0), customers.get(2), 
+					Arrays.asList(
+						new Position(productController.findById(1), 5),
+						new Position(productController.findById(2), 1)
+					)
+			)));
+		} catch (NonexistingEntityException e1) {
+			logger.log(WARNING, "Error initializing sample invoices", e1);
+		}
 		
 		InputStream propsInputStream = 
 				Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties");
@@ -75,7 +86,6 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		try {
 			appProps.load(propsInputStream);
 		} catch (NullPointerException | IOException e) {
-//			e.printStackTrace();
 			logger.log(SEVERE, "Error loading application.properties file.", e);
 		}
 		try {
@@ -151,12 +161,8 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	}
 
 	@Override
-	public Product addProduct(Product product) {
-		product.setId(++nextId);
-		if(products.add(product)) {
-			return product;
-		}
-		return null;
+	public Product addProduct(Product product) throws InvalidEntityException {
+		return productController.create(product);
 	}
 
 	@Override
@@ -172,8 +178,8 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	}
 
 	@Override
-	public List<Product> findAllProducts() {
-		return products;
+	public Collection<Product> findAllProducts() {
+		return productController.findAll();
 	}
 
 	@Override
@@ -190,6 +196,13 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	public List<Contragent> findAllCustomers() {
 		return customers;
 	}
+	
+	@Override
+	public Invoice getLatestInvoice() {
+		return invoices.get(invoices.size()-1);
+	}
+
+
 	
 	@Override
 	public double calculateVat(double price, Product product) {
@@ -238,9 +251,28 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 
 	
 	public static void main(String[] args) {
-		InvoiceRegister reg = new InvoiceRegisterImpl();
-		System.out.println(reg.findAllProducts());
-		Invoice inv1 = reg.findAllInvoices().get(0);
+		IdGenerator<Long> longGen = new LongIdGenerator();
+		Repository<Product, Long> productRepo = new MockRepository<>(longGen, Product.class);
+		ProductController pController = new ProductControllerImpl(productRepo);
+		// fill with sample products
+		Product[] sampleProducts = { new Product("BK001", "Thinking in Java 4th ed.", 25.99),
+				new Product("BK002", "UML Distilled", 25.99),
+				new Product("BK003", "Увод в програмирането с Java", 25.99) };
+		for (Product p : sampleProducts) {
+			try {
+				pController.create(p);
+			} catch (InvalidEntityException e) {
+				logger.log(SEVERE, "Error initializing ProductController", e);
+			}
+		}
+		InvoiceRegister reg = new InvoiceRegisterImpl(pController);
+		reg.initialize();
+		for(Product p : reg.findAllProducts()) {
+			System.out.println(p);
+		}
+		
+		System.out.println("\nLatest Invoice:");
+		Invoice inv1 = reg.getLatestInvoice();
 		System.out.println(reg.formatInvoice(inv1));
 
 	}
