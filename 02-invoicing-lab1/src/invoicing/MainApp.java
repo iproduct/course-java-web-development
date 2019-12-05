@@ -51,7 +51,9 @@ public class MainApp {
 		
 		//Map menu items to commands
 		commands.put(ADD_PRODUCT, new AddProductCommand(invoiceRegister, sc));
-		commands.put(PRINT_PRUCTS, new AddProductCommand(invoiceRegister, sc));
+		commands.put(PRINT_PRUCTS, () -> {
+			invoiceRegister.findAllProducts().stream().forEach(System.out::println);
+		});
 		commands.put(EXIT, MainApp.this::finish);
 //		commands.put(EXIT, () -> { finish(); });
 //		commands.put(EXIT, new Command() {

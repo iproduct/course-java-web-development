@@ -1,6 +1,6 @@
-package genrics;
+package lambdas;
 
-public class Product implements Identifiable<Long>{
+public class Product implements Identifiable<Long>, Comparable<Product>{
 
 	private long id;
 	private String code;
@@ -9,20 +9,7 @@ public class Product implements Identifiable<Long>{
 	private Unit unit;
 	
 	// 1. Constructors
-	public Product() {
-	}
-	
-	public Product(String code, String name, double price, Unit measure) {
-		this.code = code;
-		this.name = name;
-		this.price = price;
-		unit = measure;
-	}
-	
-	public Product(String code, String name, double price) {
-		this(code, name, price, Unit.PCS);
-	}
-
+	public Product() {}
 	
 	public Product(long id, String code, String name, double price, Unit unit) {
 		this.id = id;
@@ -30,6 +17,9 @@ public class Product implements Identifiable<Long>{
 		this.name = name;
 		this.price = price;
 		this.unit = unit;
+	}	
+	public Product(long id, String code, String name, double price) {
+		this(id, code, name, price, Unit.PCS);
 	}
 
 	// 2. getters and setter
@@ -98,15 +88,21 @@ public class Product implements Identifiable<Long>{
 		return "Product [id=" + id + ", code=" + code + ", name=" + name 
 				+ ", price=" + price + ", unit=" + unit + "]";
 	}
+	
+	@Override
+	public int compareTo(Product other) {
+		return (int) Math.signum(id - other.getId());
+	}
 
 	public static void main(String[] args) {
-		Product p1 = new Product("BK001", "Thinking in Java 4th ed.", 25.99);
-		Product p2 = new Product("BK002", "UML Distilled", 25.99);
-		Product p3 = new Product("BK003", "Увод в програмирането с Java", 25.99);
+		Product p1 = new Product(1, "BK001", "Thinking in Java 4th ed.", 25.99);
+		Product p2 = new Product(2, "BK002", "UML Distilled", 25.99);
+		Product p3 = new Product(3, "BK003", "Увод в програмирането с Java", 25.99);
 		System.out.println(p1);
 		System.out.println(p2);
 		System.out.println(p3);
 
 	}
+
 
 }
