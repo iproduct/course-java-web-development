@@ -4,22 +4,22 @@ public class Book extends Product {
 	private String author;
 	private String publisher;
 	public Book() {
-		super();
+//		super();
 	}
 	public Book(long id, String code, String name, double price, Unit unit, String author, String publisher) {
 		super(id, code, name, price, unit);
 		this.author = author;
-		this.publisher = author;
+		this.publisher = publisher;
 	}
 	public Book(String code, String name, double price, Unit measure, String author, String publisher) {
 		super(code, name, price, measure);
 		this.author = author;
-		this.publisher = author;
+		this.publisher = publisher;
 	}
 	public Book(String code, String name, double price, String author, String publisher) {
 		super(code, name, price);
 		this.author = author;
-		this.publisher = author;
+		this.publisher = publisher;
 	}
 	public String getAuthor() {
 		return author;

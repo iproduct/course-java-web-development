@@ -7,13 +7,25 @@ import java.util.Map;
 
 import invoicing.exceptions.InvalidEntityException;
 import invoicing.exceptions.NonexistingEntityException;
+import invoicing.model.Product;
 
 public class MockRepository<T extends Identifiable<K>, K> implements Repository<T, K> {
 	private Map<K, T> entitiesMap = new HashMap<>();
 	private IdGenerator<K> idGen;
 	
-	public MockRepository(IdGenerator<K> idGen) {
+	public <C>MockRepository(IdGenerator<K> idGen, Class<C> type) {
 		this.idGen = idGen;
+		Product p = new Product();
+//		if(p instance K) { //...}
+//		T newElem = new T();
+//		T[] array = new T[5];
+		try {
+			C instance = type.newInstance(); //new C()
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

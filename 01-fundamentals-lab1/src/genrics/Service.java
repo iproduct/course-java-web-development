@@ -13,7 +13,7 @@ public class Service extends Product {
 		super(code, name, price, measure);
 		this.period = period;
 	}
-	public Service(String code, String name, double price, String period, String publisher) {
+	public Service(String code, String name, double price, String period) {
 		super(code, name, price);
 		this.period = period;
 	}

@@ -9,7 +9,8 @@ public class Product implements Identifiable<Long>{
 	private Unit unit;
 	
 	// 1. Constructors
-	public Product() {}
+	public Product() {
+	}
 	
 	public Product(String code, String name, double price, Unit measure) {
 		this.code = code;
