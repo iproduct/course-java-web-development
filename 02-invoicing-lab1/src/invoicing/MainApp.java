@@ -53,19 +53,19 @@ public class MainApp {
 		IdGenerator<Long> longGen = new LongIdGenerator();
 		Repository<Product, Long> productRepo = new MockRepository<>(longGen, Product.class);
 		ProductController pController = new ProductControllerImpl(productRepo);
-		// fill with sample products
-		Product[] sampleProducts = { new Product("BK001", "Thinking in Java 4th ed.", 25.99),
-				new Product("BK002", "UML Distilled", 25.99),
-				new Product("BK003", "Увод в програмирането с Java", 25.99) };
-		for (Product p : sampleProducts) {
-			try {
-				pController.create(p, true);
-			} catch (InvalidEntityException e) {
-				logger.log(SEVERE, "Error initializing ProductController", e);
-			}
-		}
+//		// fill with sample products
+//		Product[] sampleProducts = { new Product("BK001", "Thinking in Java 4th ed.", 25.99),
+//				new Product("BK002", "UML Distilled", 25.99),
+//				new Product("BK003", "Увод в програмирането с Java", 25.99) };
+//		for (Product p : sampleProducts) {
+//			try {
+//				pController.create(p, true);
+//			} catch (InvalidEntityException e) {
+//				logger.log(SEVERE, "Error initializing ProductController", e);
+//			}
+//		}
 		invoiceRegister = new InvoiceRegisterImpl(pController);
-		invoiceRegister.initialize();
+//		invoiceRegister.initialize();
 		
 		//Map menu items to commands
 		commands.put(ADD_PRODUCT, new AddProductCommand(invoiceRegister, sc));
@@ -94,14 +94,14 @@ public class MainApp {
 			try(DataInputStream db = new DataInputStream(
 					new BufferedInputStream(new FileInputStream(dbFileName)))) {
 				int size = db.readInt();
+				invoiceRegister.deleteAllProducts();
 				for(int i = 0; i < size; i++) {
 					Product p = new Product();
 					p.setId(db.readLong());
 					p.setCode(db.readUTF());
 					p.setName(db.readUTF());
 					p.setPrice(db.readDouble());
-					p.setUnit(Unit.values()[db.readInt()]);
-					invoiceRegister.deleteAllProducts();
+					p.setUnit(Unit.values()[db.readInt()]);	
 					try {
 						invoiceRegister.addProduct(p, false);
 					} catch (InvalidEntityException e) {
