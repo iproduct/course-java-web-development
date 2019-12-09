@@ -11,7 +11,7 @@ import invoicing.model.Product;
 public interface InvoiceRegister {
 	void initialize();
 	Invoice addInvoice(Invoice invoice);	
-	Product addProduct(Product product) throws InvalidEntityException;	
+	Product addProduct(Product product, boolean generateId) throws InvalidEntityException;	
 	Contragent addIssuers(Contragent issuer);
 	Contragent addCustomer(Contragent custer);
 	Collection<Product> findAllProducts();
@@ -21,4 +21,5 @@ public interface InvoiceRegister {
 	Collection<Contragent> findAllCustomers();
 	String formatInvoice(Invoice invoice);
 	double calculateVat(double price, Product product);
+	void deleteAllProducts();
 }	

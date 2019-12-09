@@ -48,15 +48,18 @@ public class MockRepository<T extends Identifiable<K>, K> implements Repository<
 	}
 
 	@Override
-	public T create(T entity) throws InvalidEntityException {
+	public T create(T entity, boolean generateId) throws InvalidEntityException {
 		T exisitng = entitiesMap.get(entity.getId());
 		if(exisitng != null) {
 			throw new InvalidEntityException("Entity with ID='" + entity.getId() 
 			+ " already exists!");
 		}
-		K id = idGen.getNextId();
-		entity.setId(id);
-		entitiesMap.put(id, entity);
+		if(generateId) {
+			K id = idGen.getNextId();
+			entity.setId(id);
+		}
+		
+		entitiesMap.put(entity.getId(), entity);
 		return entity;
 	}
 
@@ -80,9 +83,15 @@ public class MockRepository<T extends Identifiable<K>, K> implements Repository<
 		return existing;
 	}
 	
+	@Override
+	public void deleteAll() {
+		entitiesMap.clear();		
+	}
+	
 	public static void main(String[] args) {
 		List<?>[] lsa = new List<?>[10];
 	}
+
 
 
 }

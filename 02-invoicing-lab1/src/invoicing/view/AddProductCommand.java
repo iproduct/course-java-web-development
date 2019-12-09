@@ -22,7 +22,7 @@ public class AddProductCommand implements Command {
 		if(product != null) {
 			Product created;
 			try {
-				created = register.addProduct(product);
+				created = register.addProduct(product, true);
 				System.out.printf("Successfully added product: %d:%s-%8.2f\n", 
 						created.getId(), created.getName(), created.getPrice());
 			} catch (InvalidEntityException e) {

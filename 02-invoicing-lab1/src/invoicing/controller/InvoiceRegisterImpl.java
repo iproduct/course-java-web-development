@@ -153,8 +153,8 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 	}
 
 	@Override
-	public Product addProduct(Product product) throws InvalidEntityException {
-		return productController.create(product);
+	public Product addProduct(Product product, boolean generateId) throws InvalidEntityException {
+		return productController.create(product, generateId);
 	}
 
 	@Override
@@ -201,6 +201,11 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		return VAT_RATE * price;
 	}
 
+	@Override
+	public void deleteAllProducts() {
+		productController.deleteAllProducts();
+		
+	}
 	
 	// protected methods
 	protected String formatCentered(String label, String value, int fieldLength) {
@@ -252,7 +257,7 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 				new Product("BK003", "Увод в програмирането с Java", 25.99) };
 		for (Product p : sampleProducts) {
 			try {
-				pController.create(p);
+				pController.create(p, true);
 			} catch (InvalidEntityException e) {
 				logger.log(SEVERE, "Error initializing ProductController", e);
 			}
@@ -268,6 +273,8 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 		System.out.println(reg.formatInvoice(inv1));
 
 	}
+
+
 
 
 

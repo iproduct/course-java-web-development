@@ -1,7 +1,9 @@
 package invoicing;
 import static java.util.logging.Level.SEVERE;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -56,7 +59,7 @@ public class MainApp {
 				new Product("BK003", "Увод в програмирането с Java", 25.99) };
 		for (Product p : sampleProducts) {
 			try {
-				pController.create(p);
+				pController.create(p, true);
 			} catch (InvalidEntityException e) {
 				logger.log(SEVERE, "Error initializing ProductController", e);
 			}
@@ -73,21 +76,45 @@ public class MainApp {
 			String dbFileName = appProps.getProperty("invoice.db.filename", "default.db");
 			try(DataOutputStream db = new DataOutputStream(
 					new BufferedOutputStream(new FileOutputStream(dbFileName)))) {
-				
+				Collection<Product> products = invoiceRegister.findAllProducts();
+				db.writeInt(products.size());
+				for(Product p : products) {
+					db.writeLong(p.getId());
+					db.writeUTF(p.getCode());
+					db.writeUTF(p.getName());
+					db.writeDouble(p.getPrice());
+					db.writeInt(p.getUnit().ordinal());
+				}
 			} catch (IOException e) {
 				logger.log(SEVERE, "Error reding database file: " + dbFileName, e);
 			} 
 		});
 		commands.put(READ_FROM_FILE, () -> {
 			String dbFileName = appProps.getProperty("invoice.db.filename", "default.db");
-			try(FileInputStream db = new FileInputStream(dbFileName)) {
-				
+			try(DataInputStream db = new DataInputStream(
+					new BufferedInputStream(new FileInputStream(dbFileName)))) {
+				int size = db.readInt();
+				for(int i = 0; i < size; i++) {
+					Product p = new Product();
+					p.setId(db.readLong());
+					p.setCode(db.readUTF());
+					p.setName(db.readUTF());
+					p.setPrice(db.readDouble());
+					p.setUnit(Unit.values()[db.readInt()]);
+					invoiceRegister.deleteAllProducts();
+					try {
+						invoiceRegister.addProduct(p, false);
+					} catch (InvalidEntityException e) {
+						System.err.println(e.getMessage());
+					}
+				}
 			} catch (FileNotFoundException e) {
 				logger.log(SEVERE, "Database file '" + dbFileName + "' not found.", e);
 			} catch (IOException e) {
 				logger.log(SEVERE, "Error reding database file: " + dbFileName, e);
 			} 
 		});
+		
 		commands.put(EXIT, MainApp.this::finish);
 //		commands.put(EXIT, () -> { finish(); });
 //		commands.put(EXIT, new Command() {

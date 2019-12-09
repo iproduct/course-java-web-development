@@ -36,8 +36,8 @@ public class ProductControllerImpl implements ProductController{
 	}
 
 	@Override
-	public Product create(Product entity) throws InvalidEntityException {
-		return repo.create(entity);
+	public Product create(Product entity, boolean generateId) throws InvalidEntityException {
+		return repo.create(entity, generateId);
 	}
 
 	@Override
@@ -50,6 +50,11 @@ public class ProductControllerImpl implements ProductController{
 		return repo.delete(id);
 	}
 	
+	@Override
+	public void deleteAllProducts() {
+		repo.deleteAll();
+	}
+
 	public static void main(String[] args) throws InvalidEntityException, NonexistingEntityException {
 		IdGenerator<Long> longGen = new LongIdGenerator();
 		Repository<Product, Long> productRepo = new MockRepository<>(longGen, Product.class);
@@ -59,10 +64,10 @@ public class ProductControllerImpl implements ProductController{
 				new Product("BK002", "UML Distilled", 25.99),
 				new Product("BK003", "Увод в програмирането с Java", 25.99) };
 		for (Product p : sampleProducts) {
-			pc.create(p);
+			pc.create(p, true);
 		}
 		// test CRUD operations
-		Product newProd = pc.create(new Product("BK07", "The Unified Process", 27.9));
+		Product newProd = pc.create(new Product("BK07", "The Unified Process", 27.9), true);
 		newProd.setPrice(22.4);
 		newProd.setCode("BK005");
 		pc.update(newProd);
@@ -75,5 +80,6 @@ public class ProductControllerImpl implements ProductController{
 			System.out.println(p);
 		}
 	}
+
 
 }

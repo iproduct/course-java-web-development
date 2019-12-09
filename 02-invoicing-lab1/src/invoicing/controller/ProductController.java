@@ -10,7 +10,8 @@ public interface ProductController {
 	Collection<Product> findAll();
 	Product findById(long id) throws NonexistingEntityException;
 	long count();
-	Product create(Product entity) throws InvalidEntityException;
+	Product create(Product entity, boolean generateId) throws InvalidEntityException;
 	Product update(Product entity) throws NonexistingEntityException;
 	Product delete(long id)  throws NonexistingEntityException;
+	void deleteAllProducts();
 }
