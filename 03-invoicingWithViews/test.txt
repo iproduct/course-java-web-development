@@ -1,0 +1,11 @@
+R E P O R T
+Date:,09.12.2019
+INVOICES ISSUER:
+ID Number:,1234567895
+Name:,ABC Ltd.
+
+No.,Date,Receiver ID,Receiver,Amount,VAT,Total
+
+Total amount:,      0,00
+Total VAT:,      0,00
+Total VAT included:,      0,00
