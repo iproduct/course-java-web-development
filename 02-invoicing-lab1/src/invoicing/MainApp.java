@@ -1,6 +1,12 @@
 package invoicing;
 import static java.util.logging.Level.SEVERE;
 
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -64,7 +70,23 @@ public class MainApp {
 			invoiceRegister.findAllProducts().stream().forEach(System.out::println);
 		});
 		commands.put(WRITE_TO_FILE, () -> {
-			
+			String dbFileName = appProps.getProperty("invoice.db.filename", "default.db");
+			try(DataOutputStream db = new DataOutputStream(
+					new BufferedOutputStream(new FileOutputStream(dbFileName)))) {
+				
+			} catch (IOException e) {
+				logger.log(SEVERE, "Error reding database file: " + dbFileName, e);
+			} 
+		});
+		commands.put(READ_FROM_FILE, () -> {
+			String dbFileName = appProps.getProperty("invoice.db.filename", "default.db");
+			try(FileInputStream db = new FileInputStream(dbFileName)) {
+				
+			} catch (FileNotFoundException e) {
+				logger.log(SEVERE, "Database file '" + dbFileName + "' not found.", e);
+			} catch (IOException e) {
+				logger.log(SEVERE, "Error reding database file: " + dbFileName, e);
+			} 
 		});
 		commands.put(EXIT, MainApp.this::finish);
 //		commands.put(EXIT, () -> { finish(); });
