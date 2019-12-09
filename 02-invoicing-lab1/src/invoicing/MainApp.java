@@ -1,8 +1,11 @@
 package invoicing;
 import static java.util.logging.Level.SEVERE;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -25,13 +28,19 @@ import invoicing.view.MenuItem;
 import static invoicing.view.MenuItem.*;
 
 public class MainApp {
+	public static final String CONFIG_FILE_NAME = "application.properties";
 	private static Scanner sc = new Scanner(System.in);
 	private Logger logger = Logger.getLogger(MainApp.class.getSimpleName());
 	
 	private InvoiceRegister invoiceRegister;
 	private Map<MenuItem, Command> commands = new HashMap<>();
 	
+	private static Properties appProps;
+	
 	public MainApp() {
+		//read configuration properties first
+		readConfig(CONFIG_FILE_NAME);
+		
 		IdGenerator<Long> longGen = new LongIdGenerator();
 		Repository<Product, Long> productRepo = new MockRepository<>(longGen, Product.class);
 		ProductController pController = new ProductControllerImpl(productRepo);
@@ -54,6 +63,9 @@ public class MainApp {
 		commands.put(PRINT_PRUCTS, () -> {
 			invoiceRegister.findAllProducts().stream().forEach(System.out::println);
 		});
+		commands.put(WRITE_TO_FILE, () -> {
+			
+		});
 		commands.put(EXIT, MainApp.this::finish);
 //		commands.put(EXIT, () -> { finish(); });
 //		commands.put(EXIT, new Command() {
@@ -64,6 +76,10 @@ public class MainApp {
 //		});
 	}
 	
+	public static Properties getAppProps() {
+		return appProps;
+	}
+
 	public void showMainMenu() {
 		String input;
 		int choice;
@@ -95,6 +111,19 @@ public class MainApp {
 	private void finish() {
 		System.out.println("Goodbye from Invoicing app!");
 		System.exit(0);
+	}
+	
+	private void readConfig(String configFileName) {
+		InputStream propsInputStream = 
+				Thread.currentThread().getContextClassLoader().getResourceAsStream(configFileName);
+		Properties defaultProps = new Properties();
+		defaultProps.setProperty("invoice.print.width", "60");
+		appProps = new Properties(defaultProps);
+		try {
+			appProps.load(propsInputStream);
+		} catch (NullPointerException | IOException e) {
+			logger.log(SEVERE, "Error loading application.properties file.", e);
+		}
 	}
 
 	public static void main(String[] args) {

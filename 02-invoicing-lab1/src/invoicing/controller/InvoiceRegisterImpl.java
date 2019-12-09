@@ -19,6 +19,7 @@ import java.util.TimeZone;
 import static java.util.logging.Level.*;
 import java.util.logging.Logger;
 
+import invoicing.MainApp;
 import invoicing.dao.IdGenerator;
 import invoicing.dao.LongIdGenerator;
 import invoicing.dao.MockRepository;
@@ -78,18 +79,9 @@ public class InvoiceRegisterImpl implements InvoiceRegister {
 			logger.log(WARNING, "Error initializing sample invoices", e1);
 		}
 		
-		InputStream propsInputStream = 
-				Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties");
-		Properties defaultProps = new Properties();
-		defaultProps.setProperty("invoice.print.width", "60");
-		Properties appProps = new Properties(defaultProps);
+		// initialize properties
 		try {
-			appProps.load(propsInputStream);
-		} catch (NullPointerException | IOException e) {
-			logger.log(SEVERE, "Error loading application.properties file.", e);
-		}
-		try {
-			invoiceWidth = Integer.parseInt(appProps.getProperty("invoice.print.width", "40"));
+			invoiceWidth = Integer.parseInt(MainApp.getAppProps().getProperty("invoice.print.width", "40"));
 		} catch (NumberFormatException ex) {
 			logger.log(SEVERE, "Error parsing invoice.print.width property.", ex);
 		}
