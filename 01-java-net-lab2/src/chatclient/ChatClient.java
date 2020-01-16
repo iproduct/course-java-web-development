@@ -17,25 +17,25 @@ public class ChatClient implements Runnable {
 	public static final String SERVER_URL = "localhost";
 	private Scanner sc = new Scanner(System.in);
 	private volatile boolean finish = false;
+	Socket socket;
 	private BufferedReader in;
 	private Thread thread;
 
 	public ChatClient() {
 		try {
 			InetAddress addr = InetAddress.getByName(SERVER_URL);
-			Socket socket = new Socket(addr, ChatServer.PORT);
+			socket = new Socket(addr, ChatServer.PORT);
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+			System.out.println("Successfully connected to server: " + socket);
 			PrintWriter out = new PrintWriter(
-					new BufferedWriter(
-					new OutputStreamWriter(socket.getOutputStream(), "utf-8")),
-					true);
+					new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8")), true);
 			thread = new Thread(this);
 			thread.start();
 			String nickname = null;
 			do {
 				System.out.println("Your nickname:");
 				nickname = sc.nextLine().trim();
-			} while (nickname == null || nickname.length() > 0);
+			} while (nickname == null || nickname.length() == 0);
 			out.println(nickname);
 			String message;
 			do {
@@ -48,14 +48,6 @@ public class ChatClient implements Runnable {
 		} catch (IOException e) {
 			System.err.printf("Can not connect to server: %s:%s\n", SERVER_URL, TimeServer.PORT);
 			e.printStackTrace();
-		} finally {
-			System.out.println("Closing client socket: " + socket);
-			try {
-				socket.close();
-			} catch (IOException e) {
-				System.err.println("Error closing socket: " + socket);
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -63,16 +55,26 @@ public class ChatClient implements Runnable {
 	// Listens for incoming messages and prints them to console
 	public void run() {
 		String message = "";
-		while(!finish) {
+		while(!finish && !socket.isClosed()) {
 			try {
 				message = in.readLine();
-				System.out.println(message);
+				if(message != null && message.length() > 0) {
+					System.out.println(message);
+				}
 			} catch (IOException e) {
 				System.err.println("Error receiving data from server.");
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("Closing client socket: " + socket);
+		try {
+			if(socket != null) {
+				socket.close();
+			}
+		} catch (IOException e) {
+			System.err.println("Error closing socket: " + socket);
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {

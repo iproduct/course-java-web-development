@@ -24,6 +24,7 @@ public class ChatServer implements Runnable {
 			pool = Executors.newCachedThreadPool();
 			while (true) {
 				try (Socket s = ss.accept()) {
+					logger.info("New connection accepted: " + s);
 					ChatHandler handler = new ChatHandler(this, s);
 					handlers.add(handler);
 					pool.execute(handler);

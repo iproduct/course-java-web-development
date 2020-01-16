@@ -29,9 +29,9 @@ public class ChatHandler implements Runnable {
 		this.server = server;
 		this.socket = socket;
 		try {
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), SOCKET_ENCODING));
-			PrintWriter out = new PrintWriter(
-					new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), SOCKET_ENCODING)));
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream(), SOCKET_ENCODING));
+			out = new PrintWriter(
+					new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), SOCKET_ENCODING)), true);
 		} catch (UnsupportedEncodingException e) {
 			logger.log(SEVERE, "Can not recognize encoding: " + SOCKET_ENCODING, e);
 		} catch (IOException e) {
@@ -45,8 +45,10 @@ public class ChatHandler implements Runnable {
 		String message = "";
 		try {
 			nickname = in.readLine();
+			logger.info("User '" + nickname + "' logged in.");
 			while(!"end".equalsIgnoreCase(message)) {
 				message = in.readLine();
+				logger.info("Message received: " + nickname + ": " + message);
 				server.sendToAll(nickname + ": " + message);
 			}
 			logger.info("User '" + nickname + "' logged out.");
