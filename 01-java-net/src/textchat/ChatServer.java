@@ -112,14 +112,14 @@ public class ChatServer implements Runnable {
 	   }
    }
 
-   synchronized public void addHandler(Handler h){
+   public void addHandler(Handler h){
 	   handlers.add(h);
    }
-   synchronized public void removeHandler(Handler h){
+   public void removeHandler(Handler h){
 	   handlers.remove(h);
    }
    
-   synchronized public void sendAllClients(String message){
+   public void sendAllClients(String message){
 	   for(Handler h : handlers)
 		   h.sendMessage(message);
    }
