@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 import timeserver.TimeServer;
 
-public class ChatHandler implements Callable<Void> {
+public class ChatHandler implements Runnable {
 	public static final String SOCKET_ENCODING = "utf-8";
 	public static Logger logger = Logger.getLogger(ChatHandler.class.getSimpleName());
 
@@ -41,17 +41,25 @@ public class ChatHandler implements Callable<Void> {
 	}
 
 	@Override
-	public Void call() throws Exception {
+	public void run() {
 		String message = "";
-		nickname = in.readLine();
-		while(!"end".equalsIgnoreCase(message)) {
-			message = in.readLine();
-			server.sendToAll(nickname + ": " + message);
+		try {
+			nickname = in.readLine();
+			while(!"end".equalsIgnoreCase(message)) {
+				message = in.readLine();
+				server.sendToAll(nickname + ": " + message);
+			}
+			logger.info("User '" + nickname + "' logged out.");
+		} catch(IOException ex) {
+			logger.log(SEVERE, "Error receiving data from client: " + socket, ex);
+		} finally {
+			try {
+				socket.close();
+			} catch (IOException e) {
+				logger.log(SEVERE, "Error closing socket: " + socket, e);
+			}
+			server.removeClient(this);
 		}
-		logger.info("User '" + nickname + "' logged out.");
-		socket.close();
-
-		return null;
 	}
 	
 	public void sendMessage(String message) {
