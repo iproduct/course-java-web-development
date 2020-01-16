@@ -21,7 +21,6 @@ public class ChatServer implements Runnable {
 	public void run() {
 		try (ServerSocket ss = new ServerSocket(PORT)) {
 			logger.info("ChatServer started on port: " + ss.getLocalPort());
-			
 			while (true) {
 				try { 
 					Socket s = ss.accept();

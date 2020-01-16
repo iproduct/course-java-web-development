@@ -36,22 +36,21 @@ public class ChatClient implements Runnable {
 			thread.start();
 		} catch (IOException e) {
 			System.err.printf("Can not connect to server: %s:%s\n", SERVER_URL, TimeServer.PORT);
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 		}
 	}
 	
 	@Override
 	// listens for incoming messages and prints them to console in separate thread
 	public void run() {
-		String message = "";
-		while(!finish && !socket.isClosed()) {
-			try {
-				message = in.readLine();		
+		try {
+			while(!finish) {
+				String message = in.readLine();		
 				System.out.println(message);
-			} catch (IOException e) {
-				System.err.println("Error receiving data from server.");
-				e.printStackTrace();
 			}
+		} catch (IOException e) {
+			System.err.println("Error receiving data from server.");
+			e.printStackTrace(System.err);
 		}
 		System.out.println("Closing client socket: " + socket);
 		try {
@@ -60,12 +59,14 @@ public class ChatClient implements Runnable {
 			}
 		} catch (IOException e) {
 			System.err.println("Error closing socket: " + socket);
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 		}
+		stopThreads();
 	}
 	
 	// reads messages from console and sends them to socket out in main thread
 	public void readMessages() {
+		if(socket == null || socket.isClosed()) return;
 		String nickname = null;
 		do {
 			System.out.println("Your nickname:");
@@ -77,11 +78,19 @@ public class ChatClient implements Runnable {
 			System.out.println("Your message:");
 			message = sc.nextLine();
 			out.println(message);
-		} while (!"end".equalsIgnoreCase(message));
+		} while (!finish && !"end".equalsIgnoreCase(message));
 		System.out.printf("Bye, %s!\n", nickname);
-		finish = true; // stop the socket listener thread
+		stopThreads();
 	}
 
+	public void stopThreads() {
+		finish = true; 
+		try {
+			Thread.sleep(2000); //wait threads to finish
+		} catch (InterruptedException e) {}
+		System.out.println("Stopping the client.");
+		System.exit(0);
+	}
 	
 	public static void main(String[] args) {
 		ChatClient client = new ChatClient();

@@ -1,5 +1,6 @@
 package chatserver;
 
+import static java.util.logging.Level.FINE;
 import static java.util.logging.Level.SEVERE;
 
 import java.io.BufferedReader;
@@ -11,7 +12,11 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.util.concurrent.Callable;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import timeserver.TimeServer;
 
@@ -26,6 +31,13 @@ public class ChatHandler implements Runnable {
 	private String nickname;
 
 	public ChatHandler(ChatServer server, Socket socket) {
+		logger.setUseParentHandlers(false);
+		Handler consoleHandler = new ConsoleHandler();
+		consoleHandler.setLevel(FINE);
+		consoleHandler.setFormatter(new SimpleFormatter());
+		logger.addHandler(consoleHandler);
+		logger.setLevel(FINE);
+		
 		this.server = server;
 		this.socket = socket;
 		try {
