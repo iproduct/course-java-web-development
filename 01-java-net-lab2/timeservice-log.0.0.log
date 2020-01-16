@@ -1,0 +1,36 @@
+I 16, 2020 1:49:18 PM timeserver.TimeServer main
+INFO: TimeServer started on port: 9000
+I 16, 2020 1:49:21 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:21 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/Sofia
+I 16, 2020 1:49:22 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:22 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/Rome
+I 16, 2020 1:49:23 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:23 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/Madrid
+I 16, 2020 1:49:24 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:24 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/Berlin
+I 16, 2020 1:49:25 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:25 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/Paris
+I 16, 2020 1:49:26 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:26 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/London
+I 16, 2020 1:49:27 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:27 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/Brussels
+I 16, 2020 1:49:28 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted on port: 9000
+I 16, 2020 1:49:28 PM timeserver.TimeServer main
+INFO: Client request for time zone: Europe/Burgas
+I 16, 2020 1:49:28 PM timeserver.TimeServer main
+WARNING: Zone not recognized: Europe/Burgas
