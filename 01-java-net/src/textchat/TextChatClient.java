@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TextChatClient {
 	public static String HOST = "localhost";	
-	public static int PORT = 2019;	
+	public static int PORT = 9000;	
 	private static Scanner sc = new Scanner(System.in);
 	private Socket socket;
 	private BufferedReader in;

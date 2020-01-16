@@ -79,7 +79,7 @@ public class ChatServer implements Runnable {
 
    public void run() { // run the service
      try {
-       for (;;) {
+       while (true) {
     	   Handler h = new Handler(this, serverSocket.accept());
     	   addHandler(h);
     	   pool.execute(h);
