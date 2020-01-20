@@ -1,0 +1,7 @@
+/* AUTOMATICALLY GENERATED ON Mon Jan 20 11:46:45 EET 2020*/
+/* DO NOT EDIT */
+
+grant codeBase "file:///D:/Course_Java_Web_Development/git/course-java-web-development/02-rmi-compute-lab2/bin/" {
+  permission java.security.AllPermission;
+};
+
