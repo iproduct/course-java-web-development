@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.17-bin.jar"/>
 	<classpathentry kind="lib" path="lib/eclipselink.jar"/>
 	<classpathentry kind="lib" path="lib/javax.persistence_2.1.1.v201509150925.jar" sourcepath="C:/CourseJava/Materials/eclipselink-2.6.2.v20151217-774c696/eclipselink/jlib/jpa/javax.persistence.source_2.1.1.v201509150925.jar">
 		<attributes>
@@ -16,5 +15,6 @@
 			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

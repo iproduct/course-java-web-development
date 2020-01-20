@@ -51,7 +51,7 @@ package org.iproduct.invoicing.jdbc;
 
 public class DBConnect {
   // All the information specific to CloudScape:
-  public static String dbDriver = "com.mysql.jdbc.Driver";
+  public static String dbDriver = "com.mysql.cj.jdbc.Driver";
   public static String dbURL = "jdbc:mysql://localhost:3306/java32ed";
   public static String user = "root";
   public static String password = "root";

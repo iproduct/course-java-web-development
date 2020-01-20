@@ -66,30 +66,30 @@ public class SimpleQueries {
 			try (Connection c = DriverManager.getConnection(dbURL, user, password); 
 				Statement s = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
 						ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
-				// 4. Execute query
-				PreparedStatement ps = c.prepareStatement("SELECT * FROM items WHERE price > ?",
-						ResultSet.TYPE_SCROLL_INSENSITIVE, 
-						ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT);
-				ps.setDouble(1, 5.00);
-				
-				ResultSet rs = ps.executeQuery();
+//				// 4. Execute query
+//				PreparedStatement ps = c.prepareStatement("SELECT * FROM items WHERE price > ?",
+//						ResultSet.TYPE_SCROLL_INSENSITIVE, 
+//						ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT);
+//				ps.setDouble(1, 5.00);
+//				
+//				ResultSet rs = ps.executeQuery();
 				// 5. Process ResultSet
-				printTable(rs);
+//				printTable(rs);
 				//OR Execute update
-//				int numberUpdates = s.executeUpdate("INSERT INTO items (name,vendor,price)"
-//						+ " VALUES ('Dummy Product', 'Noname Vendor', 15.60);");
+				int numberUpdates = s.executeUpdate("INSERT INTO items (name,vendor,price)"
+						+ " VALUES ('Dummy Product', 'Noname Vendor', 15.60);");
 //				int numberUpdates = s.executeUpdate("UPDATE items SET price=60.2"
 //						+ " WHERE name='Dummy Product';");
 //				int numberUpdates = s.executeUpdate("DELETE FROM items "
 //						+ " WHERE name='Dummy Product';");
 //				System.out.println("\nNumber records changed: " + numberUpdates);
-//				rs = s.executeQuery("SELECT * FROM items");
-//				printTable(rs);
+				ResultSet rs = s.executeQuery("SELECT * FROM items");
+				printTable(rs);
 				
 				//Experiments ...
 				System.out.println();
 				//RS update
-				rs.absolute(3);
+//				rs.absolute(3);
 //				rs.updateDouble("price", 2.5);
 //				rs.updateRow();
 				
@@ -104,20 +104,20 @@ public class SimpleQueries {
 //		        rs.moveToCurrentRow();
 				
 				//RS delete
-				rs.absolute(5);
-				rs.deleteRow();
-
-		        System.out.println();
-				int count = rs.getMetaData().getColumnCount();
-				for (int column = 1; column <= count; column++) {
-					String value = rs.getString(column);
-					System.out.print(String.format("%-16.16s |", value));
-				}
-				System.out.println();
-				
-				System.out.println();
-				rs = s.executeQuery("SELECT * FROM items");
-				printTable(rs);
+//				rs.absolute(5);
+//				rs.deleteRow();
+//
+//		        System.out.println();
+//				int count = rs.getMetaData().getColumnCount();
+//				for (int column = 1; column <= count; column++) {
+//					String value = rs.getString(column);
+//					System.out.print(String.format("%-16.16s |", value));
+//				}
+//				System.out.println();
+//				
+//				System.out.println();
+//				rs = s.executeQuery("SELECT * FROM items");
+//				printTable(rs);
 				
 				
 				
