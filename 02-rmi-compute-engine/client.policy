@@ -1,0 +1,3 @@
+grant codeBase "file:///D:/Course_Java_Web_Development/git/course-java-web-development/02-rmi-compute-engine/bin/" {
+    permission java.security.AllPermission;
+};
