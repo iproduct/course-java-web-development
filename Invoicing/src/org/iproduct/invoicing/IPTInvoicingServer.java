@@ -61,7 +61,7 @@ public class IPTInvoicingServer {
 			InvoicingImpl invoicingImpl = new InvoicingImpl();
 			Registry registry = LocateRegistry.createRegistry(RMI_REGISTRY_PORT);
 			System.out.println("RMI registry started on port: " + RMI_REGISTRY_PORT);
-//			UnicastRemoteObject.unexportObject(invoicingImpl, true);
+			UnicastRemoteObject.unexportObject(invoicingImpl, true);
 			Invoicing stub = 
 		          (Invoicing) UnicastRemoteObject.exportObject(invoicingImpl, 0);
 		    registry.rebind("Invoicing", stub);
