@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.Scanner;
 
 import chatserver.ChatServer;
@@ -27,11 +28,12 @@ public class ChatClient implements Runnable {
 		try {
 			InetAddress addr = InetAddress.getByName(SERVER_URL);
 			socket = new Socket(addr, ChatServer.PORT);
+			socket.setSoTimeout(5000);
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream(), SOCKET_ENCODING));
 			System.out.println("Successfully connected to server: " + socket);
-			out = new PrintWriter(
-				new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), SOCKET_ENCODING)), true);
-			
+			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), SOCKET_ENCODING)),
+					true);
+
 			thread = new Thread(this);
 			thread.start();
 		} catch (IOException e) {
@@ -39,14 +41,18 @@ public class ChatClient implements Runnable {
 			e.printStackTrace(System.err);
 		}
 	}
-	
+
 	@Override
 	// listens for incoming messages and prints them to console in separate thread
 	public void run() {
 		try {
-			while(!finish) {
-				String message = in.readLine();		
-				System.out.println(message);
+			while (!finish) {
+				try {
+					String message = in.readLine();
+					System.out.println(message);
+				} catch (SocketTimeoutException ex) {
+					System.out.println("Timeout.");
+				}
 			}
 		} catch (IOException e) {
 			System.err.println("Error receiving data from server.");
@@ -54,7 +60,7 @@ public class ChatClient implements Runnable {
 		}
 		System.out.println("Closing client socket: " + socket);
 		try {
-			if(socket != null) {
+			if (socket != null) {
 				socket.close();
 			}
 		} catch (IOException e) {
@@ -63,10 +69,11 @@ public class ChatClient implements Runnable {
 		}
 		stopThreads();
 	}
-	
+
 	// reads messages from console and sends them to socket out in main thread
 	public void readMessages() {
-		if(socket == null || socket.isClosed()) return;
+		if (socket == null || socket.isClosed())
+			return;
 		String nickname = null;
 		do {
 			System.out.println("Your nickname:");
@@ -84,14 +91,14 @@ public class ChatClient implements Runnable {
 	}
 
 	public void stopThreads() {
-		finish = true; 
+		finish = true;
 		try {
-			Thread.sleep(2000); //wait threads to finish
-		} catch (InterruptedException e) {}
+			Thread.sleep(2000); // wait threads to finish
+		} catch (InterruptedException e) {
+		}
 		System.out.println("Stopping the client.");
-		System.exit(0);
 	}
-	
+
 	public static void main(String[] args) {
 		ChatClient client = new ChatClient();
 		client.readMessages();

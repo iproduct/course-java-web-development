@@ -16,7 +16,7 @@ public class ComputeClient {
 			System.setSecurityManager(new SecurityManager());
 		}
 		try {
-			String name = "ComputationServr";
+			String name = "ComputationServer";
 			Registry registry = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));
 			Compute comp = (Compute) registry.lookup(name);
 			ComputePiTask task = new ComputePiTask(Integer.parseInt(args[2]));
@@ -26,7 +26,7 @@ public class ComputeClient {
 			System.err.println("ComputePi exception:");
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			System.err.println("Server not registered with RMI Registry.");
+			System.err.println("Server object not registered with RMI Registry.");
 			e.printStackTrace();
 		}
 	}
