@@ -17,7 +17,6 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lombok.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/slf4j-simple-1.7.26.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.26.jar"/>
