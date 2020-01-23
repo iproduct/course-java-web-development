@@ -63,7 +63,7 @@ public class FormServlet extends HttpServlet {
 					String.join("<br>", p.getValue()) + "</td></tr>");
 		}
 		out.println("</table>");
-		out.printf("<a href='%s'>Go to form ...</a>", req.getContextPath()+req.getServletPath());\
+		out.printf("<a href='%s'>Go to form ...</a>", req.getContextPath()+req.getServletPath());
 		out.println("</body>");
 		out.println("</html>");
 
