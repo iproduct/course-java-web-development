@@ -35,9 +35,9 @@ public class ShoppingServlet extends HttpServlet {
 			return;
 		}
 		@SuppressWarnings("unchecked")
-		List<Book> cart = (List<Book>) session.getAttribute("shopping.shoppingcart");
+		List<CartBean> cart = (List<CartBean>) session.getAttribute("shopping.shoppingcart");
 		if(cart == null) {
-			cart = new ArrayList<Book>(); // first order
+			cart = new ArrayList<CartBean>(); // first order
 			session.setAttribute("shopping.shoppingcart", cart);
 		}
 		BookDBController bookController = 
@@ -54,8 +54,8 @@ public class ShoppingServlet extends HttpServlet {
 					} catch (NumberFormatException e) {};
 					if (bookId > 0) {
 						if (action.equals("DELETE")) {
-							for(Book b : cart)
-								if(b.getId() == bookId){
+							for(CartBean b : cart)
+								if(b.getBook().getId() == bookId){
 									cart.remove(b);
 									break;
 								}
@@ -66,8 +66,8 @@ public class ShoppingServlet extends HttpServlet {
 								quantity = Integer.parseInt(quantityStr);
 							} catch (NumberFormatException e) {};
 							boolean bookInCart = false;
-							for (Book b : cart) {
-								if(b.getId() == bookId){
+							for (CartBean b : cart) {
+								if(b.getBook().getId() == bookId){
 									b.setQuantity(b.getQuantity() + quantity);
 									bookInCart = true;
 									break;
@@ -75,16 +75,16 @@ public class ShoppingServlet extends HttpServlet {
 							}
 							if(!bookInCart){
 								Book b = bookController.getBookById(bookId);
-								b.setQuantity(quantity);
-								cart.add(b);
+								CartBean cb = new CartBean(b, quantity);
+								cart.add(cb);
 							}
 						}
 					}
 				}
 			} else if (action.equals("CHECKOUT")) {
 				float total = 0;
-				for (Book b : cart) {
-					double price = b.getPrice();
+				for (CartBean b : cart) {
+					double price = b.getBook().getPrice();
 					int qty = b.getQuantity();
 					total += (price * qty);
 				}

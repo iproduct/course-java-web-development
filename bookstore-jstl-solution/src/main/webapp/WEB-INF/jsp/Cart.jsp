@@ -13,13 +13,13 @@
       <th><b>QUANTITY</b></th>
       <th> </th>
     </tr>
-    <c:forEach var="book" items="${cartBooks}" >
+    <c:forEach var="cb" items="${cartBooks}" >
 	  <tr>
-	      <td><b>${book.name}</b></td>
-	      <td><b>${book.authors}</b></td>
-	      <td><b>${book.year}</b></td>
-	      <td><b>${book.price}</b></td>
-	      <td><b>${book.quantity}</b></td>
+	      <td><b>${cb.book.title}</b></td>
+	      <td><b>${cb.book.authors}</b></td>
+	      <td><b>${cb.book.publishedDate}</b></td>
+	      <td><b>${cb.book.price}</b></td>
+	      <td><b>${cb.quantity}</b></td>
           <td>
 	         <form name="deleteForm" action="ShoppingServlet"  method="POST">
 		          <input type="submit" value="Delete">

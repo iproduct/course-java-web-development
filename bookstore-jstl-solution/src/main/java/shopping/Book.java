@@ -1,150 +1,116 @@
 package shopping;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Book implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private long id;
-	private String name;
+	private String title;
 	private String authors;
-	private String description;
+	private String format;
+	private String isbn;
 	private String publisher;
-	private int year;
+	private Date publishedDate = new Date();
 	private double price;
-	private int quantity;
 	private boolean onSale;
-	
 	public Book() {
 	}
-
-	public Book(String name, String authors) {
-		this.name = name;
-		this.authors = authors;
-	}
-
-	public Book(long id, String name, String authors, String description,
-			String publisher, int year, double price, int quantity,
-			boolean onSale) {
+	public Book(long id, String title, String authors, String format, String isbn, String publisher, Date publishedDate,
+			double price, boolean onSale) {
 		this.id = id;
-		this.name = name;
+		this.title = title;
 		this.authors = authors;
-		this.description = description;
+		this.format = format;
+		this.isbn = isbn;
 		this.publisher = publisher;
-		this.year = year;
+		this.publishedDate = publishedDate;
 		this.price = price;
-		this.quantity = quantity;
 		this.onSale = onSale;
 	}
-
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
 	public String getAuthors() {
 		return authors;
 	}
-
 	public void setAuthors(String authors) {
 		this.authors = authors;
 	}
-
-	public String getDescription() {
-		return description;
+	public String getFormat() {
+		return format;
 	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setFormat(String format) {
+		this.format = format;
 	}
-
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
 	public String getPublisher() {
 		return publisher;
 	}
-
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-
-	public int getYear() {
-		return year;
+	public Date getPublishedDate() {
+		return publishedDate;
 	}
-
-	public void setYear(int year) {
-		this.year = year;
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
 	}
-
 	public double getPrice() {
 		return price;
 	}
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
 	public boolean isOnSale() {
 		return onSale;
 	}
-
 	public void setOnSale(boolean onSale) {
 		this.onSale = onSale;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((authors == null) ? 0 : authors.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Book))
 			return false;
 		Book other = (Book) obj;
-		if (authors == null) {
-			if (other.authors != null)
-				return false;
-		} else if (!authors.equals(other.authors))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
+		if (id != other.id)
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", authors=" + authors
-				+ ", description=" + description + ", publisher=" + publisher
-				+ ", year=" + year + ", price=" + price + ", quantity="
-				+ quantity + ", onSale=" + onSale + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Book [id=").append(id).append(", title=").append(title).append(", authors=").append(authors)
+				.append(", format=").append(format).append(", isbn=").append(isbn).append(", publisher=")
+				.append(publisher).append(", publishedDate=").append(publishedDate).append(", price=").append(price)
+				.append(", onSale=").append(onSale).append("]");
+		return builder.toString();
 	}
 	
+
 }

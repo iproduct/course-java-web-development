@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+.errors{
+	color: red;
+	padding: 20px 10px;
+	border: 1px solid red;
+	background-color: #ffdddd;
+	opacity:0.8;
+	filter:alpha(opacity=80); /* For IE8 and earlier */
+	border-radius: 10px;
+}
+.error {
+	color: red;
+}

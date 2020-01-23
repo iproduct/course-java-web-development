@@ -21,13 +21,13 @@
   </tr>
 
   <c:set var="purchasedBooks" value="${sessionScope['shopping.shoppingcart']}" />
-  <c:forEach var="book" items="${purchasedBooks}" >
+  <c:forEach var="cb" items="${purchasedBooks}" >
 	  <tr>
-	      <td><b>${book.name}</b></td>
-	      <td><b>${book.authors}</b></td>
-	      <td><b>${book.year}</b></td>
-	      <td><b>${book.price}</b></td>
-	      <td><b>${book.quantity}</b></td>
+	      <td><b>${cb.book.title}</b></td>
+	      <td><b>${cb.book.authors}</b></td>
+	      <td><b>${cb.book.publishedDate}</b></td>
+	      <td><b>${cb.book.price}</b></td>
+	      <td><b>${cb.quantity}</b></td>
 	  </tr>
   </c:forEach>
 

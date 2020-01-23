@@ -20,7 +20,7 @@
   	<c:set var="books" value="${applicationScope.bookController.allBooks}" />
   	<c:forEach var="book" items="${books}" varStatus="status">
   		<option value="${book.id}">
-    		${status.index}: ${book.name} - ${book.price}
+    		${status.index}: ${book.title} - ${book.price}
     	</option>
   	</c:forEach>
   </select>

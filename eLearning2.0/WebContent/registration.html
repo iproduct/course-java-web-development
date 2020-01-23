@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Course Registration</title>
+<script type="text/javascript" src="js/validate.js"></script>
+</head>
+<body>
+	<h1>Course Registration</h1>
+	<form action="RegistrationServlet" method="post">
+	<table>
+		<tr>
+			<td>E-mail:</td>
+			<td><input type="text" id="email" name="email" 
+				placeholder="youremail@somedomain.com" onblur="validateEmail();"/> </td>
+			<td><div id="emailErrors"></div></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td><input type="password" id="password" name="password" /> </td>
+		</tr>
+		<tr>
+			<td>Choose a Course:</td>
+			<td><select id="courses" name="courses" multiple="multiple" size="5">
+				<optgroup label="Basic Courses">
+					<option value="html5">Web Design with HTML 5</option>
+				</optgroup>
+				<optgroup label="Java Courses">
+					<option value="java1">Programming in Java</option>
+					<option value="java_web">Java Web Programming</option>
+					<option value="java_ee">Java EE 7 for The Enterprise</option>
+				</optgroup>
+				<optgroup label="JavaScript">
+					<option value="js">Web 2.0 with JS Libraries: jQuery, YUI3, ExtJS</option>
+				</optgroup>
+			</select></td>
+		</tr>
+		<tr>
+			<td><input type="submit" name="submit" value="Register" /> </td>
+			<td><input type="reset" name="reset" value="Reset Form" /> </td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>
