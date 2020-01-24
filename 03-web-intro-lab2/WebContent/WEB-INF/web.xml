@@ -24,6 +24,9 @@
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>-->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 	<welcome-file-list>
 		<welcome-file>hello</welcome-file>
 		<welcome-file>index.html</welcome-file>
