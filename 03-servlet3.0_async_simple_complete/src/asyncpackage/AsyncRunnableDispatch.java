@@ -21,7 +21,7 @@ public class AsyncRunnableDispatch implements Runnable {
 		// event (such as receiving a message in
 		// Comet-enabled environment.
 		try {
-			// Sleep for 1000 ms
+			// Sleep for 5000 ms
 			Thread.sleep(5000);
 		} catch (Exception ie) {
 		}

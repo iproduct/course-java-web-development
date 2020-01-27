@@ -21,6 +21,7 @@ public class AsyncServlet extends HttpServlet {
             throws ServletException, IOException {
 
         AsyncContext aCtx = request.startAsync(request, response);
+        aCtx.setTimeout(10000);
 
         aCtx.addListener(new AsyncListener() {
             public void onComplete(AsyncEvent event) throws IOException {
@@ -29,7 +30,8 @@ public class AsyncServlet extends HttpServlet {
 
             public void onTimeout(AsyncEvent event) throws IOException {
                 System.out.println("----onTimeout() is called");
-
+                response.getWriter().println("<h1>Response Timeout.</h1>");
+                aCtx.complete();
             }
 
             public void onError(AsyncEvent event) throws IOException {
@@ -42,9 +44,9 @@ public class AsyncServlet extends HttpServlet {
             }
         });
         
-//        aCtx.start(new AsyncRunnableDispatch(aCtx));
+        aCtx.start(new AsyncRunnableDispatch(aCtx));
         
-        aCtx.start(new AsyncRunnable(aCtx));
+//        aCtx.start(new AsyncRunnable(aCtx));
         
 //      executor.execute(new AsyncRunnable(aCtx));
 
