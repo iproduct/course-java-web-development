@@ -1,8 +1,5 @@
-<%@page session="true" import="java.util.*, bookstore.model.*" %>
-<%
-List<CartBean> cart = (List<CartBean>)session.getAttribute("shoppingcart");
-if (cart != null && (cart.size() >0)) {
-%>
+<%@ page contentType="text/html; charset=ISO-8859-1" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
   <center>
   <table border="0" cellpadding="0" width="100%" bgcolor="#FFFFFF">
     <tr>
@@ -13,28 +10,24 @@ if (cart != null && (cart.size() >0)) {
       <td><b>QUANTITY</b></td>
       <td></td>
     </tr>
-    <%
-    	for (int index=0; index< cart.size();index++) {
-    		CartBean cb = cart.get(index);
-            Book b = cb.getBook();
-    %>
+    <c:forEach var="cb" items="${shoppingcart}">
     <tr>
-      <td><b><%= b.getTitle() %></b></td>
-      <td><b><%= b.getAuthors() %></b></td>
-      <td><b><%= b.getPublishDate().toString() %></b></td>
-      <td><b><%= b.getPrice() %></b></td>
-      <td><b><%= cb.getQuantity() %></b></td>
+      <td><b><c:out value="${cb.book.title}" /></b></td>
+      <td><b><c:out value="${cb.book.authors}" /></b></td>
+      <td><b><c:out value="${cb.book.publishDate}" /></b></td>
+      <td><b><c:out value="${cb.book.price}" /></td>
+      <td><b><c:out value="${cb.quantity}" /></b></td>
       <td>
         <form name="deleteForm"
               action="ShoppingServlet"
               method="POST">
           <input type="submit" value="Delete">
-          <input type="hidden" name= "bookId" value='<%= b.getId() %>'>
+          <input type="hidden" name= "bookId" value="${cb.book.id}">
           <input type="hidden" name="action" value="DELETE">
          </form> 
       </td>
     </tr> 
-    <% } %>
+   	</c:forEach>
   </table>
   <p>
   <form name="checkoutForm"
@@ -44,5 +37,4 @@ if (cart != null && (cart.size() >0)) {
     <input type="submit" name="Checkout" value="Checkout">
   </form>
   </center>
-<% } %>
 

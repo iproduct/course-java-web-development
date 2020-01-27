@@ -35,6 +35,7 @@ public class ShoppingServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		boolean invalidateSession = false;
 		PrintWriter out = res.getWriter();
 		HttpSession session = req.getSession(true);
 		@SuppressWarnings("unchecked")
@@ -102,10 +103,14 @@ public class ShoppingServlet extends HttpServlet {
 				amount = amount.substring(0, n + 3);
 				req.setAttribute("amount", amount);
 				nextView = CHECKOUT_VIEW;
+				invalidateSession = true;
 			}
 		}
 		RequestDispatcher rd = req.getRequestDispatcher(nextView);
 		rd.forward(req, res);
+		if(invalidateSession) {
+			session.invalidate();
+		}
 	}
 
 	/**
