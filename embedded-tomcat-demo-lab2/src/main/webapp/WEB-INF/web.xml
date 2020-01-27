@@ -5,7 +5,7 @@
   	<param-name>appName</param-name>
   	<param-value>Hello Servlets Demo</param-value>
   </context-param>
-  <!--  <servlet>
+ <!--  <servlet>
   	<servlet-name>HelloServlet</servlet-name>
   	<servlet-class>servlet.HelloServlet</servlet-class>
   </servlet>
