@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,6 +39,7 @@ public class ShoppingServlet extends HttpServlet {
 		boolean invalidateSession = false;
 		PrintWriter out = res.getWriter();
 		HttpSession session = req.getSession(true);
+		res.setLocale(new Locale("en_US"));
 		@SuppressWarnings("unchecked")
 		List<CartBean> cart = (List<CartBean>) session.getAttribute("shoppingcart");;
 		if (cart == null) {
