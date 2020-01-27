@@ -2,24 +2,26 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>course-web-demos</groupId>
-	<artifactId>embedded-tomcat-demo-lab2</artifactId>
+	<groupId>ipt-web-demos</groupId>
+	<artifactId>embedded-tomcat-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Embedded Tomcat Demo</name>
+	<packaging>jar</packaging>
+	<name>Embedded Tomcat demo</name>
 	<description>Embedded Tomcat demo</description>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<tomcat.version>9.0.30</tomcat.version>
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
+			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-core</artifactId>
 			<version>${tomcat.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
+			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<version>${tomcat.version}</version>
 		</dependency>
@@ -39,6 +41,31 @@
 			<version>${tomcat.version}</version>
 		</dependency>
 	</dependencies>
-	
-	
+	<build>
+		<finalName>embeddedTomcatSample</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>2.1.0</version>
+				<configuration>
+					<assembleDirectory>target</assembleDirectory>
+					<programs>
+						<program>
+							<mainClass>launch.Main</mainClass>
+							<id>webapp</id>
+						</program>
+					</programs>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>assemble</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
