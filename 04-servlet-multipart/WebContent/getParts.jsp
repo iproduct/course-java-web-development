@@ -77,6 +77,11 @@
     int c = in.read();
     while (c != -1) {
       if (c == '\n') out.write("<br/>");
+      if (c == '<') out.write("&lt;");
+      if (c == '>') out.write("&gt;");
+      if (c == '&') out.write("&amp;");
+      if (c == '"') out.write("&quote;");
+      if (c == '\'') out.write("&apos;");
       out.write(c);
       c = in.read();
     }
