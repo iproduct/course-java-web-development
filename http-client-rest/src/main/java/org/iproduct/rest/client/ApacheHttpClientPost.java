@@ -11,17 +11,17 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class ApacheHttpClientPost {
 
-	// http://localhost:8080/RESTfulExample/json/product/post
+	// http://localhost:8088/api/products
 	public static void main(String[] args) {
 
 		try {
 
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(
-					"http://localhost:8080/RESTfulExample/json/product/post");
+					"http://localhost:8088/api/products");
 
 			StringEntity input = new StringEntity(
-					"{\"qty\":100,\"name\":\"iPad 4\"}");
+					"{\"qty\":300,\"name\":\"New Laptop\"}");
 			input.setContentType("application/json");
 			postRequest.setEntity(input);
 
@@ -38,7 +38,6 @@ public class ApacheHttpClientPost {
 			String output;
 			System.out.println("Output from Server .... \n");
 			while ((output = br.readLine()) != null) {
-
 				System.out.println(output);
 			}
 

@@ -1,9 +1,8 @@
 package org.iproduct.rest.client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -33,9 +32,10 @@ public class ApacheHttpClientGetGooleBooks {
 
 //			BufferedReader br = new BufferedReader(new InputStreamReader(
 //					(response.getEntity().getContent())));
-//
+
 //			String output;
 //			System.out.println("Output from Server .... \n");
+//			br.mark(Integer.MAX_VALUE);
 //			while ((output = br.readLine()) != null) {
 //
 //				System.out.println(output);
@@ -44,9 +44,12 @@ public class ApacheHttpClientGetGooleBooks {
 			
 			//JsonPath demo
 			DocumentContext jsonContext = JsonPath.parse(response.getEntity().getContent());
-			String jsonpathBookTitlePath = "$.items[*].volumeInfo.title";
-			List<String> booktitles = jsonContext.read(jsonpathBookTitlePath);
-			System.out.println(booktitles);
+			String jsonpathBookTitlePath = "$.items[*].volumeInfo.industryIdentifiers";
+			List<Map<String, Object>>  volumes = jsonContext.read(jsonpathBookTitlePath);
+			System.out.println(volumes);
+			String jsonpathBookYearPath = "$.items[*].volumeInfo.publishedDate";
+			List<String> bookYears = jsonContext.read(jsonpathBookYearPath);
+			System.out.println(bookYears);
 
 			httpClient.getConnectionManager().shutdown();
 

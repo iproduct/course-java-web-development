@@ -10,13 +10,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class ApacheHttpClientGet {
 
-	// http://localhost:8080/RESTfulExample/json/product/get
+	// http://localhost:8088/api/products
 	public static void main(String[] args) {
 		try {
 
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpGet getRequest = new HttpGet(
-					"http://localhost:8080/RESTfulExample/json/product/get");
+					"http://localhost:8088/api/products");
 			getRequest.addHeader("accept", "application/json");
 
 			HttpResponse response = httpClient.execute(getRequest);
@@ -32,7 +32,6 @@ public class ApacheHttpClientGet {
 			String output;
 			System.out.println("Output from Server .... \n");
 			while ((output = br.readLine()) != null) {
-
 				System.out.println(output);
 			}
 
