@@ -6,7 +6,7 @@
 	<artifactId>http-client-rest</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>RESTfulExample Maven Webapp</name>
+	<name>RESTfulExample Maven Webapp and Apache HTTP Client</name>
 	<url>http://maven.apache.org</url>
 
 	<repositories>
@@ -54,7 +54,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>RESTfulExample</finalName>
+		<finalName>api</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

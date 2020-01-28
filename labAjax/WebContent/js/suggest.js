@@ -3,7 +3,7 @@ var countries=[];
 function autoSuggestCountry(){
 	var country = document.getElementById("country").value;
 	if(country.length > 0)
-		loadJSONObject("POST", "http://localhost:8080/labAjax/SuggestCountry", {"country": country}, showResults);
+		loadJSONObject("POST", "http://localhost:8088/labAjax/SuggestCountry", {"country": country}, showResults);
 }
 
 function autocompleteCountry() {

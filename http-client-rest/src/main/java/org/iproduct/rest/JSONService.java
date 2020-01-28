@@ -1,30 +1,38 @@
 package org.iproduct.rest;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
-import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+import org.iproduct.rest.exception.NonExistngEntityException;
 
 @Path("/products")
 public class JSONService {
 
 	@GET
 	@Produces("application/json")
-	public List<Product> getProductInJSON() {
+	public Collection<Product> getProductInJSON() {
 		return ProductController.getInstance().findAll();
 	}
 
 	@GET
-	@Path("/{id}")
+	@Path("{productId}")
 	@Produces("application/json")
-	public Product getProductById(@PathParam("id") String id) {
-		return ProductController.getInstance().findById(id);
+	public Product getProductById(@PathParam("productId") long id) {
+		try {
+			return ProductController.getInstance().findById(id);
+		} catch(NonExistngEntityException ex) {
+			throw new WebApplicationException(Response.status(Status.NOT_FOUND).entity("{\"error\": \"" + ex.getMessage() + "\"}").build());		
+		}
+		
 	}
 
 	@POST
