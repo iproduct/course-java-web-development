@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+
+Name: beandemo/BulbBean.class
+Java-Bean: True
+
+Name: beandemo/SwitchBean.class
+Java-Bean: True

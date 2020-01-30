@@ -58,7 +58,7 @@ public class BulbBean extends JComponent {
 		} else {
 			g.setColor(COLOR_OFF);
 		}
-		g.fillOval(width/2, height/2, width, height);
+		g.fillOval(10, 10, width-20, height-20);
 	}
 	
 	public void switchOn() {
