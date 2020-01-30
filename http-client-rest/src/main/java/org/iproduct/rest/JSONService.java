@@ -24,9 +24,9 @@ public class JSONService {
 	}
 
 	@GET
-	@Path("{productId}")
+	@Path("{id}")
 	@Produces("application/json")
-	public Product getProductById(@PathParam("productId") long id) {
+	public Product getProductById(@PathParam("id") long id) {
 		try {
 			return ProductController.getInstance().findById(id);
 		} catch(NonExistngEntityException ex) {
