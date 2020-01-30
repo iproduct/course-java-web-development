@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+
+Name: bulb/BulbBean.class
+Java-Bean: True
+
+Name: bulb/SwitchBean.class
+Java-Bean: True
