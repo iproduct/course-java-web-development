@@ -27,11 +27,12 @@ public class SnapFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        helloBean1 = new simple.HelloBean();
         faceBean1 = new facebean.FaceBean();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        faceBean1.setMouthWidth(30);
+        faceBean1.setMouthWidth(120);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,5 +91,6 @@ public class SnapFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private facebean.FaceBean faceBean1;
+    private simple.HelloBean helloBean1;
     // End of variables declaration//GEN-END:variables
 }
