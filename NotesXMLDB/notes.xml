@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<notes xmlns="http://service.notification/">
+    <note>
+        <id>2</id>
+        <to>Office</to>
+        <from>John</from>
+        <heading>New Course</heading>
+        <body>New JavaEE course started</body>
+    </note>
+    <note>
+        <id>3</id>
+        <to>Office</to>
+        <from>John</from>
+        <heading>New Course</heading>
+        <body>New JavaEE course started</body>
+    </note>
+    <note>
+        <id>4</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>5</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>6</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>9</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>10</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>11</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>12</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>13</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>14</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>15</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>16</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>17</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>18</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>19</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>20</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>21</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>22</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>23</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>24</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>25</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>26</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>27</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>28</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>29</id>
+        <to>office</to>
+        <from>George</from>
+        <heading>New Web Service</heading>
+        <body>New Notification web service will be available soon.</body>
+    </note>
+    <note>
+        <id>31</id>
+        <to>office</to>
+        <from>Ivan</from>
+        <heading>RESTful Service will be next</heading>
+        <body>Next we develop RESTful service for notification.</body>
+    </note>
+    <note>
+        <id>32</id>
+        <to>office</to>
+        <from>Ivan</from>
+        <heading>RESTful Service will be next</heading>
+        <body>Next we develop RESTful service for notification.</body>
+    </note>
+    <note>
+        <id>33</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>34</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>35</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>36</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>37</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>38</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>39</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>40</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>41</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>42</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>43</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>44</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>45</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>46</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>47</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>48</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>49</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>50</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>51</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>52</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>53</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>54</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>55</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>56</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>57</id>
+        <to>Course SOA</to>
+        <from>Trayan</from>
+        <heading>New Example</heading>
+        <body>New Example project CS_Notification_Service is available</body>
+    </note>
+    <note>
+        <id>58</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>59</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>60</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>61</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>62</id>
+        <to>Course SOA</to>
+        <from>Insrtructor</from>
+        <heading>Security enabled</heading>
+        <body>Security enabled</body>
+    </note>
+    <note>
+        <id>63</id>
+        <to>Course SOA</to>
+        <from>Insrtructor</from>
+        <heading>Security enabled</heading>
+        <body>Security enabled</body>
+    </note>
+    <note>
+        <id>64</id>
+        <to>Course SOA</to>
+        <from>Insrtructor</from>
+        <heading>Security enabled</heading>
+        <body>Security enabled</body>
+    </note>
+    <note>
+        <id>65</id>
+        <to>Course SOA</to>
+        <from>Insrtructor</from>
+        <heading>Security enabled</heading>
+        <body>Security enabled</body>
+    </note>
+    <note>
+        <id>66</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>67</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+    <note>
+        <id>68</id>
+        <to>office</to>
+        <from>Trayan</from>
+        <heading>Hi 29.04.2014</heading>
+        <body>Test. Test.</body>
+    </note>
+</notes>

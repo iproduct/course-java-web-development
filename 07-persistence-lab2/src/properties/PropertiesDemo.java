@@ -4,12 +4,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -22,7 +23,7 @@ public class PropertiesDemo {
 		Enumeration<Object> keys = props.keys();
 		while (keys.hasMoreElements()) {
 			String k = (String) keys.nextElement();
-			System.out.println(k + " = " + props.getProperty(k));
+			System.out.println(k + " = " + props.getProperty(k, "not defined"));
 		}
 
 		System.out.println();
@@ -40,15 +41,16 @@ public class PropertiesDemo {
 
 		Properties appProps = new Properties();
 		appProps.load(new FileInputStream(appConfigPath.getPath()));
-
-		printProperties(appProps);
+		
+		appProps.setProperty("date", LocalDate.now().toString());
 
 		Path configPath;
 		try {
 			configPath = Paths.get(appConfigPath.toURI());
 			Path xmlPath = configPath.resolve("../application.xml").normalize();
-			System.out.println(xmlPath);
-
+			appProps.setProperty("config.path", xmlPath.toString());
+			printProperties(appProps);
+			
 			appProps.storeToXML(new FileOutputStream(xmlPath.toString()), 
 					"application configuration", 
 					Charset.forName("utf-8").toString());
