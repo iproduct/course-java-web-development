@@ -1,8 +1,11 @@
 package diapi;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.iproduct.di.annotations.Repository;
+import org.iproduct.di.annotations.Schedule;
+import org.iproduct.di.annotations.Schedules;
 import org.junit.jupiter.api.Test;
 
 import dynamicproxy.UserRepository;
@@ -11,7 +14,6 @@ import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
-import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationContextTest {
 
@@ -34,6 +36,14 @@ class ApplicationContextTest {
 
 			assertThat(classInfos).extracting(ClassInfo::getName).contains(UserRepositoryImpl.class.getName());
 		}
+	}
+
+	@Schedules({
+		@Schedule(dayOfMonth="last"),
+		@Schedule(dayOfWeek="Fri", hour=23)
+	})
+	public void doPeriodicCleanup() { 
+		//... 
 	}
 
 }

@@ -90,7 +90,7 @@ public class ApplicationContext implements Context {
 
 	protected void scanForBeans(String packageName) {
 		try (ScanResult result = new ClassGraph().enableClassInfo().enableAnnotationInfo()
-				.enableMethodInfo().enableFieldInfo()
+				.enableMethodInfo().enableFieldInfo().ignoreFieldVisibility()
 				.whitelistPackages(packageName).scan()) {
 			for (Class<?> cls : BEAN_ANNOTATIONS) {
 				ClassInfoList classInfos = result.getClassesWithAnnotation(cls.getName());

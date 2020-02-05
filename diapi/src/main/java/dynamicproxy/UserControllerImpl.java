@@ -3,11 +3,12 @@ package dynamicproxy;
 import javax.inject.Inject;
 
 import org.iproduct.di.annotations.Component;
+import org.iproduct.di.annotations.JaxbRepository;
 
 @Component
 public class UserControllerImpl implements UserController {
-	@Inject
-	public UserRepository repo;
+	@Inject @JaxbRepository
+	private UserRepository repo;
 
 	public UserRepository getRepo() {
 		return repo;
@@ -16,6 +17,5 @@ public class UserControllerImpl implements UserController {
 	public void setRepo(UserRepository repo) {
 		this.repo = repo;
 	}
-	
 	
 }

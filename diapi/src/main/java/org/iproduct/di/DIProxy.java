@@ -1,17 +1,14 @@
 package org.iproduct.di;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.iproduct.di.exceptions.BeanInstantiationException;
-import org.iproduct.di.exceptions.BeanLookupException;
 
 import io.github.classgraph.AnnotationInfo;
-import io.github.classgraph.AnnotationParameterValue;
 import io.github.classgraph.FieldInfo;
 import io.github.classgraph.FieldInfoList;
 
@@ -42,7 +39,9 @@ public class DIProxy implements InvocationHandler {
 			Object injected = null;
 			injected = context.getBean(fieldType);
 			try {
-				descriptor.getClassInfo().loadClass().getDeclaredField(f.getName()).set(target, injected);
+				Field field = descriptor.getClassInfo().loadClass().getDeclaredField(f.getName());
+				field.setAccessible(true);
+				field.set(target, injected);
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 				throw new BeanInstantiationException("Error injecting field '" + f.getName() + "' with value: " + injected, e);
 			}
