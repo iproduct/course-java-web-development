@@ -64,8 +64,7 @@ public class Main {
 
             // unmarshal a po instance document into a tree of Java content
             // objects composed of classes from the primer.po package.
-            JAXBElement poe = (JAXBElement) u.unmarshal(
-                        new FileInputStream("po.xml"));
+            JAXBElement poe = (JAXBElement) u.unmarshal(new FileInputStream("po.xml"));
             PurchaseOrderType po = (PurchaseOrderType) poe.getValue();
 
             // change the billto address
