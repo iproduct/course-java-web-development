@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="http-client-rest:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>http-client-rest</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="api.war">
+      <element id="artifact" artifact-name="http-client-rest:war exploded" />
+    </root>
+  </artifact>
+</component>

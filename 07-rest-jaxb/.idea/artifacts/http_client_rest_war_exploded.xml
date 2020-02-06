@@ -1,0 +1,52 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="http-client-rest:war exploded">
+    <output-path>$PROJECT_DIR$/target/api</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>http-client-rest</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="http-client-rest" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jaxrs:2.2.1.GA" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:jaxrs-api:2.2.1.GA" />
+          <element id="library" level="project" name="Maven: org.scannotation:scannotation:1.0.3" />
+          <element id="library" level="project" name="Maven: javassist:javassist:3.12.1.GA" />
+          <element id="library" level="project" name="Maven: javax.annotation:jsr250-api:1.0" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
+          <element id="library" level="project" name="Maven: net.jcip:jcip-annotations:1.0" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jaxb-provider:2.2.0.GA" />
+          <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.1.12" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.1" />
+          <element id="library" level="project" name="Maven: com.sun.xml.stream:sjsxp:1.0.1" />
+          <element id="library" level="project" name="Maven: javax.xml.stream:stax-api:1.0" />
+          <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jackson-provider:2.2.1.GA" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.6.3" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.6.3" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.6.3" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-xc:1.6.3" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.11" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.13" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.11" />
+          <element id="library" level="project" name="Maven: com.jayway.jsonpath:json-path:2.4.0" />
+          <element id="library" level="project" name="Maven: net.minidev:json-smart:2.3" />
+          <element id="library" level="project" name="Maven: net.minidev:accessors-smart:1.2" />
+          <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.0.4" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/api/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="http-client-rest/web/Web" />
+    </root>
+  </artifact>
+</component>
