@@ -22,7 +22,7 @@ import javax.xml.bind.ValidationEventHandler;
 import javax.xml.bind.ValidationEventLocator;
 import org.w3c.dom.Node;
 
-import primer.po2.*;
+import primer.po.*;
 
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 import javax.xml.validation.SchemaFactory;
@@ -49,7 +49,7 @@ public class Main {
 
             // create an Unmarshaller
             Unmarshaller u = jc.createUnmarshaller();
-            // u.setValidating(true); //deprecated
+            //u.setValidating(true); //deprecated
 
             SchemaFactory sf = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
 
