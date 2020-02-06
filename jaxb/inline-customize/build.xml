@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="inline-customize" default="default" basedir=".">
+    <description>Builds, tests, and runs the project inline-customize.</description>
+    <property name="is.java-client-module" value="true"/>
+    <property name="is.jaxb.app" value="true"/>
+    <import file="../../bp-project/main.xml"/>
+    
+    <target name="-pre-compile" depends="xjc-generate"/>
+    
+    <target name="-pre-init">
+        <mkdir dir="${xjc.src.dir}"/>
+    </target>
+    
+    <target name="-post-clean">
+        <delete dir="${xjc.src.dir}"/>
+    </target>
+    
+    <target name="run" depends="runapp"/>
+    
+</project>

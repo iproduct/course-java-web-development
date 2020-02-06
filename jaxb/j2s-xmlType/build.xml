@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="j2s-xmlType" default="default" basedir=".">
+    <description>Builds, tests, and runs the project j2s-xmlType.</description>
+    <property name="is.java-client-module" value="true"/>
+    <property name="is.jaxb.app" value="true"/>
+    <import file="../../bp-project/main.xml"/>
+    
+    <target name="-post-compile" depends="schemagen-generate">
+    </target>
+    
+    <target name="show-classpath">
+        <echo message="${toString:classpath}" />
+    </target>
+
+</project>

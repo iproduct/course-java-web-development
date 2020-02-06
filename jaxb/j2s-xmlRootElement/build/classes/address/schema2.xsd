@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:ns1="http://www.example.com/MYPO1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://www.example.com/MYPO1" schemaLocation="schema1.xsd"/>
+
+  <xs:element name="ccv" type="creditCardVendor"/>
+
+  <xs:element name="purchaseOrder" type="PurchaseOrderType"/>
+
+  <xs:complexType name="main">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="PurchaseOrderType">
+    <xs:sequence>
+      <xs:element name="creditCardVendor" type="creditCardVendor" minOccurs="0"/>
+      <xs:element name="billTo" type="usAddress" minOccurs="0"/>
+      <xs:element name="shipTo" type="usAddress" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="usAddress">
+    <xs:sequence>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="state" type="xs:string" minOccurs="0"/>
+      <xs:element name="street" type="xs:string" minOccurs="0"/>
+      <xs:element name="zip" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="creditCardVendor">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="VISA"/>
+      <xs:enumeration value="AMERICANEXPRESS"/>
+      <xs:enumeration value="DISCOVER"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+
