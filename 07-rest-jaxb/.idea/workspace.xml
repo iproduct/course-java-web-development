@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a727efdf-9322-4d49-8902-1b651f0ebcf4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../diapi/src/main/java/SortedTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../01-java-net/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../03-my-bookstore-jstl-lab3/build/classes/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../03-servlet3.0_async_simple_complete/build/classes/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Invoicing/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvoicingClient/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../diapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../diapi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../diapi/src/main/java/org/iproduct/di/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/../diapi/src/main/java/org/iproduct/di/ApplicationContext.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +101,7 @@
       <workItem from="1579741342828" duration="663000" />
       <workItem from="1580107411570" duration="216000" />
       <workItem from="1580969246327" duration="1408000" />
+      <workItem from="1581243398213" duration="599000" />
     </task>
     <servers />
   </component>

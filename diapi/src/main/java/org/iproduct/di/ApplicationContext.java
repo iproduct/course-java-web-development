@@ -139,7 +139,8 @@ public class ApplicationContext implements Context {
 					if (ai == null || ai.getParameterValues().getValue("value").toString().endsWith(SINGLETON.toString())) {
 						desc.setScope(SINGLETON);
 						try {
-							desc.setInstance(Proxy.newProxyInstance(beanClass.getClassLoader(), interfaces,
+							desc.setInstance(
+								Proxy.newProxyInstance(beanClass.getClassLoader(), interfaces,
 									new DIProxy(this, beanClass.newInstance(), desc)));
 						} catch (InstantiationException | IllegalAccessException e) {
 							new BeanInstantiationException(
@@ -175,6 +176,7 @@ public class ApplicationContext implements Context {
 		System.out.println(repo.findAll());
 		
 		UserController ctrl = ctx.getBean(UserController.class);
+		System.out.println("\nUserController:");
 		System.out.println(ctrl.getRepo().findAll());
 
 //		assertThat(classInfos).extracting(ClassInfo::getName).contains(UserRepositoryImpl.class.getName());
