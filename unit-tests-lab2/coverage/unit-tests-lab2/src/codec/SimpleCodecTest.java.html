@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SimpleCodecTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">SimpleCodecTest (18.02.2020 11:39:05)</a> &gt; <a href="../../index.html" class="el_group">unit-tests-lab2</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">codec</a> &gt; <span class="el_source">SimpleCodecTest.java</span></div><h1>SimpleCodecTest.java</h1><pre class="source lang-java linenums">package codec;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
+<span class="fc" id="L14">public class SimpleCodecTest {</span>
+	public static final int KEY = 3;
+	public static final String SAMPLE_TEXT = &quot;abcd&quot;;
+	public static final String ENCODED_TEXT = &quot;efgd&quot;;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+<span class="fc" id="L21">		System.out.println(&quot;---- Before class.&quot;);</span>
+<span class="fc" id="L22">	}</span>
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+<span class="fc" id="L26">		System.out.println(&quot;---- After class.&quot;);</span>
+<span class="fc" id="L27">	}</span>
+
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L31">		System.out.println(&quot;    ---- Before test case.&quot;);</span>
+<span class="fc" id="L32">	}</span>
+
+	@After
+	public void tearDown() throws Exception {
+<span class="fc" id="L36">		System.out.println(&quot;    ---- After test case.&quot;);</span>
+<span class="fc" id="L37">	}</span>
+
+	@Test
+	public void testEncode() {
+<span class="fc" id="L41">		System.out.println(&quot;           ---- testEncode()&quot;);</span>
+		// 1. Setup - preconditions
+<span class="fc" id="L43">		SimpleCodec codec = new SimpleCodec(KEY);</span>
+		
+		// 2. Call the function - action
+<span class="fc" id="L46">		String result = codec.encode(SAMPLE_TEXT);</span>
+		
+		// 3. Assert that the actual result == expected result - postondition
+<span class="fc" id="L49">		assertNotNull(&quot;Result should not be null.&quot;, result);</span>
+<span class="fc" id="L50">		assertEquals(&quot;Result not encoded correctly.&quot;, ENCODED_TEXT, result);</span>
+<span class="fc" id="L51">	}</span>
+
+	@Test
+	@Ignore
+	public void testDecode() {
+<span class="nc" id="L56">		System.out.println(&quot;           ---- testDecode()&quot;);</span>
+<span class="nc" id="L57">		fail(&quot;Not yet implemented&quot;);</span>
+<span class="nc" id="L58">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>SimpleCodecTest (18.02.2020 11:39:05)</div></body></html>
