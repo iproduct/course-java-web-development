@@ -1,8 +1,6 @@
 package codec;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,6 +8,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import codec.exception.InvalidDataException;
 
 public class SimpleCodecTest {
 	public static final int KEY = 3;
@@ -41,7 +41,7 @@ public class SimpleCodecTest {
 	}
 
 	@Test
-	public void testEncode() {
+	public void testEncode() throws InvalidDataException {
 		System.out.println("           ---- testEncode()");
 		// 1. Setup - preconditions
 //		SimpleCodec codec = new SimpleCodec(KEY);
@@ -54,8 +54,19 @@ public class SimpleCodecTest {
 		assertEquals("Result not encoded correctly.", ENCODED_TEXT, result);
 	}
 
+	@Test(expected=InvalidDataException.class)
+	public void whenInvalidData_thenEncodeShouldThrow() throws InvalidDataException {
+		System.out.println("           ---- whenInvalidData_thenEncodeShouldThrow()");
+		// 1. Setup - preconditions
+//		SimpleCodec codec = new SimpleCodec(KEY);
+		
+		// 2. Call the function - action
+		String result = codec.encode((char)(SimpleCodec.MAX_CHAR_CODE + 1) + "");
+		
+	}
+
 	@Test
-	public void testDecode() {
+	public void testDecode() throws InvalidDataException {
 		System.out.println("           ---- testDecode()");
 
 		// 1. Setup - preconditions - in setUp() method
@@ -66,6 +77,17 @@ public class SimpleCodecTest {
 		// 3. Assert that the actual result == expected result - postondition
 		assertNotNull("Result should not be null.", result);
 		assertEquals("Result not decoded correctly.", SAMPLE_TEXT, result);
+	}
+	
+	@Test(expected=InvalidDataException.class)
+	public void whenInvalidData_thenDecodeShouldThrow() throws InvalidDataException {
+		System.out.println("           ---- whenInvalidData_thenDecodeShouldThrow()");
+		// 1. Setup - preconditions
+//		SimpleCodec codec = new SimpleCodec(KEY);
+		
+		// 2. Call the function - action
+		String result = codec.decode((char)1 + "");
+		
 	}
 
 }

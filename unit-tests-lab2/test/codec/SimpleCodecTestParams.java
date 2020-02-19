@@ -16,6 +16,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import codec.exception.InvalidDataException;
+
 @RunWith(Parameterized.class)
 public class SimpleCodecTestParams {
 
@@ -24,7 +26,7 @@ public class SimpleCodecTestParams {
         return Arrays.asList(new Object[][] {
             {3, "abcd", "efgd"},
             {2, "abcd", "efcd"},
-            {1, "a", "b"},
+            {5, "a", "f"},
        });
     }
 
@@ -63,7 +65,7 @@ public class SimpleCodecTestParams {
 	}
 
 	@Test
-	public void testEncode() {
+	public void testEncode() throws InvalidDataException {
 		System.out.println("           ---- testEncode()");
 		// 1. Setup - preconditions
 //		SimpleCodec codec = new SimpleCodec(KEY);
@@ -77,7 +79,7 @@ public class SimpleCodecTestParams {
 	}
 
 	@Test
-	public void testDecode() {
+	public void testDecode() throws InvalidDataException {
 		System.out.println("           ---- testDecode()");
 
 		// 1. Setup - preconditions - in setUp() method
