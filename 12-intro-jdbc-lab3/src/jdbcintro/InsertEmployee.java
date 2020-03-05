@@ -8,7 +8,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Properties;
+
+import jdbcintro.model.Employee;
 
 public class InsertEmployee {
 	public static final String INSERT_EMPLOYEE_SQL =
@@ -17,23 +20,10 @@ public class InsertEmployee {
 			+ " `hire_date`, `salary`, `address_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	public static void main(String[] args) throws SQLException, FileNotFoundException, IOException {
-//		Scanner sc = new Scanner(System.in);
-		
-//		System.out.println("Enter DB user (root for default):");
-//		String user  = sc.nextLine().trim();
-//		user  = user.length() > 0 ? user : "root";
-		
-//		System.out.println("Enter DB password (root for default):");
-//		String password  = sc.nextLine().trim();
-//		password  = password.length() > 0 ? password : "root";
-		
 		Properties props = new Properties();
 		String dbConfigPath = InsertEmployee.class.getClassLoader().getResource("database.properties").getPath();
 		props.load(new FileInputStream(dbConfigPath));
 
-//		props.setProperty("user", user);
-//		props.setProperty("password", password);
-		
 		// 1. Load DB driver (optional)
 		try {
 			Class.forName(props.getProperty("driver", "com.mysql.cj.jdbc.Driver"));
@@ -49,18 +39,24 @@ public class InsertEmployee {
 		System.out.println("Connected successfully.");
 		
 		// 3. Execute statement
-//		System.out.println("Enter minimal salary (20000 for default):");
-//		String salaryStr  = sc.nextLine().trim();
-//		salaryStr  = salaryStr.length() > 0 ? salaryStr : "20000";
-		
-		double salary = Double.parseDouble(props.getProperty("minsalary", "20000"));
-		
+		Employee e = new Employee("Ivan", "Petrov", "Hristov", "Developer", 11, 42, new Date(), 45000, 1);
 		PreparedStatement s = con.prepareStatement(INSERT_EMPLOYEE_SQL);
-		s.setDouble(1, salary);
+		s.setString(1, e.getFirstName());
+		s.setString(2, e.getLastName());
+		s.setString(3, e.getMiddleName());
+		s.setString(4, e.getJobTitle());
+		s.setLong(5, e.getDepartmentId());
+		s.setLong(6, e.getManagerId());
+		s.setDate(7, new java.sql.Date(e.getHireDate().getTime()));
+		s.setDouble(8, e.getSalary());
+		s.setLong(9, e.getAddressId());
 		
-		ResultSet rs = s.executeQuery();
+		int records = s.executeUpdate();
+		System.out.printf("Updated records: %d%n", records);
 		
 		// 4. Process results
+		PreparedStatement s2 = con.prepareStatement("SELECT * FROM employees");
+		ResultSet rs = s2.executeQuery();
 		int n = 0;
 		while(rs.next()) {
 			System.out.printf("| %4d | %-15.15s | %-15.15s | %10.2f |%n",
