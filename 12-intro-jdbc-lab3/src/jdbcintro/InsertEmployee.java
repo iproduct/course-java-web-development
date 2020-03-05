@@ -10,7 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class Main {
+public class InsertEmployee {
+	public static final String INSERT_EMPLOYEE_SQL =
+			"INSERT INTO employees ("
+			+ " `first_name`, `last_name`, `middle_name`, `job_title`, `department_id`,  `manager_id`, "
+			+ " `hire_date`, `salary`, `address_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	public static void main(String[] args) throws SQLException, FileNotFoundException, IOException {
 //		Scanner sc = new Scanner(System.in);
@@ -24,7 +28,7 @@ public class Main {
 //		password  = password.length() > 0 ? password : "root";
 		
 		Properties props = new Properties();
-		String dbConfigPath = Main.class.getClassLoader().getResource("database.properties").getPath();
+		String dbConfigPath = InsertEmployee.class.getClassLoader().getResource("database.properties").getPath();
 		props.load(new FileInputStream(dbConfigPath));
 
 //		props.setProperty("user", user);
@@ -51,7 +55,7 @@ public class Main {
 		
 		double salary = Double.parseDouble(props.getProperty("minsalary", "20000"));
 		
-		PreparedStatement s = con.prepareStatement("SELECT * FROM employees WHERE salary > ?");
+		PreparedStatement s = con.prepareStatement(INSERT_EMPLOYEE_SQL);
 		s.setDouble(1, salary);
 		
 		ResultSet rs = s.executeQuery();
