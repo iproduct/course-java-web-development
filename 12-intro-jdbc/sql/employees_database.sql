@@ -310,7 +310,7 @@ INSERT INTO `addresses` (`address_id`, `address_text`, `town_id`) VALUES
 	(287, '4852 Chaparral Court', 11),
 	(288, '5724 Victory Lane', 11),
 	(289, '591 Merriewood Drive', 11),
-	(290, '7230 Vine Maple Street', 11),
+	(290, '7230 Vine Maple Street', 11);
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 
 
