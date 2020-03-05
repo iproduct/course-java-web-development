@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c67bace-5646-4962-ae2f-89a66b00b084" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bookstore/dao/BookDBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bookstore/dao/BookDBController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../03-my-bookstore-lab2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../03-my-bookstore-lab2/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../03-my-bookstore-lab2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../03-my-bookstore-lab2/03-my-bookstore-lab2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../embedded-tomcat-demo-lab2/embedded-tomcat-demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +30,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -84,6 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579721140767</updated>
       <workItem from="1579721150972" duration="1735000" />
+      <workItem from="1583339687744" duration="838000" />
     </task>
     <servers />
   </component>
