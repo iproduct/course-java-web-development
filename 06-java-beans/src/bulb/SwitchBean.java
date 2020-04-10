@@ -54,15 +54,15 @@ public class SwitchBean extends JComponent implements Serializable {
 	}
 
 	// Property change support for bound property
-//	private PropertyChangeSupport changes = new PropertyChangeSupport(this);
-//
-//	public void addPropertyChangeListener(PropertyChangeListener lis) {
-//		changes.addPropertyChangeListener(lis);
-//	}
-//
-//	public void removePropertyChangeListener(PropertyChangeListener lis) {
-//		changes.removePropertyChangeListener(lis);
-//	}
+	private PropertyChangeSupport changes = new PropertyChangeSupport(this);
+
+	public void addPropertyChangeListener(PropertyChangeListener lis) {
+		changes.addPropertyChangeListener(lis);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener lis) {
+		changes.removePropertyChangeListener(lis);
+	}
 
 	public void setClosed(boolean newStatus) {
 		boolean oldStatus = closed;
