@@ -1,29 +1,18 @@
 package users.services;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import users.exceptions.InvalidEntityDataException;
 import users.exceptions.NonexistingEntityException;
 import users.exceptions.PropertyChangeNotAllowedException;
-import users.model.ActionType;
-import users.model.Permission;
-import users.model.Resource;
-import users.model.Role;
 import users.model.Resource;
 
 public class ResourceServiceImpl implements ResourceService {
 	private static long nextId = 0;
 	private List<Resource> resources = new CopyOnWriteArrayList<>();
-	private ResourceService resourceService;
-
-	public ResourceServiceImpl(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
+	
 	@Override
 	public Collection<Resource> getAllResources() {
 		return resources;

@@ -4,15 +4,24 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static users.model.ActionType.*;
 
+import users.exceptions.InvalidEntityDataException;
+import users.exceptions.NonexistingEntityException;
 import users.model.ActionType;
 import users.model.Permission;
 import users.model.Resource;
 import static users.model.ResourceType.*;
 import users.model.Role;
 import users.model.User;
+import users.services.LoginService;
+import users.services.LoginServiceImpl;
+import users.services.ResourceService;
+import users.services.ResourceServiceImpl;
+import users.services.UserService;
+import users.services.UserServiceImpl;
 
 public class UsersSimpleDemo {
 
@@ -71,6 +80,49 @@ public class UsersSimpleDemo {
 		String newName = "Changed " + oldName;
 		resources[0].setName(newName);
 		System.out.println("After:" + resources[0]);
+		
+		// Test UserService - Problem 2.I.1 and 2.II.1
+		ResourceService resourceService = new ResourceServiceImpl();
+		UserService userService = new UserServiceImpl(resourceService);
+		Arrays.stream(users).map(u -> {
+			try {
+				return userService.createUser(u);
+			} catch (InvalidEntityDataException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}).forEach(System.out::println); // users ivan and john are invalid because password is less then 5 chars long
+		
+		System.out.println("\nCreated users:");
+		userService.getAllUsers().stream().forEach(System.out::println);
+		
+		String testEmail = "dimitar@gmail.com";
+		try {
+			System.out.printf("%nUser with Email='%s':%s%n", testEmail, userService.getUserByEmail(testEmail));
+		} catch (NonexistingEntityException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			long deleteId = userService.getUserByEmail(testEmail).getId();
+			System.out.printf("%nDeleting User with ID='%d':%s%n", deleteId, userService.deleteUserById(deleteId));
+		} catch (NonexistingEntityException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("\nUser after delete:");
+		userService.getAllUsers().stream().forEach(System.out::println);
+		
+		// Test LoginService - Problem 2.I.2 and 2.II.2
+		LoginService loginService = new LoginServiceImpl(userService);
+		String loginEmail = "maria@abv.bg";
+		String invalidPass = "invalid_pass";
+		String validPass = "maria";
+		System.out.printf("\nTry to login with email: %s, and password: %s --> %b%n", 
+				loginEmail, invalidPass, loginService.login(loginEmail, invalidPass) );
+		System.out.printf("\nTry to login with email: %s, and password: %s --> %b%n", 
+				loginEmail, validPass, loginService.login(loginEmail, validPass) );
+		System.out.printf("\nLogged User: %s%n", loginService.getLoggedUser());
 	}
 
 }

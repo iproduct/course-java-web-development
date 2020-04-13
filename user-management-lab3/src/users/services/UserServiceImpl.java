@@ -104,13 +104,20 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	protected void validateUser(User user) throws InvalidEntityDataException {
-		if(
-			   user.getEmail() == null || user.getEmail().length() < 5
-			|| user.getFirstName() == null || user.getFirstName().length() < 2
-			|| user.getLastName() == null || user.getLastName().length() < 2
-			|| user.getRoles() == null || user.getRoles().size() == 0
-			|| user.getPassword() == null || user.getPassword().length() < 5) {
-			throw new InvalidEntityDataException("Invalid user data.");
+		if(user.getEmail() == null || user.getEmail().length() < 5) {
+				throw new InvalidEntityDataException("Invalid user email.");
+		}
+		if(user.getFirstName() == null || user.getFirstName().length() < 2) {
+				throw new InvalidEntityDataException("Invalid user first name.");
+		}
+		if(user.getLastName() == null || user.getLastName().length() < 2) {
+				throw new InvalidEntityDataException("Invalid user last name.");
+		}
+		if(user.getRoles() == null || user.getRoles().size() == 0) {
+				throw new InvalidEntityDataException("Invalid user roles.");
+		}
+		if(user.getPassword() == null || user.getPassword().length() < 5) {
+				throw new InvalidEntityDataException("Invalid user password.");
 		}
 		for(Permission p: user.getPermissions()) {
 			try {
