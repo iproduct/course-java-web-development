@@ -71,7 +71,6 @@ public class UsersSimpleDemo {
 		String newName = "Changed " + oldName;
 		resources[0].setName(newName);
 		System.out.println("After:" + resources[0]);
-
 	}
 
 }
