@@ -38,7 +38,7 @@ public class UsersSimpleDemo {
 		users[0].addUserPermissionChangeListener(event -> {System.out.println(event);});
 		Set<Permission> oldPermissions = users[0].getPermissions();
 		Set<Permission> newPermisssions = new HashSet(oldPermissions);
-//		newPermisssions.add(new Permission("Config file permsiion", FILE, READ_ALL));
+		newPermisssions.add(new Permission("Config file permsiion", FILE, READ_ALL));
 		users[0].setPermissions(newPermisssions);
 		System.out.println("After:" + users[0]);
 		

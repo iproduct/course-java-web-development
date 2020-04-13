@@ -1,11 +1,14 @@
 package users.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 public class Resource implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this); // Problem 1.IV.2
 	private long id; // long number generated automatically by the program;
 	private String name; // String containing the first name of the Resource;
 	private User owner; // User that has created the Resource;
@@ -51,7 +54,9 @@ public class Resource implements Serializable {
 	}
 
 	public void setName(String name) {
+		String oldName = this.name;
 		this.name = name;
+        this.pcs.firePropertyChange("name", oldName, name);
 	}
 
 	public User getOwner() {
@@ -59,7 +64,9 @@ public class Resource implements Serializable {
 	}
 
 	public void setOwner(User owner) {
+		User oldOwner = this.owner;
 		this.owner = owner;
+        this.pcs.firePropertyChange("owner", oldOwner, owner);
 	}
 
 	public String getUrl() {
@@ -67,7 +74,9 @@ public class Resource implements Serializable {
 	}
 
 	public void setUrl(String url) {
+		String oldUrl = this.url;
 		this.url = url;
+        this.pcs.firePropertyChange("url", oldUrl, url);
 	}
 
 	public ResourceType getResourceType() {
@@ -75,7 +84,10 @@ public class Resource implements Serializable {
 	}
 
 	public void setResourceType(ResourceType resourceType) {
+		ResourceType oldResourceType = this.resourceType;
 		this.resourceType = resourceType;
+        this.pcs.firePropertyChange("url", oldResourceType, resourceType);
+		
 	}
 
 	public Set<ActionType> getActions() {
@@ -83,7 +95,10 @@ public class Resource implements Serializable {
 	}
 
 	public void setActions(Set<ActionType> actions) {
+		Set<ActionType> oldActions = this.actions;
 		this.actions = actions;
+        this.pcs.firePropertyChange("url", oldActions, actions);
+		
 	}
 
 	public Date getCreated() {
@@ -134,6 +149,12 @@ public class Resource implements Serializable {
 		return builder.toString();
 	}
 	
-	
+	 public void addPropertyChangeListener(PropertyChangeListener listener) {
+         this.pcs.addPropertyChangeListener(listener);
+     }
+
+     public void removePropertyChangeListener(PropertyChangeListener listener) {
+         this.pcs.removePropertyChangeListener(listener);
+     }
 	
 }
