@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -37,8 +39,8 @@ import users.model.listeners.PermissionChangeListener;
 @XmlRootElement(name = "user")
 public class User implements Identifiable, Serializable, PermissionChangeListenable {
 	private static final long serialVersionUID = 1L;
-	@NotNull @XmlElement(required = true)
-	private long id; // long number generated automatically by the program;
+	@NotNull @XmlAttribute(required = true)
+	private Long id; // long number generated automatically by the program;
 	@NotNull @Size(min = 2, max= 20) @XmlElement(required = true)
 	private String firstName; // String containing the first name of the User;
 	@NotNull @Size(min = 2, max= 20) @XmlElement(required = true)
@@ -50,7 +52,12 @@ public class User implements Identifiable, Serializable, PermissionChangeListena
 	@XmlElement(required = true)
 	private boolean active = true; // boolean that is true if the User is enabled and active;
 	@XmlElement(required = true)
+	@NotNull
+	@Size(min=1)
+	@Valid
 	private Set<Role> roles = new HashSet<>(); // collection of Role objects representing allowed User roles;
+	@NotNull
+	@Valid
 	private Set<Permission> permissions = new HashSet<>(); // Userprivatespecific permissions overriding those provided
 															// by Role collection;
 	@PastOrPresent @XmlElement(required = true)
@@ -103,11 +110,11 @@ public class User implements Identifiable, Serializable, PermissionChangeListena
 		this.modified = modified;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

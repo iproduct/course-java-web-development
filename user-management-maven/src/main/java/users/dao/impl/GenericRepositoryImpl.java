@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.crypto.CipherOutputStream;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -15,6 +14,7 @@ import users.dao.GenericRepository;
 import users.exceptions.InvalidEntityDataException;
 import users.exceptions.NonexistingEntityException;
 import users.model.Identifiable;
+
 
 // Problem 3.IV.1
 public class GenericRepositoryImpl<T extends Identifiable> implements GenericRepository<T> {
@@ -34,7 +34,7 @@ public class GenericRepositoryImpl<T extends Identifiable> implements GenericRep
 	}
 
 	@Override
-	public T findById(long id) throws NonexistingEntityException {
+	public T findById(Long id) {
 		return entities.get(id);
 	}
 
@@ -45,48 +45,44 @@ public class GenericRepositoryImpl<T extends Identifiable> implements GenericRep
 
 	@Override
 	public T create(T entity) throws InvalidEntityDataException {
-		T exisitng = entities.get(entity.getId());
-		if(exisitng != null) {
-			throw new InvalidEntityDataException("Entity with ID='" + entity.getId() 
-			+ " already exists!");
+		if( entity.getId() != null) {
+			T exisitng = entities.get(entity.getId());
+			if (exisitng != null) {
+				throw new InvalidEntityDataException("Entity with ID='" + entity.getId() + " already exists!");
+			}
 		}
-
+ 
 		entity.setId(getNextId());
-		
+
 		// use HybernateValidator
-		Set<ConstraintViolation<T>> violations = validator.validate(entity);
-		if(!violations.isEmpty()) {
-			throw new InvalidEntityDataException("Invalid entity data:" 
-					+ violations.stream().map(cv -> String.format("%s %s: '%s' - %s.", 
-					cv.getLeafBean().getClass().getSimpleName(), cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()))
-						.reduce("", (str, cvStr) -> str + " " + cvStr));
-		}
-		
+		GenericRepository.handleConstarintViolations(validator.validate(entity));
+
 		entities.put(entity.getId(), entity);
 		return entity;
 	}
 
 	@Override
-	public T update(T entity) throws NonexistingEntityException {
-		long id = entity.getId();
+	public T update(T entity) throws NonexistingEntityException, InvalidEntityDataException {
+		Long id = entity.getId();
+		if( id == null) {
+			throw new InvalidEntityDataException("Null entity ID.");
+		}
 		T exisitng = entities.get(id);
-		if(exisitng == null) {
+		if (exisitng == null) {
 			throw new NonexistingEntityException("Entity with ID='" + id + " does not exists!");
 		}
+		// use HybernateValidator
+		GenericRepository.handleConstarintViolations(validator.validate(entity));
 		entities.put(id, entity);
 		return entity;
 	}
 
 	@Override
-	public T removeById(long id) throws NonexistingEntityException {
-		T existing = entities.remove(id);
-		if(existing == null) {
-			throw new NonexistingEntityException("Entity with ID='" + id + " does not exists!");
-		}
-		return existing;
+	public T removeById(Long id) {
+		return entities.remove(id);
 	}
-	
-	protected long getNextId( ) {
+
+	protected long getNextId() {
 		return ++nextId;
 	}
 

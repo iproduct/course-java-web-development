@@ -5,7 +5,7 @@ import users.dao.UserRepository;
 import users.dao.impl.ResourceRepositoryImpl;
 import users.dao.impl.UserRepositoryImpl;
 
-public class InMemoryRepoFactory implements AbstractRepoFactory {
+public class InMemoryRepoFactory implements AbstractRepoFactory { 
 
 	@Override
 	public UserRepository getUserRepository() {

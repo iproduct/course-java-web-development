@@ -10,9 +10,12 @@ import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,16 +32,18 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "resource")
 public class Resource implements Identifiable, Serializable {
 	private static final long serialVersionUID = 1L;
-	transient private final PropertyChangeSupport pcs = new PropertyChangeSupport(this); // Problem 1.IV.2
-	@NotNull
-	private long id; // long number generated automatically by the program;
+	transient private final PropertyChangeSupport pcs = new PropertyChangeSupport(this); // Problem 1.IV.2 
+	@NotNull @XmlAttribute(required = true)
+	private Long id; // long number generated automatically by the program;
 	@NotNull @NotBlank
 	private String name; // String containing the first name of the Resource;
 	@NotNull
-	private long ownerId; // User that has created the Resource;
+	private Long ownerId; // User that has created the Resource;
 	private String url; // String representing the URL of the selected resource (optional field);
 	@NotNull
 	private ResourceType resourceType; // ResourceType of the Resource;
+	@NotNull
+	@Size(min=1)
 	private Set<ActionType> actions = new HashSet<>(); // collection of ActionType values for actions available for the current Resource;
 	@PastOrPresent
 	private Date created = new Date(); // Date the date and time of first creating the Resource in the system;
@@ -68,11 +73,11 @@ public class Resource implements Identifiable, Serializable {
 		this.modified = modified;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

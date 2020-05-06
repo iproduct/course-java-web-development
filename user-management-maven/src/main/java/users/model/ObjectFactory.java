@@ -40,7 +40,7 @@ public class ObjectFactory {
      * Create an instance of {@link Notes }
      * 
      */
-    public Entities createNotes() {
+    public Entities createEntities() {
         return new Entities();
     }
 
@@ -49,7 +49,7 @@ public class ObjectFactory {
      * 
      */
     public User createUser() {
-        return new User();
+        return new User(); 
     }
     
     /**

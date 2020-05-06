@@ -7,6 +7,7 @@ import users.exceptions.InvalidEntityDataException;
 import users.exceptions.NonexistingEntityException;
 import users.exceptions.PropertyChangeNotAllowedException;
 import users.model.Resource;
+import users.model.User;
 
 public class ResourceServiceImpl implements ResourceService {
 	private ResourceRepository resourceRepo;
@@ -22,7 +23,11 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public Resource getResourceById(long id) throws NonexistingEntityException {
-		return resourceRepo.findById(id);
+		Resource existing = resourceRepo.findById(id);
+		if(existing == null) {
+			throw new NonexistingEntityException("Resource with ID='" + id + " does not exists!");
+		}
+		return existing;
 	}
 
 	@Override
@@ -38,7 +43,11 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public Resource deleteResourceById(long id) throws NonexistingEntityException {
-		return resourceRepo.removeById(id);
+		Resource existing = resourceRepo.removeById(id);
+		if(existing == null) {
+			throw new NonexistingEntityException("Resource with ID='" + id + " does not exists!");
+		}
+		return existing;
 	}
 
 }

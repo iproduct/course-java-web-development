@@ -10,7 +10,7 @@ public class AddUserCommand implements Command {
 	private ApplicationController controller;
 	private Scanner sc;
 
-	public AddUserCommand(ApplicationController mainController, Scanner sc) {
+	public AddUserCommand(ApplicationController mainController, Scanner sc) { 
 		this.controller = mainController;
 		this.sc = sc;
 	}

@@ -6,8 +6,4 @@ import users.model.Resource;
 // Problem 3.IV.3
 public class ResourceRepositoryImpl extends GenericRepositoryImpl<Resource> implements ResourceRepository {
 
-	public ResourceRepositoryImpl() {
-		// TODO Auto-generated constructor stub
-	}
-
 }

@@ -1,88 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <entities>
-    <resource>
-        <id>1</id>
+    <resource id="1">
         <name>Products endpoint</name>
         <ownerId>1</ownerId>
         <url>/api/products</url>
         <resourceType>REST_ENDPOINT</resourceType>
-        <actions>READ_OWN</actions>
-        <actions>UPDATE_ALL</actions>
-        <actions>READ_ALL</actions>
-        <actions>UPDATE_OWN</actions>
         <actions>DELETE_ALL</actions>
-        <actions>DELETE_OWN</actions>
+        <actions>READ_OWN</actions>
         <actions>CREATE</actions>
-        <created>2020-05-05T01:35:16.454+03:00</created>
-        <modified>2020-05-05T01:35:16.454+03:00</modified>
+        <actions>READ_ALL</actions>
+        <actions>DELETE_OWN</actions>
+        <actions>UPDATE_ALL</actions>
+        <actions>UPDATE_OWN</actions>
+        <created>2020-05-05T15:40:31.813+03:00</created>
+        <modified>2020-05-05T15:40:31.813+03:00</modified>
     </resource>
-    <resource>
-        <id>2</id>
+    <resource id="2">
         <name>Best rated products endpoint</name>
         <ownerId>2</ownerId>
         <url>/api/products/rated</url>
         <resourceType>REST_ENDPOINT</resourceType>
-        <actions>READ_OWN</actions>
-        <actions>UPDATE_ALL</actions>
-        <actions>READ_ALL</actions>
-        <actions>UPDATE_OWN</actions>
         <actions>DELETE_ALL</actions>
-        <actions>DELETE_OWN</actions>
+        <actions>READ_OWN</actions>
         <actions>CREATE</actions>
-        <created>2020-05-05T01:35:16.454+03:00</created>
-        <modified>2020-05-05T01:35:16.454+03:00</modified>
+        <actions>READ_ALL</actions>
+        <actions>DELETE_OWN</actions>
+        <actions>UPDATE_ALL</actions>
+        <actions>UPDATE_OWN</actions>
+        <created>2020-05-05T15:40:31.813+03:00</created>
+        <modified>2020-05-05T15:40:31.813+03:00</modified>
     </resource>
-    <resource>
-        <id>3</id>
+    <resource id="3">
         <name>Most popular products endpoint</name>
         <ownerId>4</ownerId>
         <url>/api/products/popular</url>
         <resourceType>REST_ENDPOINT</resourceType>
-        <actions>READ_OWN</actions>
-        <actions>UPDATE_ALL</actions>
-        <actions>READ_ALL</actions>
-        <actions>UPDATE_OWN</actions>
         <actions>DELETE_ALL</actions>
-        <actions>DELETE_OWN</actions>
+        <actions>READ_OWN</actions>
         <actions>CREATE</actions>
-        <created>2020-05-05T01:35:16.454+03:00</created>
-        <modified>2020-05-05T01:35:16.454+03:00</modified>
+        <actions>READ_ALL</actions>
+        <actions>DELETE_OWN</actions>
+        <actions>UPDATE_ALL</actions>
+        <actions>UPDATE_OWN</actions>
+        <created>2020-05-05T15:40:31.813+03:00</created>
+        <modified>2020-05-05T15:40:31.813+03:00</modified>
     </resource>
-    <resource>
-        <id>4</id>
+    <resource id="4">
         <name>App config file</name>
         <ownerId>1</ownerId>
         <url>/~/api/config/application.properties</url>
         <resourceType>FILE</resourceType>
-        <actions>READ_OWN</actions>
-        <actions>UPDATE_ALL</actions>
-        <actions>WRITE_ALL</actions>
-        <actions>READ_ALL</actions>
-        <actions>UPDATE_OWN</actions>
-        <actions>WRITE_OWN</actions>
         <actions>DELETE_ALL</actions>
-        <actions>DELETE_OWN</actions>
-        <actions>EXECUTE</actions>
+        <actions>READ_OWN</actions>
+        <actions>WRITE_OWN</actions>
         <actions>CREATE</actions>
-        <created>2020-05-05T01:35:16.454+03:00</created>
-        <modified>2020-05-05T01:35:16.454+03:00</modified>
+        <actions>READ_ALL</actions>
+        <actions>DELETE_OWN</actions>
+        <actions>UPDATE_ALL</actions>
+        <actions>UPDATE_OWN</actions>
+        <actions>EXECUTE</actions>
+        <actions>WRITE_ALL</actions>
+        <created>2020-05-05T15:40:31.813+03:00</created>
+        <modified>2020-05-05T15:40:31.813+03:00</modified>
     </resource>
-    <resource>
-        <id>5</id>
+    <resource id="5">
         <name>Configuration directory</name>
         <ownerId>1</ownerId>
         <url>/~/api/config</url>
         <resourceType>DIRECTORY</resourceType>
-        <actions>READ_OWN</actions>
-        <actions>UPDATE_ALL</actions>
-        <actions>WRITE_ALL</actions>
-        <actions>READ_ALL</actions>
-        <actions>UPDATE_OWN</actions>
-        <actions>WRITE_OWN</actions>
         <actions>DELETE_ALL</actions>
-        <actions>DELETE_OWN</actions>
+        <actions>READ_OWN</actions>
+        <actions>WRITE_OWN</actions>
         <actions>CREATE</actions>
-        <created>2020-05-05T01:35:16.454+03:00</created>
-        <modified>2020-05-05T01:35:16.454+03:00</modified>
+        <actions>READ_ALL</actions>
+        <actions>DELETE_OWN</actions>
+        <actions>UPDATE_ALL</actions>
+        <actions>UPDATE_OWN</actions>
+        <actions>WRITE_ALL</actions>
+        <created>2020-05-05T15:40:31.813+03:00</created>
+        <modified>2020-05-05T15:40:31.813+03:00</modified>
     </resource>
 </entities>

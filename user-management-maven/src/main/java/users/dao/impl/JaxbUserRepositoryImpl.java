@@ -9,7 +9,7 @@ import users.model.User;
 public class JaxbUserRepositoryImpl extends JAXBEntityRepository<User> implements UserRepository {
 
 	public JaxbUserRepositoryImpl(String xmlFileName) {
-		super(xmlFileName);
+		super(xmlFileName); 
 	}
 
 	@Override

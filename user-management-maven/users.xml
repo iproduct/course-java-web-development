@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <entities>
-    <user>
-        <id>6</id>
+    <user id="6">
         <firstName>Ivan</firstName>
         <lastName>Petrov</lastName>
         <email>ivan@abv.bg</email>
@@ -13,10 +12,19 @@
                 <name>*</name>
                 <resourceType>REST_ENDPOINT</resourceType>
                 <resourceId>0</resourceId>
+                <actionType>DELETE_ALL</actionType>
+                <allowed>true</allowed>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
+            </permissions>
+            <permissions>
+                <name>*</name>
+                <resourceType>REST_ENDPOINT</resourceType>
+                <resourceId>0</resourceId>
                 <actionType>CREATE</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -24,8 +32,8 @@
                 <resourceId>0</resourceId>
                 <actionType>UPDATE_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -33,26 +41,16 @@
                 <resourceId>0</resourceId>
                 <actionType>READ_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
-            <permissions>
-                <name>*</name>
-                <resourceType>REST_ENDPOINT</resourceType>
-                <resourceId>0</resourceId>
-                <actionType>DELETE_ALL</actionType>
-                <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
-            </permissions>
-            <created>2020-05-05T01:35:16.453+03:00</created>
-            <modified>2020-05-05T01:35:16.453+03:00</modified>
+            <created>2020-05-05T15:40:31.812+03:00</created>
+            <modified>2020-05-05T15:40:31.812+03:00</modified>
         </roles>
-        <created>2020-05-05T01:35:16.453+03:00</created>
-        <modified>2020-05-05T01:35:16.453+03:00</modified>
+        <created>2020-05-05T15:40:31.812+03:00</created>
+        <modified>2020-05-05T15:40:31.812+03:00</modified>
     </user>
-    <user>
-        <id>7</id>
+    <user id="7">
         <firstName>John</firstName>
         <lastName>Smith</lastName>
         <email>johny123@gmail.com</email>
@@ -64,10 +62,19 @@
                 <name>*</name>
                 <resourceType>REST_ENDPOINT</resourceType>
                 <resourceId>0</resourceId>
+                <actionType>DELETE_ALL</actionType>
+                <allowed>true</allowed>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
+            </permissions>
+            <permissions>
+                <name>*</name>
+                <resourceType>REST_ENDPOINT</resourceType>
+                <resourceId>0</resourceId>
                 <actionType>CREATE</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -75,8 +82,8 @@
                 <resourceId>0</resourceId>
                 <actionType>UPDATE_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -84,26 +91,16 @@
                 <resourceId>0</resourceId>
                 <actionType>READ_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
-            <permissions>
-                <name>*</name>
-                <resourceType>REST_ENDPOINT</resourceType>
-                <resourceId>0</resourceId>
-                <actionType>DELETE_ALL</actionType>
-                <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
-            </permissions>
-            <created>2020-05-05T01:35:16.453+03:00</created>
-            <modified>2020-05-05T01:35:16.453+03:00</modified>
+            <created>2020-05-05T15:40:31.812+03:00</created>
+            <modified>2020-05-05T15:40:31.812+03:00</modified>
         </roles>
-        <created>2020-05-05T01:35:16.453+03:00</created>
-        <modified>2020-05-05T01:35:16.453+03:00</modified>
+        <created>2020-05-05T15:40:31.812+03:00</created>
+        <modified>2020-05-05T15:40:31.812+03:00</modified>
     </user>
-    <user>
-        <id>8</id>
+    <user id="8">
         <firstName>Dimitar</firstName>
         <lastName>Petrov</lastName>
         <email>dimitar@gmail.com</email>
@@ -115,10 +112,19 @@
                 <name>*</name>
                 <resourceType>REST_ENDPOINT</resourceType>
                 <resourceId>0</resourceId>
+                <actionType>DELETE_ALL</actionType>
+                <allowed>true</allowed>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
+            </permissions>
+            <permissions>
+                <name>*</name>
+                <resourceType>REST_ENDPOINT</resourceType>
+                <resourceId>0</resourceId>
                 <actionType>CREATE</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -126,8 +132,8 @@
                 <resourceId>0</resourceId>
                 <actionType>UPDATE_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -135,26 +141,16 @@
                 <resourceId>0</resourceId>
                 <actionType>READ_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
-            <permissions>
-                <name>*</name>
-                <resourceType>REST_ENDPOINT</resourceType>
-                <resourceId>0</resourceId>
-                <actionType>DELETE_ALL</actionType>
-                <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
-            </permissions>
-            <created>2020-05-05T01:35:16.453+03:00</created>
-            <modified>2020-05-05T01:35:16.453+03:00</modified>
+            <created>2020-05-05T15:40:31.812+03:00</created>
+            <modified>2020-05-05T15:40:31.812+03:00</modified>
         </roles>
-        <created>2020-05-05T01:35:16.453+03:00</created>
-        <modified>2020-05-05T01:35:16.453+03:00</modified>
+        <created>2020-05-05T15:40:31.812+03:00</created>
+        <modified>2020-05-05T15:40:31.812+03:00</modified>
     </user>
-    <user>
-        <id>9</id>
+    <user id="9">
         <firstName>Hristo</firstName>
         <lastName>Petrov</lastName>
         <email>hristo@abv.bg</email>
@@ -166,10 +162,19 @@
                 <name>*</name>
                 <resourceType>REST_ENDPOINT</resourceType>
                 <resourceId>0</resourceId>
+                <actionType>DELETE_ALL</actionType>
+                <allowed>true</allowed>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
+            </permissions>
+            <permissions>
+                <name>*</name>
+                <resourceType>REST_ENDPOINT</resourceType>
+                <resourceId>0</resourceId>
                 <actionType>CREATE</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -177,8 +182,8 @@
                 <resourceId>0</resourceId>
                 <actionType>UPDATE_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -186,26 +191,16 @@
                 <resourceId>0</resourceId>
                 <actionType>READ_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
-            <permissions>
-                <name>*</name>
-                <resourceType>REST_ENDPOINT</resourceType>
-                <resourceId>0</resourceId>
-                <actionType>DELETE_ALL</actionType>
-                <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
-            </permissions>
-            <created>2020-05-05T01:35:16.453+03:00</created>
-            <modified>2020-05-05T01:35:16.453+03:00</modified>
+            <created>2020-05-05T15:40:31.812+03:00</created>
+            <modified>2020-05-05T15:40:31.812+03:00</modified>
         </roles>
-        <created>2020-05-05T01:35:16.453+03:00</created>
-        <modified>2020-05-05T01:35:16.453+03:00</modified>
+        <created>2020-05-05T15:40:31.812+03:00</created>
+        <modified>2020-05-05T15:40:31.812+03:00</modified>
     </user>
-    <user>
-        <id>10</id>
+    <user id="10">
         <firstName>Maria</firstName>
         <lastName>Georgieva</lastName>
         <email>maria@abv.bg</email>
@@ -217,10 +212,19 @@
                 <name>*</name>
                 <resourceType>REST_ENDPOINT</resourceType>
                 <resourceId>0</resourceId>
+                <actionType>DELETE_ALL</actionType>
+                <allowed>true</allowed>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
+            </permissions>
+            <permissions>
+                <name>*</name>
+                <resourceType>REST_ENDPOINT</resourceType>
+                <resourceId>0</resourceId>
                 <actionType>CREATE</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -228,8 +232,8 @@
                 <resourceId>0</resourceId>
                 <actionType>UPDATE_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -237,41 +241,40 @@
                 <resourceId>0</resourceId>
                 <actionType>READ_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
-            <permissions>
-                <name>*</name>
-                <resourceType>REST_ENDPOINT</resourceType>
-                <resourceId>0</resourceId>
-                <actionType>DELETE_ALL</actionType>
-                <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
-            </permissions>
-            <created>2020-05-05T01:35:16.453+03:00</created>
-            <modified>2020-05-05T01:35:16.453+03:00</modified>
+            <created>2020-05-05T15:40:31.812+03:00</created>
+            <modified>2020-05-05T15:40:31.812+03:00</modified>
         </roles>
-        <created>2020-05-05T01:35:16.453+03:00</created>
-        <modified>2020-05-05T01:35:16.453+03:00</modified>
+        <created>2020-05-05T15:40:31.812+03:00</created>
+        <modified>2020-05-05T15:40:31.812+03:00</modified>
     </user>
-    <user>
-        <id>11</id>
-        <firstName>dsfsf</firstName>
-        <lastName>dsfsf</lastName>
-        <email>sadaads@sdsadfa</email>
-        <password>sadfsaa</password>
+    <user id="11">
+        <firstName>Georgi</firstName>
+        <lastName>Hristov</lastName>
+        <email>ggg@gmail.com</email>
+        <password>assaddsada</password>
         <active>true</active>
         <roles>
-            <name>ADMIN</name>
+            <name>CUSTOMER</name>
+            <permissions>
+                <name>*</name>
+                <resourceType>REST_ENDPOINT</resourceType>
+                <resourceId>0</resourceId>
+                <actionType>DELETE_ALL</actionType>
+                <allowed>true</allowed>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
+            </permissions>
             <permissions>
                 <name>*</name>
                 <resourceType>REST_ENDPOINT</resourceType>
                 <resourceId>0</resourceId>
                 <actionType>CREATE</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -279,8 +282,8 @@
                 <resourceId>0</resourceId>
                 <actionType>UPDATE_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
             <permissions>
                 <name>*</name>
@@ -288,22 +291,13 @@
                 <resourceId>0</resourceId>
                 <actionType>READ_ALL</actionType>
                 <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
+                <created>2020-05-05T15:40:31.812+03:00</created>
+                <modified>2020-05-05T15:40:31.812+03:00</modified>
             </permissions>
-            <permissions>
-                <name>*</name>
-                <resourceType>REST_ENDPOINT</resourceType>
-                <resourceId>0</resourceId>
-                <actionType>DELETE_ALL</actionType>
-                <allowed>true</allowed>
-                <created>2020-05-05T01:35:16.453+03:00</created>
-                <modified>2020-05-05T01:35:16.453+03:00</modified>
-            </permissions>
-            <created>2020-05-05T01:35:16.453+03:00</created>
-            <modified>2020-05-05T01:35:16.453+03:00</modified>
+            <created>2020-05-05T15:40:31.812+03:00</created>
+            <modified>2020-05-05T15:40:31.812+03:00</modified>
         </roles>
-        <created>2020-05-05T01:35:18.619+03:00</created>
-        <modified>2020-05-05T01:35:18.619+03:00</modified>
+        <created>2020-05-05T15:40:37.427+03:00</created>
+        <modified>2020-05-05T15:40:37.427+03:00</modified>
     </user>
 </entities>

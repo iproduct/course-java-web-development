@@ -80,22 +80,22 @@ public class UsersSimpleDemo {
 		};
 		System.out.println(resources);
 		
-		// Test PermissionChangeListener - Problem 1.V.5
-		System.out.println(users[0]);
-		Arrays.stream(users).forEach(u -> u.addUserPermissionChangeListener(event -> { System.out.println(event); }));
-		Set<Permission> oldPermissions = users[0].getPermissions();
-		Set<Permission> newPermisssions = new HashSet<>(oldPermissions);
-		newPermisssions.add(new Permission("Config file permsiion", FILE, READ_ALL));
-		users[0].setPermissions(newPermisssions);
-		System.out.println("After:" + users[0]);
-		
-		// Test PropertyChangeListener - Problem 1.V.6
-		System.out.println(resources[0]);
-		Arrays.stream(resources).forEach(p -> p.addPropertyChangeListener(event -> { System.out.println(event); }));
-		String oldName = resources[0].getName();
-		String newName = "Changed " + oldName;
-		resources[0].setName(newName);
-		System.out.println("After:" + resources[0]);
+//		// Test PermissionChangeListener - Problem 1.V.5
+//		System.out.println(users[0]);
+//		Arrays.stream(users).forEach(u -> u.addUserPermissionChangeListener(event -> { System.out.println(event); }));
+//		Set<Permission> oldPermissions = users[0].getPermissions();
+//		Set<Permission> newPermisssions = new HashSet<>(oldPermissions);
+//		newPermisssions.add(new Permission("Config file permsiion", FILE, READ_ALL));
+//		users[0].setPermissions(newPermisssions);
+//		System.out.println("After:" + users[0]);
+//		
+//		// Test PropertyChangeListener - Problem 1.V.6
+//		System.out.println(resources[0]);
+//		Arrays.stream(resources).forEach(p -> p.addPropertyChangeListener(event -> { System.out.println(event); }));
+//		String oldName = resources[0].getName();
+//		String newName = "Changed " + oldName;
+//		resources[0].setName(newName);
+//		System.out.println("After:" + resources[0]);
 		
 		// Test UserService - Problem 2.I.1 and 2.II.1, Problem 3.VII, 
 //		ResourceRepository resourceRepo = new ResourceRepositoryImpl();

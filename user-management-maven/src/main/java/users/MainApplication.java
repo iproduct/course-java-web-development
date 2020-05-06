@@ -53,7 +53,7 @@ public class MainApplication {
 	private static Logger logger = Logger.getLogger(MainApplication.class.getSimpleName());
 	private static Scanner sc = new Scanner(System.in);
 	private ApplicationController mainController = ApplicationController.getInstance();
-	private Map<MenuItem, Command> commands = new HashMap<>();
+	private Map<MenuItem, Command> commands = new HashMap<>(); 
 	
 	public MainApplication() {
 		//Map menu items to commands

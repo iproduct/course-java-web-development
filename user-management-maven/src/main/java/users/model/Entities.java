@@ -17,7 +17,7 @@ public class Entities<T> {
 	@XmlAnyElement(lax = true)
 	protected Collection<T> entity;
 
-	public Entities() {
+	public Entities() { 
 		this.entity = new ArrayList<>();
 	}
 	

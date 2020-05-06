@@ -10,7 +10,7 @@ public class RepositoryFactoryProvider {
 			return new InMemoryRepoFactory();
 		case XML_FILE:
 			return new XmlFileRepoFactory(properties);
-		default: throw new RuntimeException("Unsupported repository type.");
+		default: throw new RuntimeException("Unsupported repository type."); 
 		}
 	}
 

@@ -10,6 +10,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,9 +40,15 @@ public class Role implements Serializable {
 	public static final Role[] ALL_ROLES = { ROLE_CUSTOMER, ROLE_MANAGER, ROLE_ADMIN };
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull
+	@NotBlank
 	private String name; // String containing the name of the Role;
+	@NotNull
+	@Valid
 	private Set<Permission> permissions = new HashSet<>(); // role defined standard permissions for given Role;
+	@PastOrPresent
 	private Date created = new Date(); // Date the date and time of first creating the Role in the system;
+	@PastOrPresent
 	private Date modified = new Date(); // Date the date and time of last modification of Role data in the system;
 	
 	public Role() {

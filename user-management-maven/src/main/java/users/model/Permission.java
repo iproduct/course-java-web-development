@@ -3,6 +3,9 @@ package users.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -12,12 +15,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Permission implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
+	@NotBlank
 	private String name; // String containing the name of the Permission;
+	@NotNull
 	private ResourceType resourceType; // ResourceType representing the type of the resource the permission is given for;
 	private long resourceId;// representing the id of the resource the permission is given for (when given for specific resource instance // optional filed);
+	@NotNull
 	private ActionType actionType; // ActionType enumeration representing the type of action to be executed over the protected resource for which the Permission applies;
 	private boolean allowed = true;// boolean, true when specific ActionType is allowed on specific ResourceType or Resource instance (selected by resourceId).;
+	@PastOrPresent
 	private Date created = new Date();// Date the date and time of first creating the Permission in the system;
+	@PastOrPresent
 	private Date modified = new Date();// Date the date and time of last modification of Permission data in the system;
 	
 	public Permission() {

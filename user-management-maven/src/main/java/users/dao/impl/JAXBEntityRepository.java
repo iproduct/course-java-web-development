@@ -47,8 +47,8 @@ public class JAXBEntityRepository<T extends Identifiable> implements GenericRepo
 	}
 
 	@Override
-	public T findById(long id) throws NonexistingEntityException {
-		if(entities.isEmpty()) {
+	public T findById(Long id) {
+		if (entities.isEmpty()) {
 			refresh();
 		}
 		return entities.get(id);
@@ -56,7 +56,7 @@ public class JAXBEntityRepository<T extends Identifiable> implements GenericRepo
 
 	@Override
 	public long count() {
-		if(entities.isEmpty()) {
+		if (entities.isEmpty()) {
 			refresh();
 		}
 		return entities.size();
@@ -64,25 +64,20 @@ public class JAXBEntityRepository<T extends Identifiable> implements GenericRepo
 
 	@Override
 	public T create(T entity) throws InvalidEntityDataException {
-		T exisitng = entities.get(entity.getId());
-		if(exisitng != null) {
-			throw new InvalidEntityDataException("Entity with ID='" + entity.getId() 
-			+ " already exists!");
+		if( entity.getId() != null) {
+			T exisitng = entities.get(entity.getId());
+			if (exisitng != null) {
+				throw new InvalidEntityDataException("Entity with ID='" + entity.getId() + " already exists!");
+			}
 		}
 
 		entity.setId(getNextId());
-		
+
 		// use HybernateValidator
-		Set<ConstraintViolation<T>> violations = validator.validate(entity);
-		if(!violations.isEmpty()) {
-			throw new InvalidEntityDataException("Invalid entity data:" 
-					+ violations.stream().map(cv -> String.format("%s %s: '%s' - %s.", 
-					cv.getLeafBean().getClass().getSimpleName(), cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()))
-						.reduce("", (str, cvStr) -> str + " " + cvStr));
-		}
+		GenericRepository.handleConstarintViolations(validator.validate(entity));
 		
 		entities.put(entity.getId(), entity);
-		
+
 		// serialize all entites to XML file
 		try {
 			serializeToXml(new Entities<T>(entities.values()));
@@ -93,14 +88,20 @@ public class JAXBEntityRepository<T extends Identifiable> implements GenericRepo
 	}
 
 	@Override
-	public T update(T entity) throws NonexistingEntityException {
-		long id = entity.getId();
+	public T update(T entity) throws NonexistingEntityException, InvalidEntityDataException {
+		Long id = entity.getId();
+		if( id == null) {
+			throw new InvalidEntityDataException("Null entity ID.");
+		}
 		T exisitng = entities.get(id);
-		if(exisitng == null) {
+		if (exisitng == null) {
 			throw new NonexistingEntityException("Entity with ID='" + id + " does not exists!");
 		}
-		entities.put(id, entity);
+		// use HybernateValidator
+		GenericRepository.handleConstarintViolations(validator.validate(entity));
 		
+		entities.put(id, entity);
+
 		// serialize all entites to XML file
 		try {
 			serializeToXml(new Entities<T>(entities.values()));
@@ -111,28 +112,26 @@ public class JAXBEntityRepository<T extends Identifiable> implements GenericRepo
 	}
 
 	@Override
-	public T removeById(long id) throws NonexistingEntityException {
+	public T removeById(Long id) {
 		T existing = entities.remove(id);
-		if(existing == null) {
-			throw new NonexistingEntityException("Entity with ID='" + id + " does not exists!");
-		}
-		
-		// serialize all entites to XML file
-		try {
-			serializeToXml(new Entities<T>(entities.values()));
-		} catch (JAXBException e) {
-			logger.log(Level.SEVERE, "Error serializing to XML file " + file + ": ", e);
+		if (existing != null) {
+			// serialize all entites to XML file
+			try {
+				serializeToXml(new Entities<T>(entities.values()));
+			} catch (JAXBException e) {
+				logger.log(Level.SEVERE, "Error serializing to XML file " + file + ": ", e);
+			}
 		}
 		return existing;
 	}
-	
-	protected long getNextId( ) {
+
+	protected long getNextId() {
 		return ++nextId;
 	}
 
 	// protected and private methods
 	protected void serializeToXml(Entities<T> entities) throws JAXBException {
-		if(jaxbContext == null) {
+		if (jaxbContext == null) {
 			jaxbContext = JAXBContext.newInstance("users.model");
 		}
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -141,19 +140,18 @@ public class JAXBEntityRepository<T extends Identifiable> implements GenericRepo
 	}
 
 	protected Entities<T> deserializeFromXml() throws JAXBException {
-		if(jaxbContext == null) {
+		if (jaxbContext == null) {
 			jaxbContext = JAXBContext.newInstance("users.model");
 		}
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		return (Entities<T>) jaxbUnmarshaller.unmarshal(file);
 	}
-	
+
 	protected void refresh() {
 		try {
 			entities.clear();
 			Collection<T> result = deserializeFromXml().getEntities();
-			result.stream()
-				.forEach(entity -> entities.put(entity.getId(), entity));
+			result.stream().forEach(entity -> entities.put(entity.getId(), entity));
 		} catch (JAXBException e) {
 			logger.log(Level.SEVERE, "Error deserializing from XML file " + file + ": ", e);
 		}

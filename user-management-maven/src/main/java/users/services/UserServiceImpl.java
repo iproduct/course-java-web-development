@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User user) throws InvalidEntityDataException {
+		validateUser(user);
 		return userRepo.create(user);
 	}
 
@@ -54,12 +55,17 @@ public class UserServiceImpl implements UserService {
 		if(!user.getEmail().equals(oldUser.getEmail())) {
 			throw new PropertyChangeNotAllowedException("Property 'email' can not be changed.");
 		}
+		validateUser(user);
 		return userRepo.update(user);
 	}
 
 	@Override
 	public User deleteUserById(long id) throws NonexistingEntityException {
-		return userRepo.removeById(id);
+		User existing = userRepo.removeById(id);
+		if(existing == null) {
+			throw new NonexistingEntityException("User with ID='" + id + " does not exists!");
+		}
+		return existing;
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import users.services.UserServiceImpl;
 
 // Problem 4.III
 public class ApplicationController {
-	private static Logger logger = Logger.getLogger(ApplicationController.class.getSimpleName());
+	private static Logger logger = Logger.getLogger(ApplicationController.class.getSimpleName()); 
 	private UserService userService;
 	private ResourceService resourceService;
 	private LoginService loginService;
