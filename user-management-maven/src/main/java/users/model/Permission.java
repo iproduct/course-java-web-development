@@ -20,7 +20,7 @@ public class Permission implements Serializable {
 	private String name; // String containing the name of the Permission;
 	@NotNull
 	private ResourceType resourceType; // ResourceType representing the type of the resource the permission is given for;
-	private long resourceId;// representing the id of the resource the permission is given for (when given for specific resource instance // optional filed);
+	private Long resourceId;// representing the id of the resource the permission is given for (when given for specific resource instance // optional filed);
 	@NotNull
 	private ActionType actionType; // ActionType enumeration representing the type of action to be executed over the protected resource for which the Permission applies;
 	private boolean allowed = true;// boolean, true when specific ActionType is allowed on specific ResourceType or Resource instance (selected by resourceId).;
@@ -38,10 +38,10 @@ public class Permission implements Serializable {
 		this.actionType = actionType;
 	}
 
-	public Permission(String name, ResourceType resourceType, long resourceId, ActionType actionType) {
+	public Permission(String name, ResourceType resourceType, Long resourceId, ActionType actionType) {
 		this.name = name;
 		this.resourceType = resourceType;
-		this.resourceId = resourceId;
+		this.resourceId = resourceId; 
 		this.actionType = actionType;
 	}
 
@@ -52,7 +52,7 @@ public class Permission implements Serializable {
 		this.allowed = allowed;
 	}
 
-	public Permission(String name, ResourceType resourceType, long resourceId, ActionType actionType, boolean allowed) {
+	public Permission(String name, ResourceType resourceType, Long resourceId, ActionType actionType, boolean allowed) {
 		this.name = name;
 		this.resourceType = resourceType;
 		this.resourceId = resourceId;
@@ -60,7 +60,7 @@ public class Permission implements Serializable {
 		this.allowed = allowed;
 	}
 
-	public Permission(String name, ResourceType resourceType, long resourceId, ActionType actionType, boolean allowed,
+	public Permission(String name, ResourceType resourceType, Long resourceId, ActionType actionType, boolean allowed,
 			Date created, Date modified) {
 		this.name = name;
 		this.resourceType = resourceType;
@@ -87,11 +87,11 @@ public class Permission implements Serializable {
 		this.resourceType = resourceType;
 	}
 
-	public long getResourceId() {
+	public Long getResourceId() {
 		return resourceId;
 	}
 
-	public void setResourceId(long resourceId) {
+	public void setResourceId(Long resourceId) {
 		this.resourceId = resourceId;
 	}
 
@@ -132,7 +132,7 @@ public class Permission implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((actionType == null) ? 0 : actionType.hashCode());
-		result = prime * result + (int) (resourceId ^ (resourceId >>> 32));
+		result = prime * result + ((resourceId == null) ? 0 : resourceId.hashCode());
 		result = prime * result + ((resourceType == null) ? 0 : resourceType.hashCode());
 		return result;
 	}
@@ -148,7 +148,10 @@ public class Permission implements Serializable {
 		Permission other = (Permission) obj;
 		if (actionType != other.actionType)
 			return false;
-		if (resourceId != other.resourceId)
+		if (resourceId == null) {
+			if (other.resourceId != null)
+				return false;
+		} else if (!resourceId.equals(other.resourceId))
 			return false;
 		if (resourceType != other.resourceType)
 			return false;
@@ -164,5 +167,4 @@ public class Permission implements Serializable {
 				.append(modified).append("]");
 		return builder.toString();
 	}
-
 }

@@ -60,6 +60,15 @@ public class Resource implements Identifiable, Serializable {
 		this.resourceType = resourceType;
 		this.actions = actions;
 	}
+	
+	public Resource(Long id, String name, long ownerId, String url, ResourceType resourceType, Set<ActionType> actions) {
+		this.id = id;
+		this.name = name;
+		this.ownerId = ownerId;
+		this.url = url;
+		this.resourceType = resourceType;
+		this.actions = actions;
+	}
 
 	public Resource(long id, String name, long ownerId, String url, ResourceType resourceType, Set<ActionType> actions,
 			Date created, Date modified) {

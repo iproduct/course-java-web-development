@@ -33,7 +33,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserById(long id) throws NonexistingEntityException {
-		return userRepo.findById(id);
+		User existing = userRepo.findById(id);
+		if(existing == null) {
+			throw new NonexistingEntityException("User with ID='" + id + " does not exists!");
+		}
+		return existing;
 	}
 
 	@Override
@@ -52,10 +56,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUser(User user) throws NonexistingEntityException, InvalidEntityDataException, PropertyChangeNotAllowedException {
 		User oldUser = userRepo.findById(user.getId());
-		if(!user.getEmail().equals(oldUser.getEmail())) {
+		if(oldUser == null) {
+			throw new NonexistingEntityException("User with ID='" + user.getId() + " does not exists!");
+		}
+		if(!oldUser.getEmail().equals(user.getEmail())) { 
 			throw new PropertyChangeNotAllowedException("Property 'email' can not be changed.");
 		}
 		validateUser(user);
+
 		return userRepo.update(user);
 	}
 
@@ -105,10 +113,12 @@ public class UserServiceImpl implements UserService {
 //				throw new InvalidEntityDataException("Invalid user password.");
 //		}
 		for(Permission p: user.getPermissions()) {
-			try {
-				resourceService.getResourceById(p.getResourceId());
-			} catch (NonexistingEntityException ex) {
-				throw new InvalidEntityDataException(String.format("Error in User permissions: %s", ex.getMessage()));
+			if(p.getResourceId() != null) {
+				try {
+					resourceService.getResourceById(p.getResourceId());
+				} catch (NonexistingEntityException ex) {
+					throw new InvalidEntityDataException(String.format("Error in User permissions: %s", ex.getMessage()));
+				}
 			}
 		}
 	}

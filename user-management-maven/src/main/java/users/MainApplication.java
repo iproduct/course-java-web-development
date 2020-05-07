@@ -83,15 +83,15 @@ public class MainApplication {
 //				Role.ROLE_ADMIN, Role.ROLE_CUSTOMER, Role.ROLE_MANAGER
 //		}));
 		User[] users = {
-				new User(1, "Ivan", "Petrov", "ivan@abv.bg", "ivan123", true, Role.ROLE_ADMIN, 
+				new User(1L, "Ivan", "Petrov", "ivan@abv.bg", "ivan123", true, Role.ROLE_ADMIN, 
 						new HashSet<Permission>(), new Date(), new Date()),
-				new User(2, "John", "Smith", "johny123@gmail.com", "john123", true, Role.ROLE_CUSTOMER, 
+				new User(2L, "John", "Smith", "johny123@gmail.com", "john123", true, Role.ROLE_CUSTOMER, 
 						new HashSet<Permission>(), new Date(), new Date()),
-				new User(3, "Dimitar", "Petrov", "dimitar@gmail.com", "dimitar", true, Role.ROLE_MANAGER, 
+				new User(3L, "Dimitar", "Petrov", "dimitar@gmail.com", "dimitar", true, Role.ROLE_MANAGER, 
 						new HashSet<Permission>(), new Date(), new Date()),
-				new User(4, "Hristo", "Petrov", "hristo@abv.bg", "hristo", true, Role.ROLE_ADMIN, 
+				new User(4L, "Hristo", "Petrov", "hristo@abv.bg", "hristo", true, Role.ROLE_ADMIN, 
 						new HashSet<Permission>(), new Date(), new Date()),
-				new User(5, "Maria", "Georgieva", "maria@abv.bg", "maria", true, Role.ROLE_ADMIN, 
+				new User(5L, "Maria", "Georgieva", "maria@abv.bg", "maria", true, Role.ROLE_ADMIN, 
 						new HashSet<Permission>(), new Date(), new Date())
 		};
 

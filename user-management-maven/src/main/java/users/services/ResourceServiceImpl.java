@@ -37,7 +37,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public Resource updateResource(Resource resource) throws NonexistingEntityException, InvalidEntityDataException, PropertyChangeNotAllowedException {
-		Resource oldResource = resourceRepo.findById(resource.getId());
 		return resourceRepo.update(resource);
 	}
 

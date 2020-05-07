@@ -75,14 +75,27 @@ public class User implements Identifiable, Serializable, PermissionChangeListena
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.password = password;
+		this.password = password; 
 		active = true;
 		roles.add(Role.ROLE_CUSTOMER);
 		permissions = new HashSet<Permission>();
 	}
 
+	public User(String firstName, String lastName, String email, String password, boolean active,
+			Role role, Set<Permission> permissions, Date created, Date modified) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.active = active;
+		this.roles.add(role);
+		this.permissions = permissions;
+		this.created = created;
+		this.modified = modified;
+	}
+	
 	// All args constructor
-	public User(long id, String firstName, String lastName, String email, String password, boolean active,
+	public User(Long id, String firstName, String lastName, String email, String password, boolean active,
 			Set<Role> roles, Set<Permission> permissions, Date created, Date modified) {
 		this.id = id;
 		this.firstName = firstName;
@@ -96,7 +109,7 @@ public class User implements Identifiable, Serializable, PermissionChangeListena
 		this.modified = modified;
 	}
 
-	public User(long id, String firstName, String lastName, String email, String password, boolean active,
+	public User(Long id, String firstName, String lastName, String email, String password, boolean active,
 			Role role, Set<Permission> permissions, Date created, Date modified) {
 		this.id = id;
 		this.firstName = firstName;
