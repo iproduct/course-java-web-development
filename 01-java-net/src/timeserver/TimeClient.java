@@ -14,9 +14,9 @@ public class TimeClient {
 
 	public static void main(String[] args) throws UnknownHostException {
 		InetAddress addr = InetAddress.getByName("localhost");
-		String[] cities = {"Sofia", "Rome", "Madrid", "Berlin", "Paris", "Brussels", "London", "Burgas"};
+		String[] cities = {"Sofia", "Rome", "Madrid", "Berlin", "Paris", "Brussels", "London"};
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < cities.length; i++) {
 			try (Socket s = new Socket(addr, TimeServer.PORT)) {
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(s.getInputStream()));

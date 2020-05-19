@@ -1,0 +1,30 @@
+V 19, 2020 8:50:51 PM timeserver.TimeServer main
+INFO: TimeServer stated on port: 8080
+V 19, 2020 8:54:09 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53569,localport=8080]
+V 19, 2020 8:54:11 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53570,localport=8080]
+V 19, 2020 8:54:13 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53571,localport=8080]
+V 19, 2020 8:54:15 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53572,localport=8080]
+V 19, 2020 8:54:17 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53574,localport=8080]
+V 19, 2020 8:54:19 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53575,localport=8080]
+V 19, 2020 8:54:21 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53576,localport=8080]
+V 19, 2020 8:55:22 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53587,localport=8080]
+V 19, 2020 8:55:24 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53589,localport=8080]
+V 19, 2020 8:55:26 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53591,localport=8080]
+V 19, 2020 8:55:28 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53592,localport=8080]
+V 19, 2020 8:55:30 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53593,localport=8080]
+V 19, 2020 8:55:32 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53594,localport=8080]
+V 19, 2020 8:55:34 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=53595,localport=8080]
