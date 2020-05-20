@@ -1,0 +1,32 @@
+V 19, 2020 5:14:05 PM timeserver.TimeServer main
+INFO: TimeServer stated on port: 8080
+V 19, 2020 5:14:11 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51668,localport=8080]
+V 19, 2020 5:14:13 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51670,localport=8080]
+V 19, 2020 5:14:15 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51671,localport=8080]
+V 19, 2020 5:14:17 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51672,localport=8080]
+V 19, 2020 5:14:19 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51673,localport=8080]
+V 19, 2020 5:14:21 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51676,localport=8080]
+V 19, 2020 5:14:23 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51677,localport=8080]
+V 19, 2020 5:14:25 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51678,localport=8080]
+V 19, 2020 5:14:25 PM timeserver.TimeServer main
+SEVERE: Invalid zone Id: Europe/Burgas. Taking Greenwich zone instead
+java.time.zone.ZoneRulesException: Unknown time-zone ID: Europe/Burgas
+	at java.time.zone.ZoneRulesProvider.getProvider(Unknown Source)
+	at java.time.zone.ZoneRulesProvider.getRules(Unknown Source)
+	at java.time.ZoneRegion.ofId(Unknown Source)
+	at java.time.ZoneId.of(Unknown Source)
+	at java.time.ZoneId.of(Unknown Source)
+	at timeserver.TimeServer.main(TimeServer.java:55)
+
+V 19, 2020 5:14:27 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51679,localport=8080]
+V 19, 2020 5:14:29 PM timeserver.TimeServer main
+INFO: TimeServer connection accepted: Socket[addr=/127.0.0.1,port=51680,localport=8080]
